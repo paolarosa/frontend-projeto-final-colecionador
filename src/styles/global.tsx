@@ -9,6 +9,11 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 }
 
+body, html{
+width: 100%;
+height: 100%;
+}
+
 button{
     cursor: pointer;
     border: none;
@@ -27,5 +32,6 @@ ul, ol, li{
 h1, h2, h3, h4, h5, h6, p, a, span, li, button, label, input{
     font-family: 'IM Fell DW Pica', serif;
 }
+
     
 `;
