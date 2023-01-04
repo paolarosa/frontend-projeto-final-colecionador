@@ -1,21 +1,48 @@
 import { DivDogBallon, PageLogin } from "./styles";
 import background from "../../assets/background.png";
-import collector from "../../assets/colecionador.png";
 import dog from "../../assets/Cosmo.png";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { useContext } from "react";
+import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
+
+export interface UserFormData {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
+  const formSchema = yup.object().shape({
+    email: yup.string().required("Email obrigadorio").email("Email inválido"),
+    password: yup.string().required("Senha obrigadoria"),
+  });
+
+  const { loginRequisition,passwordEye, setPasswordEye }: any = useContext(LoginRegisterContext);
+
+  const { register, handleSubmit, formState: { errors }} = useForm<UserFormData>({
+    resolver: yupResolver(formSchema),
+  });
+
   return (
     <PageLogin>
       <section>
-        <form /* onSubmit={handleSubmit(loginRequisition)} */>
+        <form onSubmit={handleSubmit(loginRequisition)}>
           <div>
             <h2>Login</h2>
           </div>
           <label>Email</label>
-          <input />
+          <input type={"email"} {...register("email")} />
+          {errors ? <span>{errors.email?.message}</span> : ""}
           <label>Senha</label>
-          <input />
+          <div className="password">
+            <input type={passwordEye? ("text"):("password")} {...register("password")} />
+            <span onClick={()=>setPasswordEye(!passwordEye)}> {passwordEye? (<AiFillEyeInvisible/>):(<AiFillEye/>)} </span>
+            </div>
+          {errors ? <span>{errors.password?.message}</span> : ""}
           <button type="submit">Entrar</button>
         </form>
         <p>
