@@ -18,7 +18,9 @@ const Login = () => {
           <input />
           <button type="submit">Entrar</button>
         </form>
-        <p>Não tem uma conta? Clique <Link to={"/register"}>aqui</Link></p>
+        <p>
+          Não tem uma conta? Clique <Link to={"/register"}>aqui</Link>
+        </p>
       </section>
       <DivDogBallon>
         <div>
