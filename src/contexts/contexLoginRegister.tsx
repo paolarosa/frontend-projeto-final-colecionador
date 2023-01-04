@@ -19,12 +19,19 @@ export const LoginRigisterProvider = () => {
           console.log(error);
         }
       };
-
-
-
-
+      
+      
+          const registerRequisition = async (data: any) => {
+              console.log(data);
+              try {
+                const response = await apiBase.post("register", data);
+                console.log(response)
+              } catch (error) {
+                console.log(error);
+              }
+            };
   return (
-    <LoginRegisterContext.Provider value={{loginRequisition,passwordEye, setPasswordEye}}>
+    <LoginRegisterContext.Provider value={{loginRequisition,passwordEye, setPasswordEye, registerRequisition}}>
       <Outlet />
     </LoginRegisterContext.Provider>
   );
