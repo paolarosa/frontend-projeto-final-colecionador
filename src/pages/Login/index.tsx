@@ -21,7 +21,7 @@ const Login = () => {
 
   const { loginRequisition }: any = useContext(LoginRegisterContext);
 
-  const { register, handleSubmit } = useForm<UserFormData>({
+  const { register, handleSubmit, formState: { errors }} = useForm<UserFormData>({
     resolver: yupResolver(formSchema),
   });
 
@@ -34,8 +34,10 @@ const Login = () => {
           </div>
           <label>Email</label>
           <input type={"email"} {...register("email")} />
+          {errors ? <span>{errors.email?.message}</span> : ""}
           <label>Senha</label>
           <input type="password" {...register("password")} />
+          {errors ? <span>{errors.password?.message}</span> : ""}
           <button type="submit">Entrar</button>
         </form>
         <p>
