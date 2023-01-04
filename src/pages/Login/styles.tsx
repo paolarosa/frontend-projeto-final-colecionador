@@ -9,6 +9,20 @@ export const PageLogin = styled.div`
   align-items: center;
   padding: 0 15px;
 
+  .password{
+    width: 100%;
+    position: relative;
+    span{
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      cursor: pointer;
+    }
+    input{
+      width: 100%;
+    }
+  }
+
   section {
     width: 100%;
     max-width: 500px;

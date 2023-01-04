@@ -1,10 +1,12 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { apiBase } from "../services/api";
 
 export const LoginRegisterContext = createContext({});
 
 export const LoginRigisterProvider = () => {
+
+  const [passwordEye, setPasswordEye] = useState(false)
 
     const loginRequisition = async (data: any) => {
         console.log(data);
@@ -22,7 +24,7 @@ export const LoginRigisterProvider = () => {
 
 
   return (
-    <LoginRegisterContext.Provider value={{loginRequisition,}}>
+    <LoginRegisterContext.Provider value={{loginRequisition,passwordEye, setPasswordEye}}>
       <Outlet />
     </LoginRegisterContext.Provider>
   );

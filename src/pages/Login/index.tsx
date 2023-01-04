@@ -7,6 +7,8 @@ import { useContext } from "react";
 import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AiFillEye } from "react-icons/ai";
+import { AiFillEyeInvisible } from "react-icons/ai";
 
 export interface UserFormData {
   email: string;
@@ -19,7 +21,7 @@ const Login = () => {
     password: yup.string().required("Senha obrigadoria"),
   });
 
-  const { loginRequisition }: any = useContext(LoginRegisterContext);
+  const { loginRequisition,passwordEye, setPasswordEye }: any = useContext(LoginRegisterContext);
 
   const { register, handleSubmit, formState: { errors }} = useForm<UserFormData>({
     resolver: yupResolver(formSchema),
@@ -36,7 +38,10 @@ const Login = () => {
           <input type={"email"} {...register("email")} />
           {errors ? <span>{errors.email?.message}</span> : ""}
           <label>Senha</label>
-          <input type="password" {...register("password")} />
+          <div className="password">
+            <input type={passwordEye? ("text"):("password")} {...register("password")} />
+            <span onClick={()=>setPasswordEye(!passwordEye)}> {passwordEye? (<AiFillEyeInvisible/>):(<AiFillEye/>)} </span>
+            </div>
           {errors ? <span>{errors.password?.message}</span> : ""}
           <button type="submit">Entrar</button>
         </form>
