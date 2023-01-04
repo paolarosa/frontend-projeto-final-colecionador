@@ -6,6 +6,8 @@ const Home = () => {
         <>
         <p>Home</p>
         <Link to="/login">Login Page</Link>
+
+        <Link to="/register">Page Register</Link>
         </>
     )
 }
