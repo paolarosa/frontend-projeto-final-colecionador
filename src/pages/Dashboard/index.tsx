@@ -1,20 +1,46 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Cards } from "../../components/Cards/Cards";
-import background from "../../assets/background.png";
 import { DashboardContext } from "../../contexts/contextDashboard";
-import { BachgroundDash, ContainerDash, DashboardStyled } from "./styles";
+import {
+  BachgroundDash,
+  ContainerDash,
+  DashboardStyled,
+  MenuButtons,
+} from "./styles";
 import Header from "../../components/Header";
 
 const Dashboard = () => {
-  const { listRequisition, series } = useContext(DashboardContext);
+  const { listRequisition, series, cards } = useContext(DashboardContext);
+  const [filtered, setFiltered] = useState(null);
 
   useEffect(() => {
     listRequisition();
   }, []);
+  console.log(cards);
+  /* function filteredCards(type: any) {
+    setFiltered(cards.filter((category) => category.name === type));
+  } */
 
   return (
     <ContainerDash>
       <Header />
+      <MenuButtons>
+        <li>
+          <h2 /* onClick={() => setFiltered(null)} */>All</h2>
+        </li>
+        {cards?.map((card, index) => (
+          <li>
+            <h2
+            /* onClick={() => {
+                filteredCards("books_colections");
+              }} */
+            >
+              {card.name}
+            </h2>
+          </li>
+        ))}
+      </MenuButtons>
+
       <BachgroundDash className="background" />
       <DashboardStyled>
         {series?.map((serie, index) => (
