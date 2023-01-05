@@ -14,9 +14,11 @@ export const Cards = ({ serie }: iCard) => {
       {serie?.books?.map((book) => (
         <li key={book.id}>
           <img src={book.image} alt="" />
-          <h3>{book.title}</h3>
-          <h4>{book.author}</h4>
-          <p>{book.published}</p>
+          <div>
+            <h3>{book.title}</h3>
+            <h4>{book.author}</h4>
+            <p>{book.published}</p>
+          </div>
         </li>
       ))}
     </CardStyled>

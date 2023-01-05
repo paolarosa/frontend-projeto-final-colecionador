@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 :root{
     --color-primary:          ##F9F41F;
@@ -53,7 +53,7 @@ ul, ol, li{
 }
 
 h1, h2, h3, h4, h5, h6, p, a, span, li, button, label, input{
-    font-family: 'IM Fell DW Pica', serif;
+    font-family: "Inter", sans-serif;
 }
 
     
