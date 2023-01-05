@@ -15,4 +15,9 @@ export const CardStyled = styled.li`
     margin: 0 auto;
     box-shadow: 0px 2px 10px #000, 0px 0px 10px -10px #000;
   }
+  img:hover {
+    transform: scale(1.2);
+    background-position: -60px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
 `;

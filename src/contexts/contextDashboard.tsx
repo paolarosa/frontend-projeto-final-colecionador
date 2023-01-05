@@ -10,6 +10,7 @@ interface iDashContextProps {
 interface iDashContext {
   listRequisition: () => void;
   series: Series[];
+  cards: Card[];
 }
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
@@ -27,6 +28,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         });
         let newValues: Series[] = [];
         const data: Colection[] = response.data;
+        setCards(response.data);
         data.forEach((colection: Colection) => {
           colection.series.forEach((serie) => {
             newValues = [...newValues, serie];
@@ -41,12 +43,13 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       /* navigate("/"); */
     }
   };
-  console.log(series);
+
   return (
     <DashboardContext.Provider
       value={{
         listRequisition,
         series,
+        cards,
       }}
     >
       {children}

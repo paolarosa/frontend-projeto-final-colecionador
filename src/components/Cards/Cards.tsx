@@ -8,7 +8,7 @@ interface iCard {
 
 export const Cards = ({ serie }: iCard) => {
   const { listRequisition, series } = useContext(DashboardContext);
-  console.log(series);
+
   return (
     <>
       {serie?.colection?.map((colection) => (
