@@ -1,9 +1,6 @@
 import styled from "styled-components";
-// import { Link as LinkRouter } from "react-router-dom";
 
-// interface isStyledLink {}
-
-export const PageLogin = styled.div`
+export const PageRegister = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
@@ -28,7 +25,7 @@ export const PageLogin = styled.div`
     max-width: 500px;
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: #FFFFFF;
 
     padding: 20px 10px;
     margin: 0 auto;
@@ -64,13 +61,15 @@ export const PageLogin = styled.div`
         background-color: #f9f41f;
         box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
       }
-    }
 
-    p {
-      display: inline-block;
-      margin-top: 30px;
-      align-self: center;
-    }
+   }
+
+   p {
+    display: inline-block;
+    margin-top: 30px;
+    align-self: center;
+   }
+
   }
 
   .background {
@@ -98,6 +97,7 @@ export const PageLogin = styled.div`
       margin: 0;
     }
   }
+
 `;
 
 export const DivDogBallon = styled.div`
@@ -135,4 +135,4 @@ export const DivDogBallon = styled.div`
     display: flex;
     position: relative;
   }
-`;
+`
