@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     --grey-4:                 #333333;
     --grey-3:                 #828282;
     --grey-2:                 #868E96;
-    --grey-1                  #D9D9D9;
+    --grey-1:                 #D9D9D9;
     --grey-0:                 #F8F9FA;
 
 
@@ -34,7 +34,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 html, body, #root, #root>div {
-    height: 100vw;
+    height: 100%;
 }
 
 button{
