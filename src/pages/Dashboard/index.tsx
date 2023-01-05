@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { Cards } from "../../components/Cards/Cards";
 import background from "../../assets/background.png";
 import { DashboardContext } from "../../contexts/contextDashboard";
-import { DashboardStyled } from "./styles";
+import { BachgroundDash, ContainerDash, DashboardStyled } from "./styles";
 import Header from "../../components/Header";
 
 const Dashboard = () => {
@@ -12,11 +12,11 @@ const Dashboard = () => {
     listRequisition();
   }, []);
 
- return (
-    <div>
+  return (
+    <ContainerDash>
       <Header />
+      <BachgroundDash className="background" />
       <DashboardStyled>
-        {/*  <img className="background" alt="" src={background} /> */}
         {series?.map((serie, index) => (
           <div>
             <h2>{serie.name}</h2>
@@ -26,7 +26,7 @@ const Dashboard = () => {
           </div>
         ))}
       </DashboardStyled>
-    </div>
+    </ContainerDash>
   );
 };
 export default Dashboard;

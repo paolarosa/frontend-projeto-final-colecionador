@@ -7,7 +7,7 @@ export interface Colection {
 export interface Series {
   name: string;
   id: number;
-  books?: Book[];
+  colection?: Book[];
   games?: Game[];
   title?: Title[];
   edition?: Edition[];

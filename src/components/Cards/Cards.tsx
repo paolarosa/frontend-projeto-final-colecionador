@@ -8,19 +8,19 @@ interface iCard {
 
 export const Cards = ({ serie }: iCard) => {
   const { listRequisition, series } = useContext(DashboardContext);
-
+  console.log(series);
   return (
-    <CardStyled>
-      {serie?.books?.map((book) => (
-        <li key={book.id}>
-          <img src={book.image} alt="" />
-          <div>
+    <>
+      {serie?.colection?.map((colection) => (
+        <CardStyled key={colection.id}>
+          <img src={colection.image} alt="" />
+          {/*  <div>
             <h3>{book.title}</h3>
             <h4>{book.author}</h4>
             <p>{book.published}</p>
-          </div>
-        </li>
+          </div> */}
+        </CardStyled>
       ))}
-    </CardStyled>
+    </>
   );
 };
