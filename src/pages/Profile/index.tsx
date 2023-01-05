@@ -1,11 +1,6 @@
 import Header from "../../components/Header"
 import { ProfileContainer, ProfileItemsCard, UserInfo } from "./styles"
 
-{/* <p>{userData?.name ? userData.name : "Erro: nome"}</p>
-<p>{userData?.email ? userData.email : "Erro: email"}</p>
-<p>{userData?.age ? userData.age : "Erro: age"}</p> */}
-
-
 const Profile = () => {
 
     return (
