@@ -12,9 +12,10 @@ const Dashboard = () => {
     listRequisition();
   }, []);
 
-  return (
+ return (
+    <div>
+      <Header />
       <DashboardStyled>
-        <Header />
         {/*  <img className="background" alt="" src={background} /> */}
         {series?.map((serie, index) => (
           <div>
@@ -25,6 +26,7 @@ const Dashboard = () => {
           </div>
         ))}
       </DashboardStyled>
+    </div>
   );
 };
 export default Dashboard;
