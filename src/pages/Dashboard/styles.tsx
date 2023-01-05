@@ -5,9 +5,6 @@ export const DashboardStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
   height: 100%;
   width: 100%;
   margin-top: 50px;
@@ -85,12 +82,9 @@ export const BachgroundDash = styled.div`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 0;
-  left: 0;
   z-index: -1;
   background-image: url(${image});
   background-size: cover;
