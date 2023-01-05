@@ -12,16 +12,23 @@ export const DashboardStyled = styled.div`
   div {
     margin-top: 40px;
     width: 1110px;
-    
   }
+  div:nth-child(odd) ul, div:nth-child(odd) h2  {
+	background-color: #cceeff;
+}
+
+
+div:nth-child(even) ul, div:nth-child(even) h2{
+	background-color: #FFE484;
+}  
   h2 {
     font-size: 20px;
     background-color: #d9d9d9;
     max-width: 200px;
     height: 50px;
     padding: 10px;
-    border-top-right-radius: 50px;
-    box-shadow: 4px 4px 10px #000, 2px 4px 0px 1px #000;
+    /* border-top-right-radius: 50px; */
+    box-shadow: 0px 2px 2px #000, 0px 0px 5px 0px #000;
   }
   ul {
     overflow-x: auto;
@@ -32,9 +39,10 @@ export const DashboardStyled = styled.div`
     flex-direction: row;
     align-items: center;
     gap: 20px;
+    padding-left: 10px;
     background-color: #d9d9d9;
-    border-radius: 10px;
-    box-shadow: 4px 4px 10px #000, 4px 4px 0px 1px #000;
+    border-top-right-radius: 10px;
+    box-shadow: 10px 10px 10px #000, 1px 1px 5px 0px #000;
     
   }
   * {
@@ -47,11 +55,11 @@ export const DashboardStyled = styled.div`
   }
 
   *::-webkit-scrollbar-track {
-    background: #d9d9d9;
+    background:#ffffff;
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: black;
+    background-color: #d9d9d9;
     border-radius: 10px;
     border: 3px solid #ffffff;
   }
@@ -67,15 +75,9 @@ export const DashboardStyled = styled.div`
 	width: 70px;
 	height: 10px;
 	background: url(../../src/imgs/detail.svg);
-}
+} */
 
-ul:nth-of-type(odd) {
-	background-color: #cceeff;
-}
 
-ul:nth-of-type(even) {
-	background-color: #ffd951;
-}  */
 `;
 
 export const BachgroundDash = styled.div`
@@ -83,6 +85,8 @@ export const BachgroundDash = styled.div`
   height: 100%;
   object-fit: cover;
   display: flex;
+  position: fixed;
+  top: 0;
   align-items: center;
   justify-content: center;
   z-index: -1;
