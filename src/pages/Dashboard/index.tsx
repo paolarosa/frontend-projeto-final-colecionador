@@ -13,18 +13,20 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <DashboardStyled>
+    <div>
       <Header />
-      {/*  <img className="background" alt="" src={background} /> */}
-      {series?.map((serie, index) => (
-        <div>
-          <h2>{serie.name}</h2>
-          <ul key={index}>
-            <Cards serie={serie} />
-          </ul>
-        </div>
-      ))}
-    </DashboardStyled>
+      <DashboardStyled>
+        {/*  <img className="background" alt="" src={background} /> */}
+        {series?.map((serie, index) => (
+          <div>
+            <h2>{serie.name}</h2>
+            <ul key={index}>
+              <Cards serie={serie} />
+            </ul>
+          </div>
+        ))}
+      </DashboardStyled>
+    </div>
   );
 };
 export default Dashboard;
