@@ -12,7 +12,7 @@ const Dashboard = () => {
     listRequisition();
   }, []);
 
-  return (
+ return (
     <div>
       <Header />
       <DashboardStyled>
