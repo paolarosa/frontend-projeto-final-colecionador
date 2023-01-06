@@ -54,7 +54,7 @@ export const DashboardStyled = styled.div`
     gap: 20px;
     padding-left: 10px;
     background-color: #d9d9d9;
-    border-top-right-radius: 10px;
+    /* border-top-right-radius: 10px; */
     box-shadow: 1px 5px 5px #868e96, 1px 1px 0px 0px #868e96;
   }
 
@@ -67,10 +67,29 @@ export const DashboardStyled = styled.div`
   }
 
   *::-webkit-scrollbar-thumb {
-    background-color: #000000;
+    background-color: #d9d9d9;
     border-radius: 10px;
     border: 3px solid #ffffff;
   }
+  .button-scroll {
+    padding: 10px;
+    box-shadow: 2px -2px 0 1px #000 inset;
+    border: solid transparent;
+    border-width: 0 0 2px 2px;
+    transform: rotate(45deg);
+  }
+
+  .button-scroll-back {
+    padding: 10px;
+    box-shadow: 2px -2px 0 1px #000 inset;
+    border: solid transparent;
+    border-width: 0 0 2px 2px;
+    transform: rotate(220deg);
+  }
+
+  /* .scroll-none {
+    display: none;
+  } */
 `;
 
 export const BachgroundDash = styled.div`

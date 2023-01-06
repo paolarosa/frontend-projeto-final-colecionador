@@ -60,4 +60,5 @@ export interface Card {
   image: string;
   name: string;
   id: number;
+  series?: [];
 }
