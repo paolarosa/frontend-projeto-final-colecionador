@@ -36,8 +36,8 @@ export const DashboardStyled = styled.div`
     width: 250px;
     height: 50px;
     padding: 10px 0 0 15px;
-    /* border-top-right-radius: 50px;
-    border-top-left-radius: 30px; */
+    border-top-right-radius: 50px;
+    border-top-left-radius: 30px;
     box-shadow: 0px 2px 2px #868e96, 0px 0px 5px 0px #868e96;
   }
   ul {
@@ -48,7 +48,7 @@ export const DashboardStyled = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 20px;
+    gap: 40px;
     padding-left: 10px;
     background-color: #d9d9d9;
     /* border-top-right-radius: 10px; */
@@ -87,6 +87,11 @@ export const DashboardStyled = styled.div`
   /* .scroll-none {
     display: none;
   } */
+  @media (max-width: 1024px) {
+    ul {
+      width: 100%;
+    }
+  }
 `;
 
 export const BachgroundDash = styled.div`
@@ -128,5 +133,14 @@ export const MenuButtons = styled.div`
     transform: scale(1.1);
     background-position: -60px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  }
+  @media (max-width: 1024px) {
+    background-color: red;
+    width: 100%;
+    li {
+      width: 20%;
+      padding: 0;
+      background: red;
+    }
   }
 `;

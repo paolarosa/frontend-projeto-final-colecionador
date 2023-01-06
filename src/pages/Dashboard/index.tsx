@@ -12,7 +12,8 @@ import { Card } from "../../types";
 import Modal from "../../components/Modal";
 
 const Dashboard = () => {
-  const { listRequisition, series, cards } = useContext(DashboardContext);
+  const { listRequisition, series, cards, modalOn } =
+    useContext(DashboardContext);
   const [filtered, setFiltered] = useState(null as Card[] | null);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Dashboard = () => {
 
   return (
     <ContainerDash>
-      {modalOn? (<Modal/>):null}
+      {modalOn ? <Modal /> : null}
       <Header />
       <MenuButtons>
         <li>
