@@ -7,12 +7,12 @@ interface iCard {
 }
 
 export const Cards = ({ serie }: iCard) => {
-  const { listRequisition, series } = useContext(DashboardContext);
+  const { listRequisition, series, modalRender } = useContext(DashboardContext);
 
   return (
     <>
       {serie?.colection?.map((colection) => (
-        <CardStyled key={colection.id}>
+        <CardStyled key={colection.id} onClick={()=>modalRender(colection)}>
           <img src={colection.image} alt="" />
           {/*  <div>
             <h3>{book.title}</h3>

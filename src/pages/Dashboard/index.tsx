@@ -8,10 +8,11 @@ import {
   MenuButtons,
 } from "./styles";
 import Header from "../../components/Header";
+import Modal from "../../components/Modal";
 
 const Dashboard = () => {
-  const { listRequisition, series, cards } = useContext(DashboardContext);
-  const [filtered, setFiltered] = useState(null);
+  const { listRequisition, series, cards,modalOn } = useContext(DashboardContext);
+  const [filtered, setFiltered,] = useState(null);
 
   useEffect(() => {
     listRequisition();
@@ -23,6 +24,7 @@ const Dashboard = () => {
 
   return (
     <ContainerDash>
+      {modalOn? (<Modal/>):null}
       <Header />
       <MenuButtons>
         <li>
