@@ -9,6 +9,7 @@ import {
 } from "./styles";
 import Header from "../../components/Header";
 import { Card } from "../../types";
+import Modal from "../../components/Modal";
 
 const Dashboard = () => {
   const { listRequisition, series, cards } = useContext(DashboardContext);
@@ -27,6 +28,7 @@ const Dashboard = () => {
 
   return (
     <ContainerDash>
+      {modalOn? (<Modal/>):null}
       <Header />
       <MenuButtons>
         <li>
