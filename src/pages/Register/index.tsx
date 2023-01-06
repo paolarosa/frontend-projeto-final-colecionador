@@ -1,14 +1,14 @@
-import { DivDogBallon, PageRegister } from "./styles";
-import background from "../../assets/background.png";
-import dog from "../../assets/Cosmo.png";
+import * as yup from "yup";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useContext } from "react";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AiFillEye } from "react-icons/ai";
-import { AiFillEyeInvisible } from "react-icons/ai";
+
 import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
+import { DivDogBallon, PageRegister } from "./styles";
+
+import dog from "../../assets/Cosmo.png";
+import background from "../../assets/background.png";
 
 export interface UserFormData {
   email: string;
@@ -25,7 +25,7 @@ const Register = () => {
     confirmpassword: yup.string().oneOf([yup.ref("password"), null], "Senhas diferentes").required("Senha Obrigatório"),
   });
 
-  const { registerRequisition, passwordEye, setPasswordEye }: any = useContext(LoginRegisterContext);
+  const { registerRequisition }: any = useContext(LoginRegisterContext);
 
   const { register, handleSubmit, formState: { errors }} = useForm<UserFormData>({
     resolver: yupResolver(formSchema),
