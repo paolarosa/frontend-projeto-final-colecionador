@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { DashboardContext } from "../../contexts/contextDashboard";
 import { CardStyled } from "./styles";
 import { Series } from "../../types";
+
 interface iCard {
   serie: Series;
 }

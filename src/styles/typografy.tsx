@@ -1,4 +1,3 @@
-// import * as S from "./style"
 import styled, { css } from "styled-components";
 
 const typeTheme = {

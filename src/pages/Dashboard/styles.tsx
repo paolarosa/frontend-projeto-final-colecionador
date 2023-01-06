@@ -21,6 +21,7 @@ export const DashboardStyled = styled.div`
   div {
     width: 1110px;
   }
+
   div:nth-child(odd) ul,
   div:nth-child(odd) h2 {
     background-color: #cceeff;
@@ -30,6 +31,7 @@ export const DashboardStyled = styled.div`
   div:nth-child(even) h2 {
     background-color: #ffe484;
   }
+
   h2 {
     font-size: 20px;
     background-color: #d9d9d9;
@@ -40,6 +42,7 @@ export const DashboardStyled = styled.div`
     border-top-left-radius: 30px; */
     box-shadow: 0px 2px 2px #868e96, 0px 0px 5px 0px #868e96;
   }
+
   ul {
     overflow-x: auto;
     width: 100%;
@@ -73,16 +76,14 @@ export const DashboardStyled = styled.div`
 export const BachgroundDash = styled.div`
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: flex;
+
   position: fixed;
   top: 0;
-  align-items: center;
-  justify-content: center;
   z-index: -1;
+  
   background-image: url(${image});
   background-size: cover;
-  background-repeat: no-repeat;
+
   opacity: 50%;
 `;
 
@@ -111,20 +112,3 @@ export const MenuButtons = styled.div`
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 `;
-
-/* .baloonText {
-  width: 200px;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: -30px;
-  background: white;
-  padding: 15px;
-  font-size: 24px;
-  text-align: center;
-  border-radius: 40px 40px 0px 40px;
-  border: solid black 3px;
-
-  a {
-    color: #49bcf0;
-  } */
