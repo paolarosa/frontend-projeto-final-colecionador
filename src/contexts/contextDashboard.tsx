@@ -9,13 +9,13 @@ interface iDashContextProps {
 }
 interface iDashContext {
   listRequisition: () => void;
-  modalRender: (colection: any) => void
+  modalRender: (colection: any) => void;
   series: Series[];
   cards: Card[];
   saveModal: Book;
   setSaveModal: React.Dispatch<React.SetStateAction<Book>>;
   modalOn: boolean;
-  setModalOn: React.Dispatch<React.SetStateAction<boolean>>
+  setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
@@ -23,15 +23,14 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   const [cards, setCards] = useState<Card[]>([]);
   const [series, setSeries] = useState<Series[]>([]);
   const [saveModal, setSaveModal] = useState<Book>({} as Book);
-  const [modalOn, setModalOn] = useState(false)
+  const [modalOn, setModalOn] = useState(false);
   const navigate = useNavigate();
 
-  const modalRender = (colection:any)=>{
-
-    setModalOn(!modalOn)
-    setSaveModal(colection)
-    console.log(saveModal)
-  }
+  const modalRender = (colection: any) => {
+    setModalOn(!modalOn);
+    setSaveModal(colection);
+    console.log(saveModal);
+  };
 
   const listRequisition = async () => {
     const token = localStorage.getItem("Token");
@@ -63,7 +62,12 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       value={{
         listRequisition,
         series,
-        cards,saveModal, setSaveModal,modalOn, setModalOn,modalRender
+        cards,
+        saveModal,
+        setSaveModal,
+        modalOn,
+        setModalOn,
+        modalRender,
       }}
     >
       {children}
