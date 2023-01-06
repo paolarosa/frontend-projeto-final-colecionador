@@ -8,49 +8,64 @@ import {
   MenuButtons,
 } from "./styles";
 import Header from "../../components/Header";
+import { Card } from "../../types";
 
 const Dashboard = () => {
   const { listRequisition, series, cards } = useContext(DashboardContext);
-  const [filtered, setFiltered] = useState(null);
+  const [filtered, setFiltered] = useState(null as Card[] | null);
 
   useEffect(() => {
     listRequisition();
   }, []);
-  console.log(cards);
-  /* function filteredCards(type: any) {
-    setFiltered(cards.filter((category) => category.name === type));
-  } */
+
+  function filteredCards(type: any) {
+    const nome = cards.filter((category) => category.name === type);
+    if (nome[0].series) {
+      setFiltered(nome[0].series);
+    }
+  }
 
   return (
     <ContainerDash>
       <Header />
       <MenuButtons>
         <li>
-          <h2 /* onClick={() => setFiltered(null)} */>All</h2>
+          <h2 onClick={() => setFiltered(null)}>All</h2>
         </li>
         {cards?.map((card, index) => (
-          <li>
+          <li key={index}>
             <h2
-            /* onClick={() => {
-                filteredCards("books_colections");
-              }} */
+              onClick={() => {
+                filteredCards(card.name);
+              }}
             >
               {card.name}
             </h2>
           </li>
         ))}
       </MenuButtons>
-
       <BachgroundDash className="background" />
       <DashboardStyled>
-        {series?.map((serie, index) => (
-          <div>
-            <h2>{serie.name}</h2>
-            <ul key={index}>
-              <Cards serie={serie} />
-            </ul>
-          </div>
-        ))}
+        {filtered
+          ? filtered.map((serie, index) => (
+              <div key={index}>
+                <h2>{serie.name}</h2>
+
+                <ul>
+                  <Cards serie={serie} />
+                </ul>
+              </div>
+            ))
+          : series?.map((serie, index) => (
+              <div key={index}>
+                <h2>{serie.name}</h2>
+                <ul>
+                  <button className="button-scroll" />
+                  <Cards serie={serie} />
+                  <button className="button-scroll-back scroll-none" />
+                </ul>
+              </div>
+            ))}
       </DashboardStyled>
     </ContainerDash>
   );
