@@ -19,7 +19,7 @@ export const CardStyled = styled.li`
   }
   img:hover {
     transform: scale(1);
-    transition: 1s;
+    transition: 0.3s;
     position: absolute;
     width: 180px;
     /* background-position: -60px; */

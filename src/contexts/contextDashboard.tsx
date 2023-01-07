@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { apiBase } from "../services/api";
-import { Card, Colection, Series } from "../types";
+import { Book, Card, Colection, Series } from "../types";
 
 interface iDashContextProps {
   children: React.ReactNode;
