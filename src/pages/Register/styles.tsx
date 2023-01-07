@@ -47,7 +47,7 @@ export const PageRegister = styled.div`
 
       font-size: 18px;
 
-      input {
+      /* input {
         background-color: #dddddd;
         border: none;
         border-radius: 30px;
@@ -60,15 +60,15 @@ export const PageRegister = styled.div`
         border-radius: 30px;
         background-color: #f9f41f;
         box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
-      }
+      } */
 
    }
 
-   p {
-    display: inline-block;
-    margin-top: 30px;
-    align-self: center;
-   }
+   h2 {
+      display: inline-block;
+      padding: 0 30px 30px 0;
+      align-self: center;
+    }
 
   }
 
