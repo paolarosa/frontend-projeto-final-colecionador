@@ -1,7 +1,4 @@
 import styled from "styled-components";
-// import { Link as LinkRouter } from "react-router-dom";
-
-// interface isStyledLink {}
 
 export const PageLogin = styled.div`
   height: 100%;
@@ -50,25 +47,25 @@ export const PageLogin = styled.div`
 
       font-size: 18px;
 
-      input {
+      /* input {
         background-color: #dddddd;
         border: none;
         border-radius: 30px;
         height: 40px;
-      }
+      } */
 
-      button {
+      /* button {
         height: 50px;
         border: none;
         border-radius: 30px;
         background-color: #f9f41f;
         box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
-      }
+      } */
     }
 
-    p {
+    h2 {
       display: inline-block;
-      margin-top: 30px;
+      padding: 0 30px 30px 0;
       align-self: center;
     }
   }

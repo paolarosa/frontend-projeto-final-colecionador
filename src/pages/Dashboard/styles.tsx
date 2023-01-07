@@ -44,7 +44,8 @@ export const DashboardStyled = styled.div`
   div:nth-child(even) ul,
   div:nth-child(even) h2 {
     background-color: #cff0ff;
-  } */
+}*/
+
   h2 {
     font-size: 20px;
    /*  background-color: #ffcd07; */
@@ -55,6 +56,7 @@ export const DashboardStyled = styled.div`
     /* border-top-left-radius: 30px; */
     box-shadow: 0px 2px 2px #868e96, 0px 0px 5px 0px #868e96;
   }
+
   ul {
     overflow-x: auto;
     width: 100%;
@@ -131,17 +133,16 @@ padding-left: 30px;
 export const BackgroundDash = styled.div`
   width: 100vw;
   height: 100%;
-  object-fit: cover;
-  display: flex;
+
   position: fixed;
   top: 0;
-  align-items: center;
-  justify-content: center;
   z-index: -1;
+  
   background-image: url(${image});
   background-size: cover;
   background-repeat: no-repeat;
   opacity: 20%;
+
 `;
 
 export const MenuButtons = styled.div`

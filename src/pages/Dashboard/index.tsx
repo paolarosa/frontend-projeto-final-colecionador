@@ -12,6 +12,7 @@ import { Card } from "../../types";
 import Modal from "../../components/Modal";
 
 const Dashboard = () => {
+
   const { listRequisition, series, cards, modalOn } =
     useContext(DashboardContext);
   const [filtered, setFiltered] = useState(null as Card[] | null);
