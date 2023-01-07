@@ -1,6 +1,8 @@
 import { DivDogBallon, PageRegister } from "./styles";
 import background from "../../assets/background.png";
 import dog from "../../assets/Cosmo.png";
+import dog_voando from "../../assets/Cosmo_voando.png"
+import collector from "../../assets/collector.png"
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
@@ -59,18 +61,19 @@ const Register = () => {
             </div>
             {errors ? <span>{errors.confirmpassword?.message}</span> : ""}
 
-          <button type="submit">Entrar</button>
+          <button type="submit">cadastrar</button>
         </form>
-        <p>
+        {/* <p>
           Já Possui uma conta? Clique <Link to={"/login"}>aqui</Link>
-        </p>
+        </p> */}
       </section>
       <DivDogBallon>
-        <div>
+        <div className="image">
           <div className="baloonText">
-          Já Possui uma conta? Clique <Link to={"/login"}>aqui</Link>
+          Já Possui uma conta? Faça login <Link to={"/login"}>aqui</Link>
           </div>
-          <img className="dog" alt="" src={dog} />
+          <img className="dog" alt="" src={dog_voando} />
+          <img className="collector" alt="" src={collector}/>
         </div>
       </DivDogBallon>
       <img className="background" alt="" src={background} />

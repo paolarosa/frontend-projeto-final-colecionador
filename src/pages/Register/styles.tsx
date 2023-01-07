@@ -20,6 +20,10 @@ export const PageRegister = styled.div`
     }
   }
 
+  .image {
+    
+  }
+
   section {
     width: 100%;
     max-width: 500px;
@@ -43,10 +47,13 @@ export const PageRegister = styled.div`
       flex-direction: column;
 
       padding: 5px;
-      gap: 15px;
+      gap: 20px;
 
       font-size: 18px;
 
+      h2{
+        margin-top: 30px;
+      }
       input {
         background-color: #dddddd;
         border: none;
@@ -60,6 +67,7 @@ export const PageRegister = styled.div`
         border-radius: 30px;
         background-color: #f9f41f;
         box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
+        margin-bottom: 30px;
       }
 
    }
@@ -106,6 +114,21 @@ export const DivDogBallon = styled.div`
   div {
     .dog {
       width: 300px;
+      display: block;
+
+      position: absolute;
+      top: -370px;
+      left: -400px;
+
+    }
+    .collector {
+      width: 300px;
+      display: block;
+
+      position: absolute;
+      top: -50px;
+      left: -260px;
+
     }
 
     .baloonText {
@@ -113,8 +136,8 @@ export const DivDogBallon = styled.div`
       display: block;
 
       position: absolute;
-      top: 0;
-      left: -30px;
+      top: -400px;
+      left: -170px;
 
       background: white;
       padding: 15px;
@@ -122,7 +145,7 @@ export const DivDogBallon = styled.div`
       font-size: 24px;
       text-align: center;
 
-      border-radius: 40px 40px 0px 40px;
+      border-radius: 40px 40px 40px 0px;
       border: solid black 3px;
 
       a {
