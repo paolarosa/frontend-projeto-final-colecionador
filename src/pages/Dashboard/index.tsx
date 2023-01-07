@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Cards } from "../../components/Cards/Cards";
 import { DashboardContext } from "../../contexts/contextDashboard";
 import {
-  BachgroundDash,
+  BackgroundDash,
   ContainerDash,
   DashboardStyled,
   MenuButtons,
@@ -24,6 +24,7 @@ const Dashboard = () => {
     const nome = cards.filter((category) => category.name === type);
     if (nome[0].series) {
       setFiltered(nome[0].series);
+      
     }
   }
 
@@ -47,7 +48,7 @@ const Dashboard = () => {
           </li>
         ))}
       </MenuButtons>
-      <BachgroundDash className="background" />
+      <BackgroundDash className="background" />
       <DashboardStyled>
         {filtered
           ? filtered.map((serie, index) => (
@@ -55,6 +56,7 @@ const Dashboard = () => {
                 <h2>{serie.name}</h2>
 
                 <ul>
+                  <span />
                   <Cards serie={serie} />
                 </ul>
               </div>
@@ -63,9 +65,10 @@ const Dashboard = () => {
               <div key={index}>
                 <h2>{serie.name}</h2>
                 <ul>
-                  <button className="button-scroll" />
+                  <span />
+                  {/*  <button className="button-scroll" /> */}
                   <Cards serie={serie} />
-                  <button className="button-scroll-back scroll-none" />
+                  {/*  <button className="button-scroll-back scroll-none" /> */}
                 </ul>
               </div>
             ))}

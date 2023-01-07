@@ -16,14 +16,14 @@ export const CardStyled = styled.li`
     object-fit: contain;
     margin: 0 auto;
     box-shadow: 0px 2px 10px #000, 0px 0px 10px -10px #000;
+    filter: grayscale(100%);
   }
   img:hover {
     transform: scale(1);
-    transition: 1s;
+    transition: 0.5s;
     position: absolute;
     width: 180px;
     /* background-position: -60px; */
-    box-shadow: 20px 30px 30px rgba(0, 0, 0, 0.16),
-      -10px -30px 90px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 `;
