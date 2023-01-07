@@ -123,7 +123,7 @@ export const MenuButtons = styled.div`
     background: white;
     padding: 10px;
     text-align: center;
-    border-radius: 20px 30px 0px 20px;
+    border-radius: 20px 0px 0px 20px;
     border: solid black 3px;
     cursor: pointer;
     font-size: 16px;
