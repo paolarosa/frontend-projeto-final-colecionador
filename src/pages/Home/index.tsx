@@ -3,9 +3,11 @@ import { PageHome, DivDogBallon } from "./styles"
 import background from "../../assets/background.png"
 import collector2 from "../../assets/collector2.png"
 
+
 const Home = () => {
 
     return (
+
         <PageHome>
          {/* <Header /> */}
          <DivDogBallon>
@@ -19,6 +21,13 @@ const Home = () => {
         </DivDogBallon>
             <img className="background" alt="" src={background} />
         </PageHome>
+        <>
+        <p>Home</p>
+        <Link to="/login">Login Page</Link>
+
+        <Link to="/register">Page Register</Link>
+        </>
+
     )
 }
 
