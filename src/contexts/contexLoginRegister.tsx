@@ -26,7 +26,7 @@ export const LoginRegisterContext = createContext({} as iUserContext);
 
 export const LoginRigisterProvider = () => {
   const [passwordEye, setPasswordEye] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 

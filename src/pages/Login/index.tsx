@@ -75,7 +75,7 @@ const Login = () => {
             type="email"
             placeholder=""
             register={register("email")}
-            // disabled={loading}
+            disabled={loading}
           />
           {errors ? <span>{errors.email?.message}</span> : ""}
 
@@ -86,7 +86,7 @@ const Login = () => {
               type={passwordEye ? "text" : "password"}
               placeholder=""
               register={register("password")}
-              // disabled={loading}
+              disabled={loading}
             />
             <span onClick={() => setPasswordEye(!passwordEye)}>
               {" "}
@@ -99,10 +99,10 @@ const Login = () => {
             buttonSize="default"
             buttonStyle="primary"
             type="submit"
-            // disabled={loading}
+            disabled={loading}
           >
-            {/* {loading ? "Entrando ..." : "Entrar"} */}
-            Entrar
+            {loading ? ("Entrando ...") : ("Entrar")}
+            {/* Entrar */}
           </StyledButton>
         </form>
       </section>
