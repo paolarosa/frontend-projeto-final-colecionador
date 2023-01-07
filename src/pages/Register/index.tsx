@@ -89,7 +89,7 @@ const Register = () => {
             type="text"
             placeholder=""
             register={register("name")}
-            disabled={!loading}
+            disabled={loading}
           />
           <span>{errors.name?.message}</span>
 
@@ -100,7 +100,7 @@ const Register = () => {
             type="email"
             placeholder=""
             register={register("email")}
-            disabled={!loading}
+            disabled={loading}
           />
           <span>{errors.email?.message}</span>
 
@@ -111,7 +111,7 @@ const Register = () => {
             type="password"
             placeholder=""
             register={register("password")}
-            disabled={!loading}
+            disabled={loading}
           />
           <span>{errors.password?.message}</span>
 
@@ -121,7 +121,7 @@ const Register = () => {
             type="password"
             placeholder=""
             register={register("confirmpassword")}
-            disabled={!loading}
+            disabled={loading}
           />
           <span>{errors.confirmpassword?.message}</span>
 
@@ -129,9 +129,9 @@ const Register = () => {
             buttonSize="default"
             buttonStyle="primary"
             type="submit"
-            disabled={!loading}
+            disabled={loading}
           >
-            {!loading ? "Cadastrando ..." : "Cadastrar"}
+            {loading ? "Cadastrando ..." : "Cadastrar"}
           </StyledButton>
           <button type="submit">cadastrar</button>
         </form>
