@@ -30,10 +30,11 @@ export const StyledButton = styled.button`
       case "small":
         return css`
           padding: 0 1.75rem;
-          height: 50px;
+          height: 30px;
           width: 32px;
           border: none;
           border-radius: 30px;
+          font-size: ${theme.typography.Caption.size};
         `;
       default:
         return css`

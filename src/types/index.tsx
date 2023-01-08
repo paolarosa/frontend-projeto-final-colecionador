@@ -62,3 +62,24 @@ export interface Card {
   id: number;
   series?: [];
 }
+
+export interface Posts {
+  title: string;
+  message: string;
+  id: number;
+}
+
+export type User = {
+  avatar: string;
+  email: string;
+  name: string;
+  id: number;
+  mycolections?: [];
+};
+
+export interface AllUsers {
+  avatar: string;
+  email: string;
+  name: string;
+  id: number;
+}
