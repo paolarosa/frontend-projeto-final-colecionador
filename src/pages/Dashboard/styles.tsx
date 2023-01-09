@@ -1,5 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import image from "../../assets/hq.jpg";
+
+interface iActivedButton {
+  actived: string;
+}
 
 export const ContainerDash = styled.div`
   display: flex;
@@ -10,7 +14,7 @@ export const ContainerDash = styled.div`
   min-height: 100vh;
 `;
 
-export const DashboardStyled = styled.div`
+export const DashboardStyled = styled.div<iActivedButton>`
   display: flex;
   flex-direction: column;
   /* align-items: center; */
@@ -19,37 +23,62 @@ export const DashboardStyled = styled.div`
   max-width: 1140px;
   /* margin-top: 50px; */
   padding-top: 30px;
-  gap: 50px; 
-  background-color: #9de0ff;
+  gap: 50px;
+  /* background-color: #9de0ff; */
+  ${(props) => {
+    switch (props.actived) {
+      case "All":
+        return css`
+          background: #9de0ff;
+        `;
+      case "books_colections":
+        return css`
+          background: #ffcd07;
+        `;
+      case "rooms":
+        return css`
+          background: #da77f2;
+        `;
+      case "comics":
+        return css`
+          background: #69db7c;
+        `;
+      case "card_game":
+        return css`
+          background: #ff6b6b;
+        `;
+    }
+  }}
 
   /*  padding: 20px; */
-
   /* border-top-left-radius: 30px; */
   border: 5px solid black;
   box-shadow: 5px 8px 0px #fff, 5px 8px 0px 2px #000, 10px 20px 0px #fff,
     10px 20px 5px 0px #000, 15px 20px 0px #fff, 10px 20px 20px 10px #000,
-    23px 30px 0px #fff, 10px 30px 30px 20px #000;;
+    23px 30px 0px #fff, 10px 30px 30px 20px #000;
 
   div {
-    /* background-color: #cff0ff */;
+    /* background-color: #cff0ff */
     position: relative;
-    width: 1120px; 
+    width: 1100px;
+    margin-left: 20px;
   }
-    div:nth-child(odd) ul,
-    div:nth-child(odd) h2  {
-    background-color: #F8F9FA;
+
+  div:nth-child(odd) ul,
+  div:nth-child(odd) h2 {
+    background-color: #f8f9fa;
   }
 
   div:nth-child(even) ul,
   div:nth-child(even) h2 {
-    background-color: #D9D9D9;
-}
+    background-color: #d9d9d9;
+  }
 
   h2 {
     font-size: 26px;
-   /*  background-color: #ffcd07; */
+    /*  background-color: #ffcd07; */
     /* width: 250px; */
-    width: 100%;
+    width: 96%;
     height: 50px;
     padding: 10px 0 0 15px;
     /*  border-top-right-radius: 50px; */
@@ -59,20 +88,19 @@ export const DashboardStyled = styled.div`
 
   ul {
     overflow-x: auto;
-    width: 100%;
+    width: 96%;
     height: 250px;
     z-index: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 40px;
-padding-left: 30px;
-
-    background-color: background-color: #cff0ff;
+    padding-left: 30px;
+    background-color: #cff0ff;
     /* border-top-right-radius: 10px; */
     box-shadow: 1px 5px 5px #868e96, 1px 1px 0px 0px #868e96;
   }
-/*   span {
+  /*   span {
     border: 8px solid #333333;
     width: 40px;
     position: absolute;
@@ -110,13 +138,20 @@ padding-left: 30px;
   }
 
   .button-scroll-back {
-    padding: 10px;
+    /*   padding: 10px;
     box-shadow: 2px -2px 0 1px #000 inset;
     border: solid transparent;
     border-width: 0 0 2px 2px;
-    transform: rotate(220deg);
+    transform: rotate(220deg); */
+    width: 50px;
+    position: absolute;
+    right: 0;
   }
-
+  .button-scroll-back img {
+    width: 30px;
+    height: 30px;
+    margin: 20px;
+  }
   /* .scroll-none {
     display: none;
   } */
@@ -144,7 +179,7 @@ export const BackgroundDash = styled.div`
   opacity: 20%;
 `;
 
-export const MenuButtons = styled.div`
+export const MenuButtons = styled.div<iActivedButton>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,28 +197,38 @@ export const MenuButtons = styled.div`
     font-size: 16px;
   }
 
-  li:hover {
-    background: #d9d9d9;
+  li.actived {
     transform: scale(1.14, 1.4);
     background-position: -60px;
     border-bottom: none;
-    t
   }
+
+  li:hover {
+    transform: scale(1.14, 1.4);
+    background-position: -60px;
+    border-bottom: none;
+  }
+
   li:nth-child(1) {
     background-color: #9de0ff;
+    ${(props) => props.actived === "All" && categoryActived}
   }
 
   li:nth-child(2) {
     background-color: #ffcd07;
+    ${(props) => props.actived === "books_colections" && categoryActived}
   }
   li:nth-child(3) {
     background-color: #da77f2;
+    ${(props) => props.actived === "rooms" && categoryActived}
   }
   li:nth-child(4) {
     background-color: #69db7c;
+    ${(props) => props.actived === "comics" && categoryActived}
   }
   li:nth-child(5) {
     background-color: #ff6b6b;
+    ${(props) => props.actived === "card_game" && categoryActived}
   }
 
   @media (max-width: 1024px) {
@@ -201,4 +246,10 @@ export const MenuButtons = styled.div`
       border-radius: 20px 20px 0px 20px;
     }
   }
+`;
+
+const categoryActived = css`
+  transform: scale(1.14, 1.4);
+  background-position: -60px;
+  border-bottom: none;
 `;
