@@ -1,20 +1,14 @@
-
 import { DivDogBallon, PageRegister } from "./styles";
 import background from "../../assets/background.png";
 import dog from "../../assets/Cosmo.png";
-import dog_voando from "../../assets/Cosmo_voando.png"
-import collector from "../../assets/collector.png"
+import dog_voando from "../../assets/Cosmo_voando.png";
+import collector from "../../assets/collector.png";
 import * as yup from "yup";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
-import { DivDogBallon, PageRegister } from "./styles";
-
-import dog from "../../assets/Cosmo.png";
-import background from "../../assets/background.png";
 import { StyledButton } from "../../styles/Button";
 import { Input } from "../../styles/Input";
 
@@ -138,7 +132,6 @@ const Register = () => {
         {/* <p>
           Já Possui uma conta? Clique <Link to={"/login"}>aqui</Link>
         </p> */}
-
       </section>
       <DivDogBallon>
         <div className="image">
@@ -146,7 +139,7 @@ const Register = () => {
             Já Possui uma conta? Clique <Link to={"/login"}>aqui</Link>
           </div>
           <img className="dog" alt="" src={dog_voando} />
-          <img className="collector" alt="" src={collector}/>
+          <img className="collector" alt="" src={collector} />
         </div>
       </DivDogBallon>
       <img className="background" alt="" src={background} />
