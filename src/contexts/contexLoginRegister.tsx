@@ -46,18 +46,6 @@ export const LoginRigisterProvider = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState([]);
-  // const [favorites, setFavorites] = useState([]);
-
-  // const updateFavorite = (name:any) => {
-  //   const updateFavorites = [...favorites];
-  //   const favoriteIndex = favorites.indexOf(name);
-  //   if (favoriteIndex > 0) {
-  //     updateFavorites.slice(favoriteIndex, 1);
-  //   } else {
-  //     updateFavorites.push(name);
-  //   }
-  //   setFavorites(updateFavorites);
-  // };
 
   const loadUser = async () => {
     const Token = localStorage.getItem("Token");
@@ -137,7 +125,7 @@ export const LoginRigisterProvider = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setPosts(response.data.reverse());
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -147,14 +135,18 @@ export const LoginRigisterProvider = () => {
   const forumPostMessageRequest = async (data: iUserPostProps) => {
     const token = localStorage.getItem("Token");
     if (token) {
+      const newData = {
+        userId: user?.id,
+        title: data.title,
+        message: data.message,
+      };
       try {
-        const response = await apiBase.post("/forum", data, {
+        console.log(data);
+        const response = await apiBase.post("/forum", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
         // setPosts(...posts, data)
-
-        console.log(response);
       } catch (error) {
         console.log(error);
       }
@@ -169,7 +161,7 @@ export const LoginRigisterProvider = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAllUsers(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -190,7 +182,6 @@ export const LoginRigisterProvider = () => {
         getAllUsersRequest,
         allUsers,
         forumPostMessageRequest,
-        // updateFavorite,
       }}
     >
       <Outlet />
