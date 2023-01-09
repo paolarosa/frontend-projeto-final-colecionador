@@ -34,7 +34,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
     console.log(saveModal);
   };
   const token = localStorage.getItem("Token");
-
+  console.log(series);
   const listRequisition = async () => {
     if (token) {
       try {
