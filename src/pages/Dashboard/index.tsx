@@ -11,6 +11,8 @@ import Header from "../../components/Header";
 import { Card } from "../../types";
 import Modal from "../../components/Modal";
 import { Carrossel } from "../../components/Carrossel/Carrossel";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Dashboard = () => {
   const { listRequisition, series, cards, modalOn } =
@@ -31,6 +33,18 @@ const Dashboard = () => {
 
   return (
     <ContainerDash>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"/>
+        
       {modalOn ? <Modal /> : null}
       <Header />
       <MenuButtons actived={actived}>
