@@ -8,7 +8,7 @@ import { PostForm } from "../../components/Forms/ForumMessage";
 // import ExpenseDate, { ShowDate, ShowNewDate } from "../../styles/Date";
 
 const Forum = () => {
-  // const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState([] as object[]);
   const [heart, setHeart] = useState(false)
 
   const { forumMessagesRequest, posts, user, getAllUsersRequest, allUsers } =
@@ -19,31 +19,28 @@ const Forum = () => {
     getAllUsersRequest();
   }, []);
 
-  // const updateFavorites = (name) => {
-  //   const updateFavorites = [...favorites];
-  //   const favoriteIndex = favorites.indexOf(name);
-  //   if (favoriteIndex > 0) {
-  //     updateFavorites.slice(favoriteIndex, 1);
-  //   } else {
-  //     updateFavorites.push(name);
-  //   }
-  //   setFavorites(updateFavorites);
-  // };
-
-
-  // const updateHeart = () => {
-  //   const updateHeart = [...heart];
-  //   const heartIndex = favorites.indexOf
-  // }
-
-  const onHeartClick = () => {
-    // updateFavorites(post?.title)
-    console.log("favorita esse aqui!");
-    setHeart(true)
-    
+  const updateFavorites = (userTarget: {}) => {
+    if (favorites.findIndex(element => element === userTarget) === -1){
+      setFavorites([...favorites, userTarget])
+    } else if (favorites.findIndex(element => element === userTarget) >= 0){
+      setFavorites(favorites.filter(element => element != userTarget))
+    }
   };
 
+  const onHeartClick = (userTarget: object) => {
+    updateFavorites(userTarget)
+    console.log(userTarget)
+    setHeart(!heart)
+  };
 
+  const checkFavoriteButton = (element: any) => {
+    console.log(favorites)
+    if (favorites.some(item => item === element)){
+      return "Remover"
+    } else {
+      return "Adicionar"
+    }
+  }
 
   return (
     <div>
@@ -88,7 +85,7 @@ const Forum = () => {
 
                       </div>
                       <div className="divLikeButton">
-                        <button className="likeButton" onClick={onHeartClick}>
+                        <button className="likeButton">
                           {!heart ? <AiFillHeart className="uncoloredHeart"/> : <AiFillHeart className="coloredHeart"/> }
                         </button>
                       </div>
@@ -104,13 +101,13 @@ const Forum = () => {
 
             <div className="listAllUsers">
               <ul>
-                {allUsers?.map((all, index) => (
+                {allUsers?.map((singleUser, index) => (
                   <li key={index}>
-                    <img src={all.avatar} alt="user avatar" />
+                    <img src={singleUser.avatar} alt="user avatar" />
                     <div className="aboutAll">
-                      <h2>{all.name}</h2>
-                      <StyledButton buttonSize="small" buttonStyle="primary">
-                        Add
+                      <h2>{singleUser.name}</h2>
+                      <StyledButton buttonSize="small" buttonStyle="primary" onClick={() => onHeartClick(singleUser)}>
+                        {checkFavoriteButton(singleUser)}
                       </StyledButton>
                     </div>
                   </li>
