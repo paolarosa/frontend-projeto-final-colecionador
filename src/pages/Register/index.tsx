@@ -1,5 +1,6 @@
 import { DivDogBallon, PageRegister } from "./styles";
 import background from "../../assets/background.png";
+import dog from "../../assets/Cosmo.png";
 import dog_voando from "../../assets/Cosmo_voando.png";
 import collector from "../../assets/collector.png";
 import * as yup from "yup";
