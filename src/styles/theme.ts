@@ -3,6 +3,7 @@ export const theme = {
     primary: "#F9F41F",
     primary06: "rgba(249, 244, 31, 0.6)",
     secundary: "#49BCF0",
+    secundary06: "rgb(73,188,240,0.6)",
     
     grey4: "#333333",
     grey3: "#828282",
@@ -20,6 +21,11 @@ export const theme = {
     },
     
   typography: {
+    Heading0: {
+      size: "1.75rem", //26px
+      weight: "bold",
+      height: "1.5rem",
+    },
     Heading1: {
       size: "1.625rem", //26px
       weight: "bold",
@@ -53,7 +59,7 @@ export const theme = {
     Caption: {
       size: "0.75rem", //12px
       weight: "normal",
-      height: "1.5rem",
+      height: "2rem",
     },
   },
 };

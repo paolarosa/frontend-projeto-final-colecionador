@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     --color-warning:          #FFCD07;
     --color-Information:      #155BCB;
     
-    font-size: 62.5%;
+    /* font-size: 62.5%; */
 }
 
 

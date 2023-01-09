@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import { apiBase } from "../services/api";
 import { Book, Card, Colection, Series, User } from "../types";
@@ -91,32 +92,72 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
        const idUser = localStorage.getItem("@userID");
        const response = await apiBase.patch(`/users/${idUser}`,data, {
          headers: { Authorization: `Bearer ${token}` },
-       });;
-       setContainCollection(false)
-       console.log(response)
+       });
+       toast.success('Item Removido da sua coleção com sucesso 🧐', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
      } catch (error) {
        console.log(error);
+       toast.error('Algo deu Errado 🤕', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
      } finally {
        setModalOn(false)
        setContainCollection(false)
      }
     }
+
     if(containCollection === false){
      let myNewColletion = [...myCollectionSave, saveModal.title]
      setMyCollectionSave(myNewColletion)
      const data = {
        "myCollection": myNewColletion
      }
-       console.log(data)
+
      try {
        const idUser = localStorage.getItem("@userID");
        const response = await apiBase.patch(`/users/${idUser}`,data, {
          headers: { Authorization: `Bearer ${token}` },
-       });;
+       });
         
-       console.log(response)
+       toast.success('Item Adicionado a sua coleção com sucesso 😎', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
      } catch (error) {
        console.log(error);
+       toast.error('Algo deu Errado 🤕', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        })
      } finally {
        setModalOn(false)
        setContainCollection(false)
