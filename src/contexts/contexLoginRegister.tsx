@@ -136,7 +136,7 @@ export const LoginRigisterProvider = () => {
         const response = await apiBase.get("/forum", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setPosts(response.data);
+        setPosts(response.data.reverse());
         console.log(response.data);
       } catch (error) {
         console.log(error);
@@ -151,6 +151,8 @@ export const LoginRigisterProvider = () => {
         const response = await apiBase.post("/forum", data, {
           headers: { Authorization: `Bearer ${token}` },
         });
+
+        // setPosts(...posts, data)
 
         console.log(response);
       } catch (error) {
