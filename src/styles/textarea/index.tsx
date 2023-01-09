@@ -4,7 +4,6 @@ interface iTextareaProps {
   id?: string | undefined;
   label?: string;
   className?: string;
-  // type?: string;
   placeholder?: string;
   register?: object;
   disabled?: boolean | undefined;
@@ -16,11 +15,11 @@ interface iTextareaProps {
   name?: string;
 }
 
-export const Input = ({
+export const Textarea = ({
   id,
   label,
   className,
-  // type,
+  name,
   placeholder,
   register,
   disabled,
@@ -35,7 +34,7 @@ export const Input = ({
         <textarea
           className={className}
           id={id}
-          // type={type}
+          name={name}
           cols={cols}
           rows={rows}
           placeholder={placeholder}

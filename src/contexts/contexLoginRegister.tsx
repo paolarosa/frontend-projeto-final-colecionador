@@ -12,9 +12,12 @@ interface iUserContext {
   registerRequisition: (data: iUserRegisterProps) => Promise<void>;
   forumMessagesRequest: () => void;
   getAllUsersRequest: () => void;
-  posts: Posts[]
+  forumPostMessageRequest: (data: iUserPostProps) => Promise<void>;
+  posts: Posts[];
   user: User | null;
-  allUsers: AllUsers[]
+  allUsers: AllUsers[];
+  // favorite: []
+  // updateFavorite: (id:any) => null
 }
 
 interface iUserRegisterProps {
@@ -28,6 +31,11 @@ interface iUserLoginProps {
   password: string;
 }
 
+interface iUserPostProps {
+  title: string;
+  message: string;
+}
+
 export const LoginRegisterContext = createContext({} as iUserContext);
 
 export const LoginRigisterProvider = () => {
@@ -38,9 +46,20 @@ export const LoginRigisterProvider = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState([]);
+  // const [favorites, setFavorites] = useState([]);
+
+  // const updateFavorite = (name:any) => {
+  //   const updateFavorites = [...favorites];
+  //   const favoriteIndex = favorites.indexOf(name);
+  //   if (favoriteIndex > 0) {
+  //     updateFavorites.slice(favoriteIndex, 1);
+  //   } else {
+  //     updateFavorites.push(name);
+  //   }
+  //   setFavorites(updateFavorites);
+  // };
 
   const loadUser = async () => {
-
     const Token = localStorage.getItem("Token");
 
     if (!Token) {
@@ -54,7 +73,7 @@ export const LoginRigisterProvider = () => {
 
       const { data } = await apiBase.get(`/users/${idUser}`, {
         headers: { Authorization: `Bearer ${Token}` },
-      });;
+      });
 
       setUser(data);
     } catch (error) {
@@ -63,8 +82,7 @@ export const LoginRigisterProvider = () => {
     } finally {
       setLoading(false);
     }
-
-  }
+  };
 
   useEffect(() => {
     loadUser();
@@ -126,6 +144,21 @@ export const LoginRigisterProvider = () => {
     }
   };
 
+  const forumPostMessageRequest = async (data: iUserPostProps) => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      try {
+        const response = await apiBase.post("/forum", data, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   const getAllUsersRequest = async () => {
     const token = localStorage.getItem("Token");
     if (token) {
@@ -154,6 +187,8 @@ export const LoginRigisterProvider = () => {
         user,
         getAllUsersRequest,
         allUsers,
+        forumPostMessageRequest,
+        // updateFavorite,
       }}
     >
       <Outlet />
