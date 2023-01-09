@@ -12,7 +12,6 @@ import { Card } from "../../types";
 import Modal from "../../components/Modal";
 
 const Dashboard = () => {
-
   const { listRequisition, series, cards, modalOn } =
     useContext(DashboardContext);
   const [filtered, setFiltered] = useState(null as Card[] | null);
@@ -25,10 +24,8 @@ const Dashboard = () => {
     const nome = cards.filter((category) => category.name === type);
     if (nome[0].series) {
       setFiltered(nome[0].series);
-      
     }
   }
-
   return (
     <ContainerDash>
       {modalOn ? <Modal /> : null}

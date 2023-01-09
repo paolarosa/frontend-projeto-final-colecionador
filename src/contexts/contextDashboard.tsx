@@ -33,9 +33,9 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
     setSaveModal(colection);
     console.log(saveModal);
   };
+  const token = localStorage.getItem("Token");
 
   const listRequisition = async () => {
-    const token = localStorage.getItem("Token");
     if (token) {
       try {
         const response = await apiBase.get("/colections", {
@@ -44,14 +44,11 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         let newValues: Series[] = [];
         const data: Colection[] = response.data;
         setCards(response.data);
-
         data.forEach((colection: Colection) => {
           colection.series.forEach((serie) => {
             newValues = [...newValues, serie];
-            /* setSeries((prev) => [...prev, serie]); */
           });
         });
-        
         setSeries(newValues);
       } catch (error) {
         console.log(error);

@@ -1,5 +1,6 @@
 import { DivDogBallon, PageRegister } from "./styles";
 import background from "../../assets/background.png";
+import dog from "../../assets/Cosmo.png";
 import dog_voando from "../../assets/Cosmo_voando.png";
 import collector from "../../assets/collector.png";
 import * as yup from "yup";
@@ -7,9 +8,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
-
 import { StyledButton } from "../../styles/Button";
 import { Input } from "../../styles/Input";
 
@@ -129,7 +128,6 @@ const Register = () => {
             {loading ? "Cadastrando ..." : "Cadastrar"}
           </StyledButton>
         </form>
-
       </section>
       <DivDogBallon>
         <div className="image">

@@ -78,6 +78,7 @@ const Forum = () => {
                   <li key={index}>
                     <div className="headerPostMessageDiv">
                       <div className="divPostMessage">
+                        {/* {allUsers.filter((user) => user.id === userId )} */}
                         <img src={user?.avatar} alt="" />
                         <h2>{user?.name}</h2>
 

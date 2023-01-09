@@ -14,7 +14,8 @@ interface iUserPostFormValues {
 }
 
 export const PostForm = () => {
-  const { forumPostMessageRequest, user } = useContext(LoginRegisterContext);
+  const { forumPostMessageRequest, user, allUsers } =
+    useContext(LoginRegisterContext);
 
   const {
     register,
@@ -28,25 +29,12 @@ export const PostForm = () => {
 
   const onSubmit: SubmitHandler<iUserPostFormValues> = (data) => {
     forumPostMessageRequest(data);
-    reset(
-      // {
-      //   userId: user?.id
-      // }
-    );
+    reset();
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
 
-      {/* <Input
-        className="input"
-        label="userId"
-        type="text"
-        placeholder=""
-        register={register("userId")}
-        disabled
-      /> */}
-      
       <Input
         className="input"
         label="Title"
@@ -56,14 +44,14 @@ export const PostForm = () => {
       />
       {errors ? <span>{errors.title?.message}</span> : ""}
 
-        <Textarea
-          className="textarea"
-          label="Message"
-          name="message"
-          id="message"
-          cols={30}
-          rows={14}
-          register={register("message")}
+      <Textarea
+        className="textarea"
+        label="Message"
+        name="message"
+        id="message"
+        cols={30}
+        rows={14}
+        register={register("message")}
       />
       {errors ? <span>{errors.message?.message}</span> : ""}
 

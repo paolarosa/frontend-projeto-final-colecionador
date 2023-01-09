@@ -11,6 +11,7 @@ interface iInputProps {
   title?: string;
   status?: string;
   enableButton?: () => void;
+  value?: any
 }
 
 export const Input = ({
@@ -23,6 +24,7 @@ export const Input = ({
   disabled,
   title,
   status,
+  value,
 }: iInputProps) => {
   return (
     <InputStyled>
@@ -35,6 +37,7 @@ export const Input = ({
           {...register}
           disabled={disabled}
           defaultValue={title ? title : status}
+          value={value}
         />
         <label className="label" htmlFor={id}>
           {label}
