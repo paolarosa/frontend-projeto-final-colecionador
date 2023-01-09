@@ -75,7 +75,10 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
     setSaveModal(colection);
     console.log(saveModal);
   };
-
+  
+  const token = localStorage.getItem("Token");
+  console.log(series);
+  
   const myCollection = async () => {
     if(containCollection){
      let myNewColletion = myCollectionSave.filter((elemet) => elemet !== saveModal.title);
@@ -122,7 +125,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
 
  }
 
-  const listRequisition = async () => {
+const listRequisition = async () => {
     if (token) {
       try {
         const response = await apiBase.get("/colections", {
