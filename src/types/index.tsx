@@ -23,6 +23,7 @@ export interface Book {
   sections?: number;
   published: number;
   id: number;
+  description:string;
 }
 
 export interface Game {
