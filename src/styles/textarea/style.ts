@@ -26,13 +26,25 @@ export const TextareaStyled = styled.div`
     font-size: 16px;
     display: block;
     width: 100%;
-    height: 40px;
-    padding: 0 20px;
+    height: 140px;
+    padding: 20px;
     background: ${theme.colors.grey0};
     color: ${theme.colors.grey4};
     border: 1px solid ${theme.colors.grey0};
     border-radius: 30px;
     box-sizing: border-box;
+    &:focus {
+        outline: none;
+        ~ .label {
+          background-color: ${theme.colors.white};
+          /* position: relative; */
+          top: -8px;
+          font-size: 12px;
+        }
+        background: ${theme.colors.white};
+        color: ${theme.colors.grey4};
+        border: 1px solid ${theme.colors.grey4};
+      }
   }
 
 `;
