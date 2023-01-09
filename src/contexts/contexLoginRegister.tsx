@@ -41,11 +41,12 @@ export const LoginRegisterContext = createContext({} as iUserContext);
 export const LoginRigisterProvider = () => {
   const [passwordEye, setPasswordEye] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState([]);
+  
+  const navigate = useNavigate();
 
   const loadUser = async () => {
     const Token = localStorage.getItem("Token");
@@ -86,13 +87,8 @@ export const LoginRigisterProvider = () => {
       localStorage.setItem("Token", response.data.accessToken);
       window.localStorage.setItem("@userID", response.data.user.id);
 
-      console.log(response);
-
-      const toNavigate = location.state?.from?.pathname || "/dashboard";
-
-      setTimeout(() => {
-        navigate(toNavigate, { replace: true });
-      }, 3000);
+      navigate("/dashboard")
+      window.location.reload();
     } catch (error) {
       console.log(error);
     } finally {

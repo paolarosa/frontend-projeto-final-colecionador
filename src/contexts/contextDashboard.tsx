@@ -43,7 +43,8 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
 
   const loadUser = async () => {
     if (!token) {
-      return;
+      localStorage.clear();
+      navigate("/login");
     }
 
     try {
@@ -52,20 +53,14 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       const { data } = await apiBase.get(`/users/${idUser}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-
-      setUser(data);
-      const bodyColletions = {
-        "myCollection": []
-      }
       setMyCollectionSave(data.myCollection)
-      if(user?.myCollection === undefined){
-        const response = await apiBase.patch(`/users/${idUser}`,bodyColletions, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-      }
+      
+      setUser(data);
     } catch (error) {
       console.log(error);
-      // window.localStorage.clear();
+      console.log(error)
+      localStorage.clear();
+      navigate("/login");
     } finally {
     }
 
@@ -77,7 +72,6 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
     console.log(saveModal);
   };
   
-  const token = localStorage.getItem("Token");
   console.log(series);
   
   const myCollection = async () => {
