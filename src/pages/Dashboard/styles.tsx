@@ -14,13 +14,13 @@ export const DashboardStyled = styled.div`
   display: flex;
   flex-direction: column;
   /* align-items: center; */
-  height: 100%;
+  /* height: 100%; */
   width: 100%;
   max-width: 1140px;
   /* margin-top: 50px; */
   padding-top: 30px;
   gap: 50px; 
-  background: white;
+  background-color: #9de0ff;
 
   /*  padding: 20px; */
 
@@ -31,30 +31,30 @@ export const DashboardStyled = styled.div`
     23px 30px 0px #fff, 10px 30px 30px 20px #000;;
 
   div {
-    background-color: #cff0ff;
+    /* background-color: #cff0ff */;
     position: relative;
-    /* width: 1120px; */
+    width: 1120px; 
   }
-  /*   div:nth-child(odd) ul {
-    background-color: #cff0ff;
+    div:nth-child(odd) ul,
+    div:nth-child(odd) h2  {
+    background-color: #F8F9FA;
   }
-  div:nth-child(odd) h2 {
-    background: #ffcd07;
-  }
+
   div:nth-child(even) ul,
   div:nth-child(even) h2 {
-    background-color: #cff0ff;
-}*/
+    background-color: #D9D9D9;
+}
 
   h2 {
-    font-size: 20px;
+    font-size: 26px;
    /*  background-color: #ffcd07; */
-    width: 250px;
+    /* width: 250px; */
+    width: 100%;
     height: 50px;
     padding: 10px 0 0 15px;
     /*  border-top-right-radius: 50px; */
     /* border-top-left-radius: 30px; */
-    box-shadow: 0px 2px 2px #868e96, 0px 0px 5px 0px #868e96;
+    /* box-shadow: 0px 2px 2px #868e96, 0px 0px 5px 0px #868e96; */
   }
 
   ul {
@@ -72,7 +72,7 @@ padding-left: 30px;
     /* border-top-right-radius: 10px; */
     box-shadow: 1px 5px 5px #868e96, 1px 1px 0px 0px #868e96;
   }
-  span {
+/*   span {
     border: 8px solid #333333;
     width: 40px;
     position: absolute;
@@ -86,7 +86,7 @@ padding-left: 30px;
     0px -10px 0px #FFFFFF, 0px 8px 0px 0px #000
 
     
-  }
+  } */
 
   *::-webkit-scrollbar {
     height: 16px;
@@ -137,12 +137,11 @@ export const BackgroundDash = styled.div`
   position: fixed;
   top: 0;
   z-index: -1;
-  
+
   background-image: url(${image});
   background-size: cover;
   background-repeat: no-repeat;
   opacity: 20%;
-
 `;
 
 export const MenuButtons = styled.div`
@@ -165,16 +164,26 @@ export const MenuButtons = styled.div`
 
   li:hover {
     background: #d9d9d9;
-    transform: scale(1.1);
+    transform: scale(1.14, 1.4);
     background-position: -60px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-bottom: none;
+    t
   }
-  li:nth-child(odd) {
+  li:nth-child(1) {
     background-color: #9de0ff;
   }
 
-  li:nth-child(even) {
+  li:nth-child(2) {
     background-color: #ffcd07;
+  }
+  li:nth-child(3) {
+    background-color: #da77f2;
+  }
+  li:nth-child(4) {
+    background-color: #69db7c;
+  }
+  li:nth-child(5) {
+    background-color: #ff6b6b;
   }
 
   @media (max-width: 1024px) {
