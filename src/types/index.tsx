@@ -23,6 +23,7 @@ export interface Book {
   sections?: number;
   published: number;
   id: number;
+  description:string;
 }
 
 export interface Game {
@@ -74,7 +75,7 @@ export type User = {
   email: string;
   name: string;
   id: number;
-  mycolections?: [];
+  myCollection?: string[];
 };
 
 export interface AllUsers {
