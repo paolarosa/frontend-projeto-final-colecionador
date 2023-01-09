@@ -10,6 +10,9 @@ const UlNav: any = ({ burger }: any) => {
         <Link to={"/user"}>Profile</Link>
       </li>
       <li>
+        <Link to={"/forum"}>Forum</Link>
+      </li>
+      <li>
         <Link to={"/dashboard"}>Colections</Link>
       </li>
       <li>

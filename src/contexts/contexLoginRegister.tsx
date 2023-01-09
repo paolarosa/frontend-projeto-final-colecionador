@@ -1,7 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import { apiBase } from "../services/api";
+import { AllUsers, Posts, User } from "../types";
 
 interface iUserContext {
   loading: boolean;
@@ -9,6 +10,14 @@ interface iUserContext {
   setPasswordEye: (showPassword: boolean) => void;
   loginRequisition: (data: iUserLoginProps) => Promise<void>;
   registerRequisition: (data: iUserRegisterProps) => Promise<void>;
+  forumMessagesRequest: () => void;
+  getAllUsersRequest: () => void;
+  forumPostMessageRequest: (data: iUserPostProps) => Promise<void>;
+  posts: Posts[];
+  user: User | null;
+  allUsers: AllUsers[];
+  // favorite: []
+  // updateFavorite: (id:any) => null
 }
 
 interface iUserRegisterProps {
@@ -22,6 +31,11 @@ interface iUserLoginProps {
   password: string;
 }
 
+interface iUserPostProps {
+  title: string;
+  message: string;
+}
+
 export const LoginRegisterContext = createContext({} as iUserContext);
 
 export const LoginRigisterProvider = () => {
@@ -29,6 +43,50 @@ export const LoginRigisterProvider = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [allUsers, setAllUsers] = useState([]);
+  // const [favorites, setFavorites] = useState([]);
+
+  // const updateFavorite = (name:any) => {
+  //   const updateFavorites = [...favorites];
+  //   const favoriteIndex = favorites.indexOf(name);
+  //   if (favoriteIndex > 0) {
+  //     updateFavorites.slice(favoriteIndex, 1);
+  //   } else {
+  //     updateFavorites.push(name);
+  //   }
+  //   setFavorites(updateFavorites);
+  // };
+
+  const loadUser = async () => {
+    const Token = localStorage.getItem("Token");
+
+    if (!Token) {
+      setLoading(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const idUser = window.localStorage.getItem("@userID");
+
+      const { data } = await apiBase.get(`/users/${idUser}`, {
+        headers: { Authorization: `Bearer ${Token}` },
+      });
+
+      setUser(data);
+    } catch (error) {
+      console.log(error);
+      // window.localStorage.clear();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   const loginRequisition = async (data: iUserLoginProps) => {
     console.log(data);
@@ -38,6 +96,7 @@ export const LoginRigisterProvider = () => {
       const response = await apiBase.post("login", data);
 
       localStorage.setItem("Token", response.data.accessToken);
+      window.localStorage.setItem("@userID", response.data.user.id);
 
       console.log(response);
 
@@ -70,6 +129,53 @@ export const LoginRigisterProvider = () => {
     }
   };
 
+  const forumMessagesRequest = async () => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      try {
+        const response = await apiBase.get("/forum", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setPosts(response.data.reverse());
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const forumPostMessageRequest = async (data: iUserPostProps) => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      try {
+        const response = await apiBase.post("/forum", data, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        // setPosts(...posts, data)
+
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const getAllUsersRequest = async () => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      try {
+        const response = await apiBase.get("/users", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setAllUsers(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <LoginRegisterContext.Provider
       value={{
@@ -78,6 +184,13 @@ export const LoginRigisterProvider = () => {
         setPasswordEye,
         registerRequisition,
         loading,
+        forumMessagesRequest,
+        posts,
+        user,
+        getAllUsersRequest,
+        allUsers,
+        forumPostMessageRequest,
+        // updateFavorite,
       }}
     >
       <Outlet />

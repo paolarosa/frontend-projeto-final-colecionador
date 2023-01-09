@@ -127,11 +127,7 @@ const Register = () => {
           >
             {loading ? "Cadastrando ..." : "Cadastrar"}
           </StyledButton>
-          <button type="submit">cadastrar</button>
         </form>
-        {/* <p>
-          Já Possui uma conta? Clique <Link to={"/login"}>aqui</Link>
-        </p> */}
       </section>
       <DivDogBallon>
         <div className="image">
