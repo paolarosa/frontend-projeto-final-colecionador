@@ -4,7 +4,7 @@ import { DashboardContext } from "../../contexts/contextDashboard";
 
 const Modal = () => {
   const {saveModal, setModalOn,modalOn,myCollection,myCollectionSave,containCollection,
-    setContainCollection}:any = useContext(DashboardContext);
+    setContainCollection} = useContext(DashboardContext);
 
   myCollectionSave.forEach((collections:string)=>{
     if(collections === saveModal.title){
