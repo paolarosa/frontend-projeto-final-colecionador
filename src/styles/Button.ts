@@ -44,6 +44,13 @@ export const StyledButton = styled.button`
           border: none;
           border-radius: 30px;
         `;
+              case "modal":
+                return css`
+                  padding: 0px 20px;
+                  height: 50px;
+                  border: none;
+                  border-radius: 30px;
+                `;
     }
   }};
 
@@ -54,21 +61,22 @@ export const StyledButton = styled.button`
           background: ${theme.colors.primary06};
           color: ${theme.colors.black};
           border: 1px solid ${theme.colors.primary};
-          box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
+          -webkit-box-shadow: 1px 3px 3px 3px #000000; 
+          box-shadow: 1px 3px 3px 3px #000000;
           &:hover {
            background-color: ${theme.colors.primary};
           }
         `;
       case "secundary":
         return css`
-          background: ${theme.colors.secundary};
-          opacity: 0.5;
+          background: ${theme.colors.secundary06};
           color: ${theme.colors.black};
           border: 1px solid ${theme.colors.secundary};
-          box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
+          -webkit-box-shadow: 1px 3px 3px 3px #000000; 
+          box-shadow: 1px 3px 3px 3px #000000;
           
           &:hover {
-            opacity: 1;
+            background: ${theme.colors.secundary};
           }
         `;
       case "disabled":

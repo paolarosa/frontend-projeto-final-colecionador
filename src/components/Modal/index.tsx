@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { ModalContainer } from "./styles";
 import { DashboardContext } from "../../contexts/contextDashboard";
+import { StyledButton } from "../../styles/Button";
 
 const Modal = () => {
   const {saveModal, setModalOn,modalOn,myCollection,myCollectionSave,containCollection,
@@ -8,7 +9,6 @@ const Modal = () => {
 
   myCollectionSave.forEach((collections:string)=>{
     if(collections === saveModal.title){
-      console.log("tenho")
       return setContainCollection(true)
     }
   })
@@ -26,10 +26,16 @@ const Modal = () => {
           </div>
         <div className="infModal">
         <h2>{saveModal.title}</h2>
-        <p>{saveModal.description}</p>
-        <span>{saveModal.author}</span>
-        <span>{saveModal.published}</span>
-        <button onClick={myCollection}>{containCollection? ("Remover"):("Adicionar")}</button>
+          <div className="info">
+            <span>{saveModal.author}</span>
+            <span>{saveModal.published}</span>
+          </div>
+        <div className="description">
+          <p>{saveModal.description}</p>
+        </div>
+        <StyledButton onClick={myCollection} type="button" buttonStyle={containCollection? ("primary"):("secundary")} buttonSize="modal" >
+            {containCollection? ("Remover"):("Adicionar")}
+        </StyledButton>
         </div>
       </div>
     </ModalContainer>

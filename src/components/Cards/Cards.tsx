@@ -20,7 +20,7 @@ export const Cards = ({ serie }: iCard) => {
             collectionChecker = true
           }
         })
-        console.log(collectionChecker)
+        
         return(
           <CardStyled key={colection.id} onClick={()=>modalRender(colection)}>
             <img src={colection.image} alt="" className={`${collectionChecker? ("colorfulCard") : (null)}`} />
