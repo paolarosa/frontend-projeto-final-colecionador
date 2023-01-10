@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { Cards } from "../../components/Cards/Cards";
 import { DashboardContext } from "../../contexts/contextDashboard";
 import {
   BackgroundDash,
