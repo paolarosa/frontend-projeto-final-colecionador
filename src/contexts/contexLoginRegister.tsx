@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useResolvedPath } from "react-router-dom";
 
 import { apiBase } from "../services/api";
 import { AllUsers, Posts, User } from "../types";
@@ -16,8 +16,8 @@ interface iUserContext {
   posts: Posts[];
   user: User | null;
   allUsers: AllUsers[];
-  // favorite: []
-  // updateFavorite: (id:any) => null
+  userLikedPosts: any[];
+  setUserLikedPosts: (post: any[]) => void;
 }
 
 interface iUserRegisterProps {
@@ -47,6 +47,7 @@ export const LoginRigisterProvider = () => {
   const [allUsers, setAllUsers] = useState([]);
   
   const navigate = useNavigate();
+  const [userLikedPosts, setUserLikedPosts] = useState([] as object[])
 
   const loadUser = async () => {
     const Token = localStorage.getItem("Token");
@@ -76,6 +77,16 @@ export const LoginRigisterProvider = () => {
   useEffect(() => {
     loadUser();
   }, []);
+
+  useEffect(() => {
+    apiBase.patch(`/users/${user?.id}`, {likedPosts: userLikedPosts}, {
+      headers: {
+      "Authorization": `Bearer ${window.localStorage.getItem("Token")}`,
+      "Content-Type": "application/json"
+      }
+    })
+    .then(resp => setUser(resp.data))
+  }, [userLikedPosts])
 
   const loginRequisition = async (data: iUserLoginProps) => {
     console.log(data);
@@ -120,8 +131,7 @@ export const LoginRigisterProvider = () => {
         const response = await apiBase.get("/forum", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setPosts(response.data.reverse());
-        // console.log(response.data);
+        setPosts(response.data.reverse())
       } catch (error) {
         console.log(error);
       }
@@ -178,6 +188,8 @@ export const LoginRigisterProvider = () => {
         getAllUsersRequest,
         allUsers,
         forumPostMessageRequest,
+        userLikedPosts,
+        setUserLikedPosts
       }}
     >
       <Outlet />

@@ -5,13 +5,13 @@ import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
 import { StyledButton } from "../../styles/Button";
 import { AiFillHeart } from "react-icons/ai";
 import { PostForm } from "../../components/Forms/ForumMessage";
+import { number } from "yup/lib/locale";
 // import ExpenseDate, { ShowDate, ShowNewDate } from "../../styles/Date";
 
 const Forum = () => {
   const [favorites, setFavorites] = useState([] as object[]);
-  const [heart, setHeart] = useState(false)
 
-  const { forumMessagesRequest, posts, user, getAllUsersRequest, allUsers } =
+  const { forumMessagesRequest, posts, user, getAllUsersRequest, allUsers, userLikedPosts, setUserLikedPosts } =
     useContext(LoginRegisterContext);
 
   useEffect(() => {
@@ -29,17 +29,51 @@ const Forum = () => {
 
   const onHeartClick = (userTarget: object) => {
     updateFavorites(userTarget)
-    console.log(userTarget)
-    setHeart(!heart)
   };
 
   const checkFavoriteButton = (element: any) => {
-    console.log(favorites)
     if (favorites.some(item => item === element)){
       return "Remover"
     } else {
       return "Adicionar"
     }
+  }
+
+  const checkLikedPosts = (element: any) => {
+    return userLikedPosts.findIndex(post => element === post) === -1 ? <AiFillHeart className="uncoloredHeart"/> : <AiFillHeart className="coloredHeart"/>
+  }
+
+  const likePost = (element: any) => {
+    if (userLikedPosts.findIndex((x) => x === element) === -1){
+      setUserLikedPosts([...userLikedPosts, element])
+    } else if (userLikedPosts.findIndex((x) => x === element) >= 0){
+      setUserLikedPosts(userLikedPosts.filter((x) => x !== element))
+    }
+  }
+
+  function createForumCards (){
+    const copyPosts = [...posts]
+
+    return posts.reverse().map((post, index) =>
+    <li key={index}>
+      <div className="headerPostMessageDiv">
+        <div className="divPostMessage">
+          <img src={user?.avatar} alt="" />
+          <h2>{user?.name}</h2>
+
+        </div>
+        <div className="divLikeButton">
+          <button className="likeButton" onClick={() => likePost(post)}>
+            { checkLikedPosts(post) }
+          </button>
+        </div>
+      </div>
+      <div className="bottomPostMessageDiv">
+        <h2>{post.title}</h2>
+        <p>{post.message}</p>
+      </div>
+    </li>
+  )
   }
 
   return (
@@ -74,29 +108,7 @@ const Forum = () => {
           <div className="forumContainer">
             <div className="ulForumDiv">
               <ul>
-                {posts?.map((post, index) => (
-                  <li key={index}>
-                    <div className="headerPostMessageDiv">
-                      <div className="divPostMessage">
-                        {/* {allUsers.filter((user) => user.id === userId )} */}
-                        <img src={user?.avatar} alt="" />
-                        <h2>{user?.name}</h2>
-
-                          {/* <ShowNewDate /> */}
-
-                      </div>
-                      <div className="divLikeButton">
-                        <button className="likeButton">
-                          {!heart ? <AiFillHeart className="uncoloredHeart"/> : <AiFillHeart className="coloredHeart"/> }
-                        </button>
-                      </div>
-                    </div>
-                    <div className="bottomPostMessageDiv">
-                      <h2>{post.title}</h2>
-                      <p>{post.message}</p>
-                    </div>
-                  </li>
-                ))}
+                {createForumCards ()}
               </ul>
             </div>
 
