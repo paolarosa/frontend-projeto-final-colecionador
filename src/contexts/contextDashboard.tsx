@@ -55,6 +55,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMyCollectionSave(data.myCollection);
+      console.log(data.myCollection)
 
       setUser(data);
     } catch (error) {
@@ -75,7 +76,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   const myCollection = async () => {
     if (containCollection) {
       let myNewColletion = myCollectionSave.filter(
-        (elemet) => elemet !== saveModal
+        (elemet) => elemet.title !== saveModal.title
       );
       setMyCollectionSave(myNewColletion);
       const data = {

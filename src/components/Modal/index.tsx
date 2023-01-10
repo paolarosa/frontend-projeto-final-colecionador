@@ -9,7 +9,7 @@ const Modal = () => {
     setContainCollection} = useContext(DashboardContext);
 
   myCollectionSave?.forEach((collections: Book)=>{
-    if(collections === saveModal){
+    if(collections.title === saveModal.title){
       return setContainCollection(true)
     }
   })
