@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Forum from "../pages/Forum"
+import Admin from "../pages/Admin"
 
 export const RoutesMain: any = () => {
   return (
@@ -19,6 +20,7 @@ export const RoutesMain: any = () => {
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/forum" element={<Forum />} />
+        <Route path="/admin" element={<Admin />} />
       </Route>
     </Routes>
   );
