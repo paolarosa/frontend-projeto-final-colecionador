@@ -10,11 +10,13 @@ const Burger = ({ setBurger, burger }: iBurger) => {
   return (
     <>
       <StyledBurger burger={burger} onClick={() => setBurger(!burger)}>
-        <div />
-        <div />
-        <div />
+        <section>
+          <div />
+          <div />
+          <div />
+        </section>
+        <UlNav burger={burger} />
       </StyledBurger>
-      <UlNav burger={burger} />
     </>
   );
 };
