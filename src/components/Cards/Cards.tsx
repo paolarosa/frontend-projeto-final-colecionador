@@ -16,7 +16,7 @@ export const Cards = ({ serie }: iCard) => {
         let collectionChecker = false
 
         myCollectionSave?.map((collection) => {
-          if(collection === colection){
+          if(collection.title === colection.title){
             collectionChecker = true
           }
         })
