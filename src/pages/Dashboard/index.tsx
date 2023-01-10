@@ -10,65 +10,72 @@ import {
 import Header from "../../components/Header";
 import { Card } from "../../types";
 import Modal from "../../components/Modal";
+import { Carrossel } from "../../components/Carrossel/Carrossel";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Dashboard = () => {
   const { listRequisition, series, cards, modalOn } =
     useContext(DashboardContext);
   const [filtered, setFiltered] = useState(null as Card[] | null);
+  const [actived, setActived] = useState("All");
 
   useEffect(() => {
     listRequisition();
   }, []);
 
-  function filteredCards(type: any) {
+  const filteredCards = (type: any) => {
     const nome = cards.filter((category) => category.name === type);
     if (nome[0].series) {
       setFiltered(nome[0].series);
     }
-  }
+  };
+
   return (
     <ContainerDash>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"/>
+        
       {modalOn ? <Modal /> : null}
       <Header />
-      <MenuButtons>
-        <li>
-          <h2 onClick={() => setFiltered(null)}>All</h2>
+      <MenuButtons actived={actived}>
+        <li
+          onClick={() => {
+            setFiltered(null);
+            setActived("All");
+          }}
+        >
+          <h2>All</h2>
         </li>
         {cards?.map((card, index) => (
-          <li key={index}>
-            <h2
-              onClick={() => {
-                filteredCards(card.name);
-              }}
-            >
-              {card.name}
-            </h2>
+          <li
+            key={index}
+            onClick={() => {
+              filteredCards(card.name);
+              setActived(card.name);
+            }}
+          >
+            <h2>{card.name}</h2>
           </li>
         ))}
       </MenuButtons>
       <BackgroundDash className="background" />
-      <DashboardStyled>
+      <DashboardStyled actived={actived}>
         {filtered
           ? filtered.map((serie, index) => (
-              <div key={index}>
-                <h2>{serie.name}</h2>
-
-                <ul>
-                  <span />
-                  <Cards serie={serie} />
-                </ul>
-              </div>
+              <Carrossel serie={serie} key={index} />
             ))
           : series?.map((serie, index) => (
-              <div key={index}>
-                <h2>{serie.name}</h2>
-                <ul>
-                  <span />
-                  {/*  <button className="button-scroll" /> */}
-                  <Cards serie={serie} />
-                  {/*  <button className="button-scroll-back scroll-none" /> */}
-                </ul>
-              </div>
+              <Carrossel serie={serie} key={index} />
             ))}
       </DashboardStyled>
     </ContainerDash>

@@ -8,20 +8,30 @@ interface iCard {
 }
 
 export const Cards = ({ serie }: iCard) => {
-  const { listRequisition, series, modalRender } = useContext(DashboardContext);
+  const { listRequisition, series, modalRender,myCollectionSave } = useContext(DashboardContext);
 
   return (
     <>
-      {serie?.colection?.map((colection) => (
-        <CardStyled key={colection.id} onClick={()=>modalRender(colection)}>
-          <img src={colection.image} alt="" />
-          {/*  <div>
-            <h3>{book.title}</h3>
-            <h4>{book.author}</h4>
-            <p>{book.published}</p>
-          </div> */}
-        </CardStyled>
-      ))}
+      {serie?.colection?.map((colection) => {
+        let collectionChecker = false
+
+        myCollectionSave.map((collection) => {
+          if(collection === colection.title){
+            collectionChecker = true
+          }
+        })
+        
+        return(
+          <CardStyled key={colection.id} onClick={()=>modalRender(colection)}>
+            <img src={colection.image} alt="" className={`${collectionChecker? ("colorfulCard") : (null)}`} />
+            {/*  <div>
+              <h3>{book.title}</h3>
+              <h4>{book.author}</h4>
+              <p>{book.published}</p>
+            </div> */}
+          </CardStyled>
+        )
+      })}
     </>
   );
 };

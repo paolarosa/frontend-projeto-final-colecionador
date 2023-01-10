@@ -18,6 +18,10 @@ export const CardStyled = styled.li`
     box-shadow: 0px 2px 10px #000, 0px 0px 10px -10px #000;
     filter: grayscale(100%);
   }
+  .colorfulCard{
+    filter: grayscale(0%);
+    filter: contrast(130%);
+  }
   img:hover {
     transform: scale(1);
     transition: 0.5s;
