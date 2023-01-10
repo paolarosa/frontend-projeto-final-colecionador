@@ -4,6 +4,7 @@ import { StyledButton } from "../../styles/Button";
 import LOGO4 from "../../assets/LOGO4.png";
 import AdmColections from "./AdmColections";
 import AdmUsers from "./AdmUsers";
+import { MdOutlineConstruction } from 'react-icons/md';
 
 const AdminPage = () => {
 
@@ -29,13 +30,7 @@ const AdminPage = () => {
             >
               Users
             </StyledButton>
-            <StyledButton
-              buttonSize="default"
-              buttonStyle="primary"
-              type="button"
-            >
-              Archivements
-            </StyledButton>
+
             <StyledButton
               buttonSize="default"
               buttonStyle="primary"
@@ -47,22 +42,17 @@ const AdminPage = () => {
               buttonSize="default"
               buttonStyle="primary"
               type="button"
+              className="textUncerConstruction"
             >
-              Forum
+              Forum <MdOutlineConstruction className="underConstruction"/>
             </StyledButton>
             <StyledButton
               buttonSize="default"
               buttonStyle="primary"
               type="button"
+              className="textUncerConstruction"
             >
-              FREE
-            </StyledButton>
-            <StyledButton
-              buttonSize="default"
-              buttonStyle="primary"
-              type="button"
-            >
-              FREE
+              Archivements <MdOutlineConstruction className="underConstruction"/>
             </StyledButton>
           </div>
 
@@ -82,7 +72,7 @@ const AdminPage = () => {
         <div>
           <img className="background" alt="" src={background} />
 
-          <AdmUsers />
+          {/* <AdmUsers /> */}
           <AdmColections />
 
         </div>
