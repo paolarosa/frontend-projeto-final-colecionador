@@ -5,7 +5,6 @@ import {
   useNavigate,
   useResolvedPath,
 } from "react-router-dom";
-
 import { apiBase } from "../services/api";
 import { AllUsers, Posts, User } from "../types";
 
@@ -23,6 +22,7 @@ interface iUserContext {
   allUsers: AllUsers[];
   userLikedPosts: any[];
   setUserLikedPosts: (post: any[]) => void;
+  saveAvatares: any[]
   createNewColectionRequest: (data: iCreateColection) => Promise<void>;
 }
 
@@ -30,6 +30,7 @@ interface iUserRegisterProps {
   name: string;
   email: string;
   password: string;
+  avatar: string
 }
 
 interface iUserLoginProps {
@@ -56,10 +57,21 @@ export const LoginRigisterProvider = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState([]);
-
+  const [saveAvatares, setSaveAvatares] = useState([])
   const navigate = useNavigate();
   const [userLikedPosts, setUserLikedPosts] = useState([] as object[]);
 
+  const avataresRegister = async ()=>{
+    try {
+      const response = await apiBase.get("avatar");
+      setSaveAvatares(response.data)
+    } catch (error) {
+      console.log(error);
+    } finally {
+      console.log(saveAvatares)
+    }
+  }
+  
   const loadUser = async () => {
     const Token = localStorage.getItem("Token");
 
@@ -87,6 +99,7 @@ export const LoginRigisterProvider = () => {
 
   useEffect(() => {
     loadUser();
+    avataresRegister()
   }, []);
 
   useEffect(() => {
@@ -124,15 +137,19 @@ export const LoginRigisterProvider = () => {
   };
 
   const registerRequisition = async (data: iUserRegisterProps) => {
-    console.log(data);
+
+    const body = {
+      avatar: data.avatar,
+      email: data.email,
+      name:  data.name,
+      password: data.password,
+      myCollection: []
+    }
     try {
       setLoading(true);
-      const response = await apiBase.post("register", data);
+      const response = await apiBase.post("register", body);
       console.log(response);
-
-      setTimeout(() => {
-        navigate("/login");
-      }, 3000);
+      navigate("/login")
     } catch (error) {
       console.log(error);
     } finally {
@@ -247,6 +264,7 @@ export const LoginRigisterProvider = () => {
         forumPostMessageRequest,
         userLikedPosts,
         setUserLikedPosts,
+        saveAvatares
         createNewColectionRequest,
       }}
     >

@@ -1,10 +1,9 @@
 import { DivDogBallon, PageRegister } from "./styles";
 import background from "../../assets/background.png";
-import dog from "../../assets/Cosmo.png";
 import dog_voando from "../../assets/Cosmo_voando.png";
 import collector from "../../assets/collector.png";
 import * as yup from "yup";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -17,20 +16,25 @@ export interface UserFormData {
   password: string;
   confirmpassword: string;
   name: string;
+  avatar: string;
 }
 
 const Register = () => {
+  
   const formSchema = yup.object().shape({
     email: yup.string().required("Email obrigadorio").email("Email inválido"),
     password: yup.string().required("Senha obrigadoria"),
     name: yup.string().required("Nome obrigatorio"),
+    avatar: yup.string().required("Avatar ovrigatorio"),
     confirmpassword: yup
       .string()
       .oneOf([yup.ref("password"), null], "Senhas diferentes")
       .required("Senha Obrigatório"),
   });
 
-  const { registerRequisition, loading } = useContext(LoginRegisterContext);
+
+  const { registerRequisition, loading, saveAvatares } = useContext(LoginRegisterContext);
+  const [imgSelect, setImgSelect] = useState ("https://mir-s3-cdn-cf.behance.net/project_modules/disp/fd44d538650505.598fa11957245.jpg")
 
   const {
     register,
@@ -45,37 +49,16 @@ const Register = () => {
     registerRequisition(data);
     // reset();
   };
-
   return (
     <PageRegister>
       <section>
+        <div className="avatarForm">
+          <img src={imgSelect} alt="" />
+        </div>
         <form onSubmit={handleSubmit(registerRequisition)}>
           <div>
             <h2>Cadastre-se</h2>
           </div>
-
-          {/* <label>Nome</label>
-          <input type={"text"} {...register("name")} />
-          {errors ? <span>{errors.name?.message}</span> : ""}
-
-          <label>Email</label>
-          <input type={"email"} {...register("email")} />
-          {errors ? <span>{errors.email?.message}</span> : ""}
-
-          <label>Senha</label>
-          <div className="password">
-            <input type={"password"} {...register("password")} />
-          </div>
-          {errors ? <span>{errors.password?.message}</span> : ""}
-
-          <label> Confirmar Senha</label>
-          <div className="password">
-            <input type={"password"} {...register("confirmpassword")} />
-          </div>
-          {errors ? <span>{errors.confirmpassword?.message}</span> : ""}
-
-          <button type="submit">Entrar</button> */}
-
           <Input
             className="input"
             label="Nome"
@@ -118,6 +101,19 @@ const Register = () => {
             disabled={loading}
           />
           <span>{errors.confirmpassword?.message}</span>
+
+          <div className="avatares">
+            <select  id="avatar"  placeholder="avartar" onClick={(e:any)=>setImgSelect(e.target.value)} {...register("avatar")}>
+              <option value="" disabled selected>Selecione...</option>
+              {saveAvatares.map((element)=>{
+
+                return(
+                  <option value={element.image}>{element.name}</option>
+                )
+              })}
+            </select>
+            <label htmlFor="avatar">Avatares</label>
+          </div>
 
           <StyledButton
             buttonSize="default"
