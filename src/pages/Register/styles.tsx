@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const PageRegister = styled.div`
   height: 100%;
@@ -25,6 +26,24 @@ export const PageRegister = styled.div`
   }
 
   section {
+    position: relative;
+    .avatarForm{
+      width: 100px;
+      height: 100px;
+      background-color: #49bcf0;
+      border-radius: 50%;
+      position: absolute;
+      top: -40px;
+      right: 40px;
+      object-fit: cover;
+      overflow: hidden;
+      border: 2px solid #49bcf0;
+      -webkit-box-shadow: 0px -3px 9px -1px #49BCF0; 
+      box-shadow: 0px -3px 9px -1px #49BCF0;
+      img{
+        width: 100%;
+      }
+    }
     width: 100%;
     max-width: 500px;
     display: flex;
@@ -75,6 +94,88 @@ export const PageRegister = styled.div`
 
   }
 
+  .avatares{
+    position: relative;
+    margin-bottom: 9px;
+
+    select{
+      font-size: 16px;
+      display: block;
+      width: 100%;
+      height: 40px;
+      padding: 0 20px;
+      background: ${theme.colors.grey0};
+      color: ${theme.colors.grey4};
+      border: 1px solid ${theme.colors.grey0};
+      border-radius: 30px;
+      box-sizing: border-box;
+    &:focus {
+      outline: none;
+      ~ label {
+        background-color: ${theme.colors.white};
+        top: -8px;
+        font-size: 12px;
+      }
+      background: ${theme.colors.white};
+      color: ${theme.colors.grey4};
+      border: 1px solid ${theme.colors.grey4};
+    }
+
+    &:invalid {
+      ~ label {
+        background-color: ${theme.colors.white};
+        top: -8px;
+        font-size: 12px;
+      }
+      background: ${theme.colors.white};
+      border: 1px solid ${theme.colors.colorNegative};
+    }
+
+    &:focus:valid {
+      ~ label {
+        background-color: ${theme.colors.white};
+        top: -8px;
+        font-size: 12px;
+      }
+      background: ${theme.colors.white};
+    }
+
+    &:not(:placeholder-shown) {
+    ~ label {
+      background-color: ${theme.colors.white};
+      top: -8px;
+      font-size: 12px;
+    }
+    background: ${theme.colors.white};
+    color: ${theme.colors.grey4};
+    border: 1px solid ${theme.colors.colorSucess};
+
+    &:invalid {
+      ~ .label {
+        background-color: ${theme.colors.white};
+        top: -8px;
+        font-size: 12px;
+      }
+      background: ${theme.colors.white};
+      border: 1px solid ${theme.colors.colorNegative};
+    }
+  }
+    }
+    label {
+    color: ${theme.colors.grey2};
+    font-size: 16px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 15px;
+    top: 11px;
+    padding: 0 5px;
+    background: ${theme.colors.grey0};
+    transition: 0.2s ease all;
+    -moz-transition: 0.2s ease all;
+    -webkit-transition: 0.2s ease all;
+  }
+  }
   .background {
     width: 100%;
     height: 100%;
