@@ -7,7 +7,7 @@ const Modal = () => {
   const {saveModal, setModalOn,modalOn,myCollection,myCollectionSave,containCollection,
     setContainCollection} = useContext(DashboardContext);
 
-  myCollectionSave.forEach((collections:string)=>{
+  myCollectionSave?.forEach((collections:string)=>{
     if(collections === saveModal.title){
       return setContainCollection(true)
     }
