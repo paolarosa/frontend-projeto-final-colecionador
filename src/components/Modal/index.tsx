@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ModalContainer } from "./styles";
 import { DashboardContext } from "../../contexts/contextDashboard";
 import { StyledButton } from "../../styles/Button";
+import { Book } from "../../types";
 
 const Modal = () => {
   const {
