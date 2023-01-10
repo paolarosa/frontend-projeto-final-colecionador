@@ -75,6 +75,7 @@ export type User = {
   name: string;
   id: number;
   mycolections?: [];
+  likedPosts?: object[];
 };
 
 export interface AllUsers {
