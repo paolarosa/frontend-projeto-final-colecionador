@@ -1,5 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import { Outlet, useLocation, useNavigate, useResolvedPath } from "react-router-dom";
+import {
+  Outlet,
+  useLocation,
+  useNavigate,
+  useResolvedPath,
+} from "react-router-dom";
 
 import { apiBase } from "../services/api";
 import { AllUsers, Posts, User } from "../types";
@@ -18,6 +23,7 @@ interface iUserContext {
   allUsers: AllUsers[];
   userLikedPosts: any[];
   setUserLikedPosts: (post: any[]) => void;
+  createNewColectionRequest: (data: iCreateColection) => Promise<void>;
 }
 
 interface iUserRegisterProps {
@@ -36,6 +42,11 @@ interface iUserPostProps {
   message: string;
 }
 
+interface iCreateColection {
+  name: string;
+  series: [];
+}
+
 export const LoginRegisterContext = createContext({} as iUserContext);
 
 export const LoginRigisterProvider = () => {
@@ -45,9 +56,9 @@ export const LoginRigisterProvider = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState([]);
-  
+
   const navigate = useNavigate();
-  const [userLikedPosts, setUserLikedPosts] = useState([] as object[])
+  const [userLikedPosts, setUserLikedPosts] = useState([] as object[]);
 
   const loadUser = async () => {
     const Token = localStorage.getItem("Token");
@@ -79,14 +90,19 @@ export const LoginRigisterProvider = () => {
   }, []);
 
   useEffect(() => {
-    apiBase.patch(`/users/${user?.id}`, {likedPosts: userLikedPosts}, {
-      headers: {
-      "Authorization": `Bearer ${window.localStorage.getItem("Token")}`,
-      "Content-Type": "application/json"
-      }
-    })
-    .then(resp => setUser(resp.data))
-  }, [userLikedPosts])
+    apiBase
+      .patch(
+        `/users/${user?.id}`,
+        { likedPosts: userLikedPosts },
+        {
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("Token")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((resp) => setUser(resp.data));
+  }, [userLikedPosts]);
 
   const loginRequisition = async (data: iUserLoginProps) => {
     console.log(data);
@@ -98,7 +114,7 @@ export const LoginRigisterProvider = () => {
       localStorage.setItem("Token", response.data.accessToken);
       window.localStorage.setItem("@userID", response.data.user.id);
 
-      navigate("/dashboard")
+      navigate("/dashboard");
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -131,7 +147,7 @@ export const LoginRigisterProvider = () => {
         const response = await apiBase.get("/forum", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setPosts(response.data.reverse())
+        setPosts(response.data.reverse());
       } catch (error) {
         console.log(error);
       }
@@ -143,6 +159,8 @@ export const LoginRigisterProvider = () => {
     if (token) {
       const newData = {
         userId: user?.id,
+        avatar: user?.avatar,
+        name: user?.name,
         title: data.title,
         message: data.message,
       };
@@ -151,8 +169,9 @@ export const LoginRigisterProvider = () => {
         const response = await apiBase.post("/forum", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        
+        forumMessagesRequest();
 
-        // setPosts(...posts, data)
       } catch (error) {
         console.log(error);
       }
@@ -174,6 +193,44 @@ export const LoginRigisterProvider = () => {
     }
   };
 
+  const createNewColectionRequest = async (data: iCreateColection) => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      const newData = {
+        userId: user?.id,
+        name: data.name,
+        series: [],
+      };
+      try {
+        console.log(newData);
+        const response = await apiBase.post("/colections", newData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const createNewSerieRequest = async (data: iCreateColection) => {
+    const token = localStorage.getItem("Token");
+    if (token) {
+      const newData = {
+        // id: Colection?.id,
+        name: data.name,
+        colection: [],
+      };
+      try {
+        console.log(newData);
+        const response = await apiBase.post("/mybooks", newData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <LoginRegisterContext.Provider
       value={{
@@ -189,7 +246,8 @@ export const LoginRigisterProvider = () => {
         allUsers,
         forumPostMessageRequest,
         userLikedPosts,
-        setUserLikedPosts
+        setUserLikedPosts,
+        createNewColectionRequest,
       }}
     >
       <Outlet />

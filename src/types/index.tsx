@@ -66,6 +66,8 @@ export interface Card {
 
 export interface Posts {
   title: string;
+  name: string;
+  avatar: string;
   message: string;
   id: number;
 }

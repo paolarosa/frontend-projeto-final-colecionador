@@ -5,7 +5,6 @@ import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
 import { StyledButton } from "../../styles/Button";
 import { AiFillHeart } from "react-icons/ai";
 import { PostForm } from "../../components/Forms/ForumMessage";
-import { number } from "yup/lib/locale";
 // import ExpenseDate, { ShowDate, ShowNewDate } from "../../styles/Date";
 
 const Forum = () => {
@@ -58,8 +57,8 @@ const Forum = () => {
     <li key={index}>
       <div className="headerPostMessageDiv">
         <div className="divPostMessage">
-          <img src={user?.avatar} alt="" />
-          <h2>{user?.name}</h2>
+          <img src={post?.avatar} alt="" />
+          <h2>{post?.name}</h2>
 
         </div>
         <div className="divLikeButton">

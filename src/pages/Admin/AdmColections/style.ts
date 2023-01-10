@@ -1,15 +1,36 @@
-import styled from "styled-components"
-import { theme } from "../../../styles/theme"
+import styled from "styled-components";
+import { theme } from "../../../styles/theme";
 
 export const AdmMenuButtons = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  gap: 20px;
+  /* width: 950px;
+  overflow-x: auto; */
+  /* gap: 20px; */
   padding: 20px;
   background-color: ${theme.colors.grey2};
   border-radius: 20px 20px 0 0;
+
+  .AdmLiDivColections {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* justify-content: space-around; */
+    width: 900px;
+    max-width: 900px;
+    height: 190px;
+    overflow-x: auto;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+    /* background-color: ${theme.colors.grey2}; */
+    /* border-radius: 20px 20px 0 0; */
+    border: 1px solid red;
+  }
+
+  .AdmFormCreateColection {
+    max-width: 900px;
+  }
 
   li {
     display: block;
@@ -20,7 +41,7 @@ export const AdmMenuButtons = styled.div`
     font-size: ${theme.typography.Headline.size};
     background: ${theme.colors.grey1};
     padding: 10px 30px;
-    
+
     cursor: pointer;
   }
 
@@ -33,13 +54,13 @@ export const AdmMenuButtons = styled.div`
     color: ${theme.colors.white};
     background-color: ${theme.colors.grey4};
   }
-
-`
+`;
 
 export const AdmDashboardStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 950px;
   height: 60vh;
 
   overflow-x: auto;
@@ -48,7 +69,7 @@ export const AdmDashboardStyled = styled.div`
   background-color: ${theme.colors.grey2};
   border-radius: 0 0 20px 20px;
   padding: 20px;
-  
+
   .admSerieDiv {
     display: flex;
     justify-content: space-between;
@@ -56,7 +77,6 @@ export const AdmDashboardStyled = styled.div`
     border-radius: 10px;
     align-items: center;
     padding: 20px;
-    
   }
 
   .elementButtons {
@@ -74,4 +94,4 @@ export const AdmDashboardStyled = styled.div`
     gap: 20px;
     padding: 20px;
   }
-  `
+`;
