@@ -5,7 +5,7 @@ const StyledAdminPage = styled.div`
   display: flex;
   
   .admControlMenu {
-    background-color: ${theme.colors.grey1};
+    background-color: ${theme.colors.grey2};
     margin-right: 10px;
 
     .admControlLogo {
@@ -13,7 +13,7 @@ const StyledAdminPage = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: ${theme.colors.grey1};
+        background-color: ${theme.colors.grey2};
         padding: 20px;
         border-radius: 10%;
         margin-bottom: 20px;
@@ -31,7 +31,7 @@ const StyledAdminPage = styled.div`
         flex-direction: column;
         gap: 2rem;
         padding: 20px;
-        background-color: ${theme.colors.grey1};
+        background-color: ${theme.colors.grey2};
       }
 
       .bottomButtons {
@@ -56,6 +56,15 @@ const StyledAdminPage = styled.div`
       z-index: -1;
     }
 
+  }
+
+  .underConstruction {
+    color: red;
+    font-size: ${theme.typography.Heading1.size};
+  }
+  
+  .textUncerConstruction {
+    text-decoration: line-through red 2px;
   }
 `;
 

@@ -4,8 +4,11 @@ import { StyledButton } from "../../styles/Button";
 import LOGO4 from "../../assets/LOGO4.png";
 import AdmColections from "./AdmColections";
 import AdmUsers from "./AdmUsers";
+import { MdOutlineConstruction } from "react-icons/md";
+import { useState } from "react";
 
 const AdminPage = () => {
+  const [control, setControl] = useState("Users");
 
   return (
     <StyledAdminPage>
@@ -19,6 +22,7 @@ const AdminPage = () => {
               buttonSize="default"
               buttonStyle="primary"
               type="button"
+              onClick={() => setControl("Billboard")}
             >
               Edit Billboard
             </StyledButton>
@@ -26,20 +30,16 @@ const AdminPage = () => {
               buttonSize="default"
               buttonStyle="primary"
               type="button"
+              onClick={() => setControl("Users")}
             >
               Users
             </StyledButton>
+
             <StyledButton
               buttonSize="default"
               buttonStyle="primary"
               type="button"
-            >
-              Archivements
-            </StyledButton>
-            <StyledButton
-              buttonSize="default"
-              buttonStyle="primary"
-              type="button"
+              onClick={() => setControl("Colections")}
             >
               Colections
             </StyledButton>
@@ -47,22 +47,18 @@ const AdminPage = () => {
               buttonSize="default"
               buttonStyle="primary"
               type="button"
+              className="textUncerConstruction"
             >
-              Forum
+              Forum <MdOutlineConstruction className="underConstruction" />
             </StyledButton>
             <StyledButton
               buttonSize="default"
               buttonStyle="primary"
               type="button"
+              className="textUncerConstruction"
             >
-              FREE
-            </StyledButton>
-            <StyledButton
-              buttonSize="default"
-              buttonStyle="primary"
-              type="button"
-            >
-              FREE
+              Archivements{" "}
+              <MdOutlineConstruction className="underConstruction" />
             </StyledButton>
           </div>
 
@@ -82,9 +78,8 @@ const AdminPage = () => {
         <div>
           <img className="background" alt="" src={background} />
 
-          <AdmUsers />
-          <AdmColections />
-
+          {control == "Users" ? <AdmUsers /> : null}
+          {control == "Colections" ? <AdmColections /> : null}
         </div>
       </section>
     </StyledAdminPage>

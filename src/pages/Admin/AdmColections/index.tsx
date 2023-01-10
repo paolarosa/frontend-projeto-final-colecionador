@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { AdmNewColectionForm } from "../../../components/Forms/AdmNewColectionForm";
 import { DashboardContext } from "../../../contexts/contextDashboard";
 import { StyledButton } from "../../../styles/Button";
 import { Card } from "../../../types";
@@ -24,23 +25,35 @@ const AdmColections = () => {
   return (
     <div>
       <AdmMenuButtons>
-        <li
-          onClick={() => {
-            setFiltered(null);
-          }}
-        >
-          <h2>All</h2>
-        </li>
-        {cards?.map((card, index) => (
-          <li
-            key={index}
-            onClick={() => {
-              filteredCards(card.name);
-            }}
-          >
-            <h2>{card.name}</h2>
-          </li>
-        ))}
+        <div>
+          {/* <div>
+            <StyledButton buttonSize="medium" buttonStyle="primary">
+              New Colection
+            </StyledButton>
+          </div> */}
+          <div className="AdmLiDivColections">
+            <li
+              onClick={() => {
+                setFiltered(null);
+              }}
+            >
+              <h2>All</h2>
+            </li>
+            {cards?.map((card, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  filteredCards(card.name);
+                }}
+              >
+                <h2>{card.name}</h2>
+              </li>
+            ))}
+          </div>
+          <div className="AdmFormCreateColection">
+            <AdmNewColectionForm />
+          </div>
+        </div>
       </AdmMenuButtons>
       <AdmDashboardStyled>
         {filtered
