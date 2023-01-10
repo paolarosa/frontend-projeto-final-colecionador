@@ -18,16 +18,18 @@ export const CardStyled = styled.li`
     box-shadow: 0px 2px 10px #000, 0px 0px 10px -10px #000;
     filter: grayscale(100%);
   }
-  .colorfulCard{
+  .colorfulCard {
     filter: grayscale(0%);
     filter: contrast(130%);
   }
   img:hover {
-    transform: scale(1);
+    transform: scale(1.1);
     transition: 0.5s;
+    display: flex;
     position: absolute;
+    top: 15px;
+    z-index: 2;
     width: 180px;
-    /* background-position: -60px; */
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
 `;

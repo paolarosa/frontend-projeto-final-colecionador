@@ -17,14 +17,10 @@ export const ContainerDash = styled.div`
 export const DashboardStyled = styled.div<iActivedButton>`
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* height: 100%; */
   width: 100%;
   max-width: 1140px;
-  /* margin-top: 50px; */
   padding-top: 30px;
   gap: 50px;
-  /* background-color: #9de0ff; */
   ${(props) => {
     switch (props.actived) {
       case "All":
@@ -49,19 +45,16 @@ export const DashboardStyled = styled.div<iActivedButton>`
         `;
     }
   }}
-
-  /*  padding: 20px; */
-  /* border-top-left-radius: 30px; */
   border: 5px solid black;
   box-shadow: 5px 8px 0px #fff, 5px 8px 0px 2px #000, 10px 20px 0px #fff,
     10px 20px 5px 0px #000, 15px 20px 0px #fff, 10px 20px 20px 10px #000,
     23px 30px 0px #fff, 10px 30px 30px 20px #000;
 
   div {
-    /* background-color: #cff0ff */
     position: relative;
     width: 1100px;
-    margin-left: 20px;
+    margin-left: 30px;
+    margin-bottom: 20px;
   }
 
   div:nth-child(odd) ul,
@@ -88,7 +81,9 @@ export const DashboardStyled = styled.div<iActivedButton>`
 
   ul {
     overflow-x: auto;
+    overflow-y: hidden;
     width: 96%;
+    position: relative;
     height: 250px;
     z-index: 1;
     display: flex;
@@ -100,21 +95,6 @@ export const DashboardStyled = styled.div<iActivedButton>`
     /* border-top-right-radius: 10px; */
     box-shadow: 1px 5px 5px #868e96, 1px 1px 0px 0px #868e96;
   }
-  /*   span {
-    border: 8px solid #333333;
-    width: 40px;
-    position: absolute;
-    top: 0;
-    left: -40px;
-    z-index: 5;
-    height: 100px;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    box-shadow: 0px 15px 10px #000000, 0px 0px 0px 0px #000000, 
-    0px -10px 0px #FFFFFF, 0px 8px 0px 0px #000
-
-    
-  } */
 
   *::-webkit-scrollbar {
     height: 16px;
@@ -129,15 +109,8 @@ export const DashboardStyled = styled.div<iActivedButton>`
     border-radius: 10px;
     border: 3px solid #ffffff;
   }
-  .button-scroll {
-    padding: 10px;
-    box-shadow: 2px -2px 0 1px #000 inset;
-    border: solid transparent;
-    border-width: 0 0 2px 2px;
-    transform: rotate(45deg);
-  }
 
-  .button-scroll-back {
+  .button-scroll {
     /*   padding: 10px;
     box-shadow: 2px -2px 0 1px #000 inset;
     border: solid transparent;
@@ -145,9 +118,11 @@ export const DashboardStyled = styled.div<iActivedButton>`
     transform: rotate(220deg); */
     width: 50px;
     position: absolute;
-    right: 0;
+    right: 0px;
+    top: 100px;
+    background: white;
   }
-  .button-scroll-back img {
+  .button-scroll img {
     width: 30px;
     height: 30px;
     margin: 20px;
@@ -159,8 +134,18 @@ export const DashboardStyled = styled.div<iActivedButton>`
     div {
       width: 100vw;
     }
+    h2 {
+      width: 90vw;
+    }
     ul {
-      width: 100%;
+      width: 90vw;
+    }
+    .button-scroll {
+      width: 50px;
+      position: absolute;
+      right: 0;
+      top: 100px;
+      background: white;
     }
   }
 `;
@@ -192,19 +177,13 @@ export const MenuButtons = styled.div<iActivedButton>`
     padding: 10px;
     text-align: center;
     border-radius: 30px 0px 0px 0px;
-    border: solid black 3px;
+    border: solid black 5px;
     cursor: pointer;
     font-size: 16px;
   }
 
-  li.actived {
-    transform: scale(1.14, 1.4);
-    background-position: -60px;
-    border-bottom: none;
-  }
-
   li:hover {
-    transform: scale(1.14, 1.4);
+    transform: scale(1.14, 1.24);
     background-position: -60px;
     border-bottom: none;
   }
@@ -240,7 +219,7 @@ export const MenuButtons = styled.div<iActivedButton>`
     li {
       font-size: 10px;
       height: 30px;
-      width: 150px;
+      width: 80px;
       padding-top: 5px;
       border: 2px solid black;
       border-radius: 20px 20px 0px 20px;
@@ -249,7 +228,11 @@ export const MenuButtons = styled.div<iActivedButton>`
 `;
 
 const categoryActived = css`
-  transform: scale(1.14, 1.4);
+  transform: scale(1.14, 1.24);
   background-position: -60px;
   border-bottom: none;
+
+  @media (max-width: 1024px) {
+    border-bottom: 2px solid black;
+  }
 `;

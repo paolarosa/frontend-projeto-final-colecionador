@@ -43,8 +43,9 @@ const Dashboard = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"/>
-        
+        theme="light"
+      />
+
       {modalOn ? <Modal /> : null}
       <Header />
       <MenuButtons actived={actived}>
@@ -72,10 +73,10 @@ const Dashboard = () => {
       <DashboardStyled actived={actived}>
         {filtered
           ? filtered.map((serie, index) => (
-              <Carrossel serie={serie} key={index} />
+              <Carrossel serie={serie} index={index} key={index} />
             ))
           : series?.map((serie, index) => (
-              <Carrossel serie={serie} key={index} />
+              <Carrossel serie={serie} index={index} key={index} />
             ))}
       </DashboardStyled>
     </ContainerDash>
