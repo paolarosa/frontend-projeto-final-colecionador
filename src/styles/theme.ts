@@ -16,6 +16,7 @@ export const theme = {
     
     colorSucess: "#168821",
     colorNegative: "#E60000",
+    colorNegative06: "rgba(230, 0, 0, 0.6)",
     colorWarning: "#FFCD07",
     colorInformation: "#155BCB"
     },

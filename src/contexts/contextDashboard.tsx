@@ -34,8 +34,8 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   const [series, setSeries] = useState<Series[]>([]);
   const [saveModal, setSaveModal] = useState<Book>({} as Book);
   const [modalOn, setModalOn] = useState(false);
-  const [myCollectionSave, setMyCollectionSave] = useState([""])
-  const [containCollection, setContainCollection] = useState(false)
+  const [myCollectionSave, setMyCollectionSave] = useState([""]);
+  const [containCollection, setContainCollection] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
 
@@ -53,114 +53,110 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       const { data } = await apiBase.get(`/users/${idUser}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setMyCollectionSave(data.myCollection)
-      
+      setMyCollectionSave(data.myCollection);
+
       setUser(data);
     } catch (error) {
       console.log(error);
-      console.log(error)
+      console.log(error);
       localStorage.clear();
       navigate("/login");
     } finally {
     }
-
-  }
+  };
 
   const modalRender = (colection: any) => {
     setModalOn(!modalOn);
     setSaveModal(colection);
     console.log(saveModal);
   };
-  
-  console.log(series);
-  
+
   const myCollection = async () => {
-    if(containCollection){
-     let myNewColletion = myCollectionSave.filter((elemet) => elemet !== saveModal.title);
-     setMyCollectionSave(myNewColletion)
-     const data = {
-       "myCollection": myNewColletion
-     }
-       console.log(data)
-     try {
-       const idUser = localStorage.getItem("@userID");
-       const response = await apiBase.patch(`/users/${idUser}`,data, {
-         headers: { Authorization: `Bearer ${token}` },
-       });
-       toast.success('Item Removido da sua coleção com sucesso 🧐', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
+    if (containCollection) {
+      let myNewColletion = myCollectionSave.filter(
+        (elemet) => elemet !== saveModal.title
+      );
+      setMyCollectionSave(myNewColletion);
+      const data = {
+        myCollection: myNewColletion,
+      };
+      console.log(data);
+      try {
+        const idUser = localStorage.getItem("@userID");
+        const response = await apiBase.patch(`/users/${idUser}`, data, {
+          headers: { Authorization: `Bearer ${token}` },
         });
-
-     } catch (error) {
-       console.log(error);
-       toast.error('Algo deu Errado 🤕', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        })
-     } finally {
-       setModalOn(false)
-       setContainCollection(false)
-     }
+        toast.success("Item Removido da sua coleção com sucesso 🧐", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error("Algo deu Errado 🤕", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } finally {
+        setModalOn(false);
+        setContainCollection(false);
+      }
     }
 
-    if(containCollection === false){
-     let myNewColletion = [...myCollectionSave, saveModal.title]
-     setMyCollectionSave(myNewColletion)
-     const data = {
-       "myCollection": myNewColletion
-     }
+    if (containCollection === false) {
+      let myNewColletion = [...myCollectionSave, saveModal.title];
+      setMyCollectionSave(myNewColletion);
+      const data = {
+        myCollection: myNewColletion,
+      };
 
-     try {
-       const idUser = localStorage.getItem("@userID");
-       const response = await apiBase.patch(`/users/${idUser}`,data, {
-         headers: { Authorization: `Bearer ${token}` },
-       });
-        
-       toast.success('Item Adicionado a sua coleção com sucesso 😎', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
+      try {
+        const idUser = localStorage.getItem("@userID");
+        const response = await apiBase.patch(`/users/${idUser}`, data, {
+          headers: { Authorization: `Bearer ${token}` },
         });
 
-     } catch (error) {
-       console.log(error);
-       toast.error('Algo deu Errado 🤕', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        })
-     } finally {
-       setModalOn(false)
-       setContainCollection(false)
-     }
+        toast.success("Item Adicionado a sua coleção com sucesso 😎", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error("Algo deu Errado 🤕", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } finally {
+        setModalOn(false);
+        setContainCollection(false);
+      }
     }
+  };
 
- }
-
-const listRequisition = async () => {
+  const listRequisition = async () => {
     if (token) {
       try {
         const response = await apiBase.get("/colections", {
@@ -185,7 +181,7 @@ const listRequisition = async () => {
 
   useEffect(() => {
     loadUser();
- }, []);
+  }, []);
 
   return (
     <DashboardContext.Provider
@@ -204,7 +200,7 @@ const listRequisition = async () => {
         containCollection,
         setContainCollection,
         user,
-        setUser
+        setUser,
       }}
     >
       {children}
