@@ -29,7 +29,6 @@ interface iDashContext {
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
 
-
 export const DashboardProvider = ({ children }: iDashContextProps) => {
   const [cards, setCards] = useState<Card[]>([]);
   const [series, setSeries] = useState<Series[]>([]);
@@ -55,7 +54,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMyCollectionSave(data.myCollection);
-      console.log(data.myCollection)
+      console.log(data.myCollection);
 
       setUser(data);
     } catch (error) {
@@ -157,7 +156,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       }
     }
   };
-
+  console.log(cards);
   const listRequisition = async () => {
     if (token) {
       try {

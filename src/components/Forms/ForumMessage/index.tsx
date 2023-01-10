@@ -6,6 +6,7 @@ import { StyledButton } from "../../../styles/Button";
 import { Input } from "../../../styles/Input";
 import { Textarea } from "../../../styles/textarea";
 import { postSchema } from "./formSchema";
+import { FormStyled } from "./styles";
 
 interface iUserPostFormValues {
   userId: number;
@@ -33,8 +34,7 @@ export const PostForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-
+    <FormStyled onSubmit={handleSubmit(onSubmit)} noValidate>
       <Input
         className="input"
         label="Title"
@@ -58,6 +58,6 @@ export const PostForm = () => {
       <StyledButton buttonSize="default" buttonStyle="primary" type="submit">
         Enviar
       </StyledButton>
-    </form>
+    </FormStyled>
   );
 };

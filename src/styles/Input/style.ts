@@ -31,7 +31,7 @@ export const InputStyled = styled.div`
     background: ${theme.colors.grey0};
     color: ${theme.colors.grey4};
     border: 1px solid ${theme.colors.grey0};
-    border-radius: 30px;
+    border-radius: 10px;
     box-sizing: border-box;
     &:focus {
       outline: none;
@@ -42,7 +42,7 @@ export const InputStyled = styled.div`
       }
       background: ${theme.colors.white};
       color: ${theme.colors.grey4};
-      border: 1px solid ${theme.colors.grey4};
+      border: 1px solid ${theme.colors.secundary2};
     }
 
     &:invalid {
@@ -65,25 +65,24 @@ export const InputStyled = styled.div`
     }
 
     &:not(:placeholder-shown) {
-    ~ .label {
-      background-color: ${theme.colors.white};
-      top: -8px;
-      font-size: 12px;
-    }
-    background: ${theme.colors.white};
-    color: ${theme.colors.grey4};
-    border: 1px solid ${theme.colors.colorSucess};
-
-    &:invalid {
       ~ .label {
         background-color: ${theme.colors.white};
         top: -8px;
         font-size: 12px;
       }
-      background: ${theme.colors.white};
-      border: 1px solid ${theme.colors.colorNegative};
+      background: ${theme.colors.grey0};
+      color: ${theme.colors.grey4};
+      border: 1px solid ${theme.colors.grey4};
+
+      &:invalid {
+        ~ .label {
+          background-color: ${theme.colors.white};
+          top: -8px;
+          font-size: 12px;
+        }
+        background: ${theme.colors.white};
+        border: 1px solid ${theme.colors.colorNegative};
+      }
     }
   }
-  }
-
 `;
