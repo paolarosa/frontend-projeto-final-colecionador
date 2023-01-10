@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { ModalContainer } from "./styles";
 import { DashboardContext } from "../../contexts/contextDashboard";
 import { StyledButton } from "../../styles/Button";
+import { Book } from "../../types";
 
 const Modal = () => {
   const {
@@ -14,8 +15,8 @@ const Modal = () => {
     setContainCollection,
   } = useContext(DashboardContext);
 
-  myCollectionSave?.forEach((collections: string) => {
-    if (collections === saveModal.title) {
+  myCollectionSave?.forEach((collections: Book) => {
+    if (collections === saveModal) {
       return setContainCollection(true);
     }
   });
