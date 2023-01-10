@@ -19,8 +19,8 @@ interface iDashContext {
   modalOn: boolean;
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
   myCollection: () => Promise<void>;
-  myCollectionSave: string[];
-  setMyCollectionSave: React.Dispatch<React.SetStateAction<string[]>>;
+  myCollectionSave: Book[];
+  setMyCollectionSave: React.Dispatch<React.SetStateAction<Book[]>>;
   containCollection: boolean;
   setContainCollection: React.Dispatch<React.SetStateAction<boolean>>;
   user: User | null;
@@ -29,12 +29,13 @@ interface iDashContext {
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
 
+
 export const DashboardProvider = ({ children }: iDashContextProps) => {
   const [cards, setCards] = useState<Card[]>([]);
   const [series, setSeries] = useState<Series[]>([]);
   const [saveModal, setSaveModal] = useState<Book>({} as Book);
   const [modalOn, setModalOn] = useState(false);
-  const [myCollectionSave, setMyCollectionSave] = useState([""]);
+  const [myCollectionSave, setMyCollectionSave] = useState([] as Book[]);
   const [containCollection, setContainCollection] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   const myCollection = async () => {
     if (containCollection) {
       let myNewColletion = myCollectionSave.filter(
-        (elemet) => elemet !== saveModal.title
+        (elemet) => elemet !== saveModal
       );
       setMyCollectionSave(myNewColletion);
       const data = {
@@ -115,7 +116,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
     }
 
     if (containCollection === false) {
-      let myNewColletion = [...myCollectionSave, saveModal.title];
+      let myNewColletion = [...myCollectionSave, saveModal];
       setMyCollectionSave(myNewColletion);
       const data = {
         myCollection: myNewColletion,
