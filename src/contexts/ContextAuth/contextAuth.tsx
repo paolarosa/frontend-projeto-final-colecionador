@@ -10,15 +10,15 @@ export const AuthProvider = () => {
   const { user } = useContext(LoginRegisterContext);
 
   const admCheck = () => {
-    if (!user?.admin) {
-      navigate("/dashboard");
-    } else {
-      console.log("oi");
-    }
+    !user?.admin && navigate("/dashboard")
   };
 
+  const loginCheck = () => {
+    (window.localStorage.getItem("Token") && window.localStorage.getItem("@userID")) && navigate("/dashboard")
+  }
+
   return (
-    <authContext.Provider value={{ admCheck }}>
+    <authContext.Provider value={{ admCheck, loginCheck }}>
       <Outlet />
     </authContext.Provider>
   );
