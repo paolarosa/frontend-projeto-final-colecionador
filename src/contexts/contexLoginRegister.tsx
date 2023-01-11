@@ -61,6 +61,7 @@ export const LoginRigisterProvider = () => {
   const [saveAvatares, setSaveAvatares] = useState([]);
   const navigate = useNavigate();
   const [userLikedPosts, setUserLikedPosts] = useState([] as object[]);
+  const [patchEffectKey, setPatchEffectKey] = useState(false)
 
   const avataresRegister = async () => {
     try {
@@ -90,11 +91,13 @@ export const LoginRigisterProvider = () => {
       });
 
       setUser(data);
+      setUserLikedPosts(data.likedPosts)
     } catch (error) {
       console.log(error);
       // window.localStorage.clear();
     } finally {
       setLoading(false);
+      setPatchEffectKey(true)
     }
   };
 
@@ -104,18 +107,16 @@ export const LoginRigisterProvider = () => {
   }, []);
 
   useEffect(() => {
-    apiBase
-      .patch(
-        `/users/${user?.id}`,
-        { likedPosts: userLikedPosts },
-        {
-          headers: {
-            Authorization: `Bearer ${window.localStorage.getItem("Token")}`,
-            "Content-Type": "application/json",
-          },
-        }
+    if (patchEffectKey){
+      apiBase.patch(`/users/${user?.id}`,{ likedPosts: userLikedPosts },{
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("Token")}`,
+          "Content-Type": "application/json",
+        },
+      }
       )
       .then((resp) => setUser(resp.data));
+    }
   }, [userLikedPosts]);
 
   const loginRequisition = async (data: iUserLoginProps) => {
@@ -129,7 +130,6 @@ export const LoginRigisterProvider = () => {
       window.localStorage.setItem("@userID", response.data.user.id);
 
       navigate("/dashboard");
-      window.location.reload();
     } catch (error) {
       console.log(error);
     } finally {

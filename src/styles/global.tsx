@@ -4,8 +4,8 @@ export const GlobalStyle = createGlobalStyle`
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 :root{
-    --color-primary:          ##F9F41F;
-    --color-secondary:        ##49BCF0;
+    --color-primary:          #F9F41F;
+    --color-secondary:        #49BCF0;
 
 
     --grey-4:                 #333333;
@@ -19,8 +19,6 @@ export const GlobalStyle = createGlobalStyle`
     --color-error:            #E60000;
     --color-warning:          #FFCD07;
     --color-Information:      #155BCB;
-    
-    /* font-size: 62.5%; */
 }
 
 

@@ -28,7 +28,7 @@ export const theme = {
 
   typography: {
     Heading0: {
-      size: "1.75rem", //26px
+      size: "1.75rem", //28px
       weight: "bold",
       height: "1.5rem",
     },
