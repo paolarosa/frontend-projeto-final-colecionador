@@ -52,10 +52,10 @@ const Forum = () => {
   };
 
   const likePost = (element: any) => {
-    if (userLikedPosts.findIndex((x) => x === element) === -1) {
+    if (userLikedPosts.findIndex((x) => x.id === element.id) === -1) {
       setUserLikedPosts([...userLikedPosts, element]);
-    } else if (userLikedPosts.findIndex((x) => x === element) >= 0) {
-      setUserLikedPosts(userLikedPosts.filter((x) => x !== element));
+    } else if (userLikedPosts.findIndex((x) => x.id === element.id) >= 0) {
+      setUserLikedPosts(userLikedPosts.filter((x) => x.id !== element.id));
     }
   };
 

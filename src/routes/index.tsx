@@ -11,10 +11,9 @@ import Admin from "../pages/Admin"
 export const RoutesMain: any = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/dashboard" element={<Dashboard />} />
       <Route element={<LoginRigisterProvider />}>
         <Route path="/" element={<Home />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Navigate to="/" />} />
