@@ -6,14 +6,12 @@ export const StyledBurger: any = styled.div`
   section {
     width: 2rem;
     height: 2rem;
-
     display: flex;
     justify-content: space-around;
     flex-flow: column nowrap;
-
     position: absolute;
-    top: 15px;
-    right: 20px;
+    top: 20px;
+    right: 5%;
 
     div {
       width: 2rem;

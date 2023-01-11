@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginRegisterContext } from "../../../contexts/contexLoginRegister";
 import { DashboardContext } from "../../../contexts/contextDashboard";
+import { apiBase } from "../../../services/api";
 import { StyledButton } from "../../../styles/Button";
 import { Input } from "../../../styles/Input";
 import { Textarea } from "../../../styles/textarea";
@@ -17,7 +18,7 @@ interface iAdmNewElementFormValues {
 }
 
 export const AdmNewElementForm = () => {
-  const { createNewColectionRequest } = useContext(LoginRegisterContext);
+  const { user, createNewColectionRequest } = useContext(LoginRegisterContext);
 
   const {
     cards,
@@ -25,8 +26,8 @@ export const AdmNewElementForm = () => {
     setCountadd,
     addColectionId,
     setAddColectionId,
-    setModalOn,
-    modalOn,
+    elementModal,
+    setElementModal,
   } = useContext(DashboardContext);
 
   const {
@@ -39,23 +40,67 @@ export const AdmNewElementForm = () => {
     resolver: yupResolver(postSchema),
   });
 
-  const onSubmit: SubmitHandler<iAdmNewElementFormValues> = (data) => {
-    // const filterName = cards.filter((ele) => {
-    //   const filter = ele.colections?.filter((el) => {
-    //     return el.title === addColectionId;
-    //   });
+  const onSubmit: SubmitHandler<iAdmNewElementFormValues> = async (data) => {
+    const filterName = cards.filter((ele) => {
+      const filter = ele.series?.filter((el) => {
+        return el.name === addColectionId;
+      });
 
-    //   if (filter) {
-    //     if (filter.length > 0) {
-    //       return ele;
-    //     }
-    //   }
-    // });
+      if (filter) {
+        if (filter.length > 0) {
+          return ele;
+        }
+      }
+    });
 
-    // const newData = {
-    //   ...data,
-    //   id: cards.length + 1,
-    // };
+    const series = filterName[0].series;
+
+    console.log(series);
+
+    if (series) {
+      const filterSerie = series.filter((ele) => {
+        return ele.name === addColectionId;
+      });
+
+      const filterNotSerie = series.filter((ele) => {
+        return ele.name !== addColectionId;
+      });
+
+      const colection = filterSerie[0].colection;
+
+      if (colection) {
+        const newColection = {
+          userId: user?.id,
+          ...filterName[0],
+          series: [
+            ...filterNotSerie,
+            { ...filterSerie[0], colection: [...colection, data] },
+          ],
+        };
+       
+        console.log(newColection);
+
+        const token = localStorage.getItem("Token");
+        try {
+          const response = await apiBase.patch(
+            `/colections/${filterName[0].id}`,
+            newColection,
+
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+          setCountadd(countadd + 1);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      setAddColectionId(null);
+      setElementModal(!elementModal);
+    }
+
+    console.log(filterName);
+    // console.log(data)
   };
 
   return (
