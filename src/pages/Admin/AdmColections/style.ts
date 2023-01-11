@@ -4,28 +4,40 @@ import { theme } from "../../../styles/theme";
 export const AdmMenuButtons = styled.div`
   display: flex;
   align-items: center;
-  /* width: 950px;
-  overflow-x: auto; */
-  /* gap: 20px; */
+
+  max-width: 950px;
+  overflow-x: auto;
+
   padding: 20px;
   background-color: ${theme.colors.grey2};
   border-radius: 20px 20px 0 0;
 
   .AdmLiDivColections {
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
-    /* justify-content: space-around; */
-    width: 900px;
+    width: 90%;
     max-width: 900px;
     height: 190px;
     overflow-x: auto;
     gap: 20px;
     padding: 20px;
     flex-wrap: wrap;
-    /* background-color: ${theme.colors.grey2}; */
-    /* border-radius: 20px 20px 0 0; */
-    border: 1px solid red;
+    border-radius: 20px;
+    border: 1px solid ${theme.colors.grey1};
+
+    .AdmListColections {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      /* border: 1px solid blue; */
+    }
+  }
+
+  .AdmAddNewColectionBtn {
+    display: flex;
+    /* border: 1px solid blue; */
   }
 
   .AdmFormCreateColection {
@@ -95,5 +107,21 @@ export const AdmDashboardStyled = styled.div`
     align-items: center;
     gap: 20px;
     padding: 20px;
+  }
+
+  .DivControlAddSerie {
+    display: flex;
+    align-items: center;
+    /* height: 120px; */
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+
+    .AdmAddSerieBtn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      /* border: 1px solid blue; */
+    }
   }
 `;

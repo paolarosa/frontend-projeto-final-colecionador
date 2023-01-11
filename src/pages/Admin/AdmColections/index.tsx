@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AdmNewColectionForm } from "../../../components/Forms/AdmNewColectionForm";
-import { Teste } from "../../../components/Forms/formteste";
-import AdmModal from "../../../components/Modals";
+import AdmModalColection from "../../../components/Modals/AdmModalAddColection";
+import AdmModal from "../../../components/Modals/AdmModalAddSerie";
 import { DashboardContext } from "../../../contexts/contextDashboard";
 import { StyledButton } from "../../../styles/Button";
 import { Card } from "../../../types";
@@ -33,14 +33,14 @@ const AdmColections = () => {
     }
   };
 
-  // const addColection = (name: string) => {
-  //   setAddColectionId(name);
-  //   console.log(name);
-  // };
+  // const modalColection = () => {
+  //   return (
+
+  //   )
+  // }
 
   const modalRender = (name: string) => {
     setModalOn(!modalOn);
-    // addColection(name)
     setAddColectionId(name);
     console.log(name);
     console.log("modalRender ok");
@@ -49,16 +49,16 @@ const AdmColections = () => {
   const modalBtn = (position: number, title: string) => {
     if (position === 0) {
       return (
-        <StyledButton
-          buttonSize="default"
-          buttonStyle="primary"
-          type="button"
-          // onClick={() => addColection(serie.name)}
-  
-          onClick={() => modalRender(title)}
-        >
-          ADD Serie
-        </StyledButton>
+        <div className="AdmAddSerieBtn">
+          <StyledButton
+            buttonSize="medium"
+            buttonStyle="primary"
+            type="button"
+            onClick={() => modalRender(title)}
+          >
+            ADD Serie
+          </StyledButton>
+        </div>
       );
     }
   };
@@ -69,40 +69,41 @@ const AdmColections = () => {
       <AdmMenuButtons>
         <div>
           <div className="AdmLiDivColections">
-            <li
-              onClick={() => {
-                setFiltered(null);
-              }}
-            >
-              <h2>All</h2>
-            </li>
-            {cards?.map((card, index) => (
+            <div className="AdmListColections">
               <li
-                key={index}
                 onClick={() => {
-                  filteredCards(card.name);
+                  setFiltered(null);
                 }}
               >
-                <h2>{card.name}</h2>
+                <h2>All</h2>
               </li>
-            ))}
+              {cards?.map((card, index) => (
+                <li
+                  key={index}
+                  onClick={() => {
+                    filteredCards(card.name);
+                  }}
+                >
+                  <h2>{card.name}</h2>
+                </li>
+              ))}
+            </div>
           </div>
-          <div className="AdmFormCreateColection">
-            <AdmNewColectionForm />
-          </div>
+
+          <div className="AdmFormCreateColection"></div>
+        </div>
+        <div className="AdmAddNewColectionBtn">
+          <AdmNewColectionForm />
         </div>
       </AdmMenuButtons>
       <AdmDashboardStyled>
         {filtered
           ? filtered.map((serie, index) => (
               <div key={index}>
-                <div>
-                  {/* {addColectionId && <Teste />} */}
-                  
-                {modalBtn(index, serie.name)}
-
-                  
+                <div className="DivControlAddSerie">
+                  {modalBtn(index, serie.name)}
                 </div>
+
                 <div className="admSerieDiv">
                   <div>
                     <h2>{serie.name}</h2>
