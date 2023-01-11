@@ -10,21 +10,21 @@ import UnderConstruction from "../AdmUnderConstruction";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import BlankPage from "../AdmBlank";
+import { LoginRegisterContext } from "../../../contexts/contexLoginRegister";
+import { authContext } from "../../../contexts/ContextAuth/contextAuth";
 
 const AdminPage = () => {
   const [control, setControl] = useState("BlankPage");
+  const { patchEffectKey, user } = useContext(LoginRegisterContext);
+  const { admCheck } = useContext(authContext);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (patchEffectKey){
-
-      admCheck()
-
+    if (patchEffectKey) {
+      admCheck();
     }
-
-
-  },[user])
+  }, [user]);
 
   return (
     <StyledAdminPage>
