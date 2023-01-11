@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const PageLogin = styled.div`
   height: 100%;
@@ -25,18 +26,18 @@ export const PageLogin = styled.div`
     max-width: 500px;
     display: flex;
     flex-direction: column;
-    background-color: #ffffff;
+    background-color: ${theme.colors.white};
 
     padding: 20px 10px;
     margin: 0 auto;
 
-    border-top: 4px solid #000000;
-    border-right: 2px solid #000000;
-    border-bottom: 2px solid #000000;
-    border-left: 4px solid #000000;
+    border-top: 4px solid ${theme.colors.black};
+    border-right: 2px solid ${theme.colors.black};
+    border-bottom: 2px solid ${theme.colors.black};
+    border-left: 4px solid ${theme.colors.black};
     border-bottom-left-radius: 40px;
     border-top-right-radius: 40px;
-    box-shadow: 8px 8px 20px #f9f41f, 5px 5px 0px 2px #f9f41f;
+    box-shadow: 8px 8px 20px ${theme.colors.primary}, 5px 5px 0px 2px ${theme.colors.primary};
 
     form {
       display: flex;
@@ -45,22 +46,8 @@ export const PageLogin = styled.div`
       padding: 5px;
       gap: 15px;
 
-      font-size: 18px;
+      font-size: ${theme.typography.Heading3.size};
 
-      /* input {
-        background-color: #dddddd;
-        border: none;
-        border-radius: 30px;
-        height: 40px;
-      } */
-
-      /* button {
-        height: 50px;
-        border: none;
-        border-radius: 30px;
-        background-color: #f9f41f;
-        box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
-      } */
     }
 
     h2 {
@@ -82,7 +69,7 @@ export const PageLogin = styled.div`
   }
 
   a {
-    color: #49bcf0;
+    color: ${theme.colors.secundary};
   }
 
   @media (min-width: 1024px) {
@@ -113,17 +100,17 @@ export const DivDogBallon = styled.div`
       top: 0;
       left: -30px;
 
-      background: white;
+      background: ${theme.colors.white};
       padding: 15px;
 
-      font-size: 24px;
+      font-size: ${theme.typography.Heading1.size};
       text-align: center;
 
       border-radius: 40px 40px 0px 40px;
-      border: solid black 3px;
+      border: solid ${theme.colors.black} 3px;
 
       a {
-        color: #49bcf0;
+        color: ${theme.colors.secundary};
       }
     }
   }

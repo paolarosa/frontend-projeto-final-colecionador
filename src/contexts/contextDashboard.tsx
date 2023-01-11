@@ -32,6 +32,8 @@ interface iDashContext {
   setSaveModal: React.Dispatch<React.SetStateAction<Book>>;
   modalOn: boolean;
   setModalOn: React.Dispatch<React.SetStateAction<boolean>>;
+  elementModal: boolean;
+  setElementModal: React.Dispatch<React.SetStateAction<boolean>>;
   myCollection: () => Promise<void>;
   myCollectionSave: Book[];
   setMyCollectionSave: React.Dispatch<React.SetStateAction<Book[]>>;
@@ -52,13 +54,14 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   const [cards, setCards] = useState<Card[]>([]);
   const [series, setSeries] = useState<Series[]>([]);
   const [saveModal, setSaveModal] = useState<Book>({} as Book);
-  const [modalOn, setModalOn] = useState(false);
   const [myCollectionSave, setMyCollectionSave] = useState([] as Book[]);
   const [containCollection, setContainCollection] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
-
+  
   const [addColectionId, setAddColectionId] = useState<string | null>(null)
+  const [modalOn, setModalOn] = useState(false);
+  const [elementModal, setElementModal] = useState(false)
   const [countadd, setCountadd] = useState(0)
 
   // console.log(cards);
@@ -84,31 +87,6 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   
 
   const token = localStorage.getItem("Token");
-
-  const loadUser = async () => {
-    if (!token) {
-      localStorage.clear();
-      navigate("/login");
-    }
-
-    try {
-      const idUser = window.localStorage.getItem("@userID");
-
-      const { data } = await apiBase.get(`/users/${idUser}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setMyCollectionSave(data.myCollection);
-      console.log(data.myCollection);
-
-      setUser(data);
-    } catch (error) {
-      console.log(error);
-      console.log(error);
-      localStorage.clear();
-      navigate("/login");
-    } finally {
-    }
-  };
 
   const modalRender = (colection: iCollectionItem) => {
     setModalOn(!modalOn);
@@ -200,7 +178,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       }
     }
   };
-  console.log(cards);
+  // console.log(cards);
   const listRequisition = async () => {
     if (token) {
       try {
@@ -209,7 +187,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         });
         let newValues: Series[] = [];
         const data: Colection[] = response.data;
-        setCards(response.data);
+        setCards(response.data.sort((a: any, b: any) => a.name - b.name));       
         data.forEach((colection: Colection) => {
           colection.series.forEach((serie) => {
             newValues = [...newValues, serie];
@@ -224,10 +202,6 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
     }
   };
 
-  useEffect(() => {
-    loadUser();
-  }, []);
-
   return (
     <DashboardContext.Provider
       value={{
@@ -239,6 +213,8 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         setSaveModal,
         modalOn,
         setModalOn,
+        elementModal,
+        setElementModal,
         modalRender,
         myCollection,
         myCollectionSave,

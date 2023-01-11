@@ -9,12 +9,16 @@ export const ProfileContainer = styled.div`
         flex-direction: column;
         gap: 40px;
 
+.divDescriptionCollection{  
+    overflow-y: scroll;
+}
+
         div {
             display: flex;
             flex-direction: column;
             gap: 20px;
             padding: 20px;
-
+            
             ul {
                 display: flex;
                 gap: 10px;
@@ -93,7 +97,7 @@ export const ProfileItemsCard = styled.li`
     display: block;
     min-width: 150px;
     min-height: 200px;
-    background-color: green;
+    background-color: #e0f2ff;
 
     img {
         width: 100%;

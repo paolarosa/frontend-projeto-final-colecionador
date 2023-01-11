@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AdmNewColectionForm } from "../../../components/Forms/AdmNewColectionForm";
 import AdmModalColection from "../../../components/Modals/AdmModalAddColection";
+import AdmElementModal from "../../../components/Modals/AdmModalAddElement";
 import AdmModal from "../../../components/Modals/AdmModalAddSerie";
 import { DashboardContext } from "../../../contexts/contextDashboard";
 import { StyledButton } from "../../../styles/Button";
@@ -18,6 +19,8 @@ const AdmColections = () => {
     countadd,
     modalOn,
     setModalOn,
+    elementModal,
+    setElementModal,
   } = useContext(DashboardContext);
 
   const [filtered, setFiltered] = useState<Card[] | null>(null);
@@ -30,21 +33,26 @@ const AdmColections = () => {
     const nome = cards.filter((category) => category.name === type);
     if (nome[0].series) {
       setFiltered(nome[0].series);
+      
     }
   };
 
-  // const modalColection = () => {
-  //   return (
-
-  //   )
-  // }
-
   const modalRender = (name: string) => {
     setModalOn(!modalOn);
-    setAddColectionId(name);
+    setAddColectionId(name || "");
     console.log(name);
     console.log("modalRender ok");
   };
+
+  const admAddElementModal = (name: string) => {
+    setElementModal(!elementModal);
+    setAddColectionId(name);
+    console.log(name);
+    
+  };
+
+  console.log(cards);
+  
 
   const modalBtn = (position: number, title: string) => {
     if (position === 0) {
@@ -61,11 +69,15 @@ const AdmColections = () => {
         </div>
       );
     }
+    console.log(position);
+    
   };
-
+ 
   return (
     <div>
-      {modalOn ? <AdmModal /> : null}
+      {modalOn && <AdmModal />}
+      {elementModal && <AdmElementModal />}
+
       <AdmMenuButtons>
         <div>
           <div className="AdmLiDivColections">
@@ -99,9 +111,9 @@ const AdmColections = () => {
       <AdmDashboardStyled>
         {filtered
           ? filtered.map((serie, index) => (
-              <div key={index}>
+            <div key={index}>
                 <div className="DivControlAddSerie">
-                  {modalBtn(index, serie.name)}
+                {modalBtn(index, serie.name)}
                 </div>
 
                 <div className="admSerieDiv">
@@ -113,8 +125,7 @@ const AdmColections = () => {
                       buttonSize="small"
                       buttonStyle="primary"
                       type="button"
-                      // onClick={() => addColection(serie.name)}
-                      // onClick={() => modalRender()}
+                      onClick={() => admAddElementModal(serie.name)}
                     >
                       ADD
                     </StyledButton>
@@ -151,6 +162,7 @@ const AdmColections = () => {
                       buttonSize="small"
                       buttonStyle="negative"
                       type="button"
+                      onClick={() => admAddElementModal(serie.name)}
                     >
                       Delete
                     </StyledButton>

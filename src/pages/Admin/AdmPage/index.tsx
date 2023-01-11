@@ -5,15 +5,26 @@ import LOGO4 from "../../../assets/LOGO4.png";
 import AdmColections from "../AdmColections";
 import AdmUsers from "../AdmUsers";
 import { MdOutlineConstruction } from "react-icons/md";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import UnderConstruction from "../AdmUnderConstruction";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import BlankPage from "../AdmBlank";
 
 const AdminPage = () => {
-  const [control, setControl] = useState("");
+  const [control, setControl] = useState("BlankPage");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (patchEffectKey){
+
+      admCheck()
+
+    }
+
+
+  },[user])
 
   return (
     <StyledAdminPage>
@@ -102,6 +113,7 @@ const AdminPage = () => {
           {control == "Colections" ? <AdmColections /> : null}
           {control == "Forum" ? <UnderConstruction /> : null}
           {control == "Archivements" ? <UnderConstruction /> : null}
+          {control == "BlankPage" ? <BlankPage /> : null}
         </div>
       </section>
     </StyledAdminPage>

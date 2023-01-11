@@ -61,8 +61,8 @@ export const StyledButton = styled.button`
           background: ${theme.colors.primary};
           color: ${theme.colors.black};
           border: 1px solid ${theme.colors.primary};
-          -webkit-box-shadow: 1px 3px 3px 3px #000000;
-          box-shadow: 1px 3px 3px 3px #000000;
+          -webkit-box-shadow: 1px 3px 3px 3px ${theme.colors.black};
+          box-shadow: 1px 3px 3px 3px ${theme.colors.black};
           &:hover {
             background-color: ${theme.colors.primary06};
             border: 1px solid ${theme.colors.primary06};
@@ -74,8 +74,8 @@ export const StyledButton = styled.button`
           background: ${theme.colors.secundary06};
           color: ${theme.colors.black};
           border: 1px solid ${theme.colors.secundary};
-          -webkit-box-shadow: 1px 3px 3px 3px #000000;
-          box-shadow: 1px 3px 3px 3px #000000;
+          -webkit-box-shadow: 1px 3px 3px 3px ${theme.colors.black};
+          box-shadow: 1px 3px 3px 3px ${theme.colors.black};
 
           &:hover {
             background: ${theme.colors.secundary};
@@ -87,7 +87,7 @@ export const StyledButton = styled.button`
           background: ${theme.colors.colorNegative06};
           color: ${theme.colors.black};
           border: 1px solid ${theme.colors.colorNegative06};
-          box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
+          box-shadow: 4px 4px 0px ${theme.colors.black}, 4px 4px 0px 1px ${theme.colors.black};
           &:hover {
             background: ${theme.colors.colorNegative};
             border: 1px solid ${theme.colors.colorNegative};

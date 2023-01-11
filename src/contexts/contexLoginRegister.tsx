@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   Outlet,
   useLocation,
@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { apiBase } from "../services/api";
 import { AllUsers, Posts, User } from "../types";
+import { DashboardContext } from "./contextDashboard";
 import { iUserDetail } from "./ContextForum/forumInterface";
 
 interface iUserContext {
@@ -25,7 +26,7 @@ interface iUserContext {
   userLikedPosts: any[];
   setUserLikedPosts: (post: any[]) => void;
   saveAvatares: any[];
-  createNewColectionRequest: (data: iCreateColection) => Promise<void>;
+  createNewColectionRequest: (data: iCreateColection) => Promise<any>;
   patchEffectKey: boolean;
   favorites:    iUserDetail[];
   setFavorites: (data: iUserDetail[]) => void;
@@ -67,7 +68,7 @@ export const LoginRigisterProvider = () => {
   const [userLikedPosts, setUserLikedPosts] = useState([] as object[]);
   const [patchEffectKey, setPatchEffectKey] = useState(false)
   const [favorites, setFavorites] = useState([] as iUserDetail[]);
-
+  const { setMyCollectionSave } = useContext(DashboardContext)
   const avataresRegister = async () => {
     try {
       const response = await apiBase.get("avatar");
@@ -75,7 +76,7 @@ export const LoginRigisterProvider = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      console.log(saveAvatares);
+      // console.log(saveAvatares);
     }
   };
 
@@ -98,6 +99,7 @@ export const LoginRigisterProvider = () => {
       setUser(data);
       data.likedPosts ? setUserLikedPosts(data.likedPosts) : setUserLikedPosts([])
       data.followed ? setFavorites(data.followed) : setFavorites([])
+      data.myCollection ? setMyCollectionSave(data.myCollection) : setMyCollectionSave([])
     } catch (error) {
       console.log(error);
       // window.localStorage.clear();
@@ -138,6 +140,7 @@ export const LoginRigisterProvider = () => {
       setUser(response.data.user)
       setUserLikedPosts(response.data.user.likedPosts)
       setFavorites(response.data.user.followed)
+      setMyCollectionSave(response.data.user.myCollection)
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
@@ -231,6 +234,8 @@ export const LoginRigisterProvider = () => {
         const response = await apiBase.post("/colections", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        const newResponse:any = response
+        return newResponse
       } catch (error) {
         console.log(error);
       }
