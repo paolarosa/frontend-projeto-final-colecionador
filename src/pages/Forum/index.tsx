@@ -50,6 +50,7 @@ const Forum = () => {
   };
 
   const checkLikedPosts = (element: any) => {
+    console.log(userLikedPosts?.findIndex((post) => element.id === post.id))
     return userLikedPosts?.findIndex((post) => element.id === post.id) === -1 ? <AiFillHeart className="uncoloredHeart" /> : <AiFillHeart className="coloredHeart" />;
   };
 
