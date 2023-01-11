@@ -240,49 +240,48 @@ export const StyledForum = styled.div`
     }
   }
   /* .listAllUsers {
-      width: 300px;
-      height: 300px;
-      background: blue;
+    width: 300px;
+    height: 300px;
+    background: blue;
 
-      li {
-        height: 50px;
-        width: 50px;
-      }
-      img {
-        height: 50px;
-        width: 50px;
-        border-radius: 30px;
-        padding: 5px;
-      }
+    li {
+      height: 50px;
+      width: 50px;
+    }
+    img {
+      height: 50px;
+      width: 50px;
+      border-radius: 30px;
+      padding: 5px;
+    }
 
-      ul {
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 200px;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    li {
+      display: flex;
+      flex-direction: row;
+      font-size: ${theme.typography.Caption.size};
+      font-weight: ${theme.typography.Caption.weight};
+      background-color: ${theme.colors.grey1};
+      border-radius: 10px;
+
+      .aboutAll {
         display: flex;
-        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px;
         gap: 10px;
-        width: 200px;
-        max-height: 250px;
-        overflow-y: auto;
-      }
-
-      li {
-        display: flex;
-        flex-direction: row;
-        font-size: ${theme.typography.Caption.size};
-        font-weight: ${theme.typography.Caption.weight};
-        background-color: ${theme.colors.grey1};
-        border-radius: 10px;
-
-        .aboutAll {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          padding: 10px;
-          gap: 10px;
-        }
       }
     }
-  }
+  } */
 
   .uncoloredHeart {
     color: black;
@@ -290,7 +289,7 @@ export const StyledForum = styled.div`
 
   .coloredHeart {
     color: red;
-  } */
+  }
 `;
 export const BackgroundDash = styled.div`
   width: 100vw;
