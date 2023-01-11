@@ -28,11 +28,11 @@ const Forum = () => {
     forumMessagesRequest();
     getAllUsersRequest();
   }, []);
-
+  
   const updateFavorites = (userTarget: iUserDetail) => {
-    if (favorites.findIndex((element: iUserDetail) => element .id=== userTarget.id) === -1) {
+    if (favorites?.findIndex((element: iUserDetail) => element .id=== userTarget.id) === -1) {
       setFavorites([...favorites, userTarget]);
-    } else if (favorites.findIndex((element: iUserDetail) => element.id === userTarget.id) >= 0) {
+    } else if (favorites?.findIndex((element: iUserDetail) => element.id === userTarget.id) >= 0) {
       setFavorites(favorites.filter((element: iUserDetail) => element.id != userTarget.id));
     }
   };
@@ -42,7 +42,7 @@ const Forum = () => {
   };
 
   const checkFavoriteButton = (element: any) => {
-    if (favorites.some((item: iUserDetail) => item.id === element.id)) {
+    if (favorites?.findIndex((item: iUserDetail) => item.id === element.id) >= 0) {
       return "Remover";
     } else {
       return "Adicionar";
@@ -50,15 +50,15 @@ const Forum = () => {
   };
 
   const checkLikedPosts = (element: any) => {
-    return userLikedPosts.findIndex((post) => element.id === post.id) === -1 ? <AiFillHeart className="uncoloredHeart" /> : <AiFillHeart className="coloredHeart" />;
+    return userLikedPosts?.findIndex((post) => element.id === post.id) === -1 ? <AiFillHeart className="uncoloredHeart" /> : <AiFillHeart className="coloredHeart" />;
   };
 
   const likePost = (element: any) => {
-    if (userLikedPosts.findIndex((x) => x.id === element.id) === -1) {
+    console.log(userLikedPosts)
+    if (userLikedPosts?.findIndex((x) => x.id === element.id) === -1) {
       setUserLikedPosts([...userLikedPosts, element]);
-    } else if (userLikedPosts.findIndex((x) => x.id === element.id) >= 0) {
+    } else if (userLikedPosts?.findIndex((x) => x.id === element.id) >= 0) {
       setUserLikedPosts(userLikedPosts.filter((x) => x.id !== element.id));
-      console.log(element)
     }
   };
 
