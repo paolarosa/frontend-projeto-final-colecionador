@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { apiBase } from "../services/api";
 import { AllUsers, Posts, User } from "../types";
+import { iUserDetail } from "./ContextForum/forumInterface";
 
 interface iUserContext {
   loading: boolean;
@@ -18,12 +19,16 @@ interface iUserContext {
   getAllUsersRequest: () => void;
   forumPostMessageRequest: (data: iUserPostProps) => Promise<void>;
   posts: Posts[];
-  user: User | null;
+  user: iUserDetail | null;
+  setUser: (data: iUserDetail) => void;
   allUsers: AllUsers[];
   userLikedPosts: any[];
   setUserLikedPosts: (post: any[]) => void;
   saveAvatares: any[];
   createNewColectionRequest: (data: iCreateColection) => Promise<void>;
+  patchEffectKey: boolean;
+  favorites:    iUserDetail[];
+  setFavorites: (data: iUserDetail[]) => void;
 }
 
 interface iUserRegisterProps {
@@ -55,12 +60,13 @@ export const LoginRigisterProvider = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const [posts, setPosts] = useState([]);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<iUserDetail | null>(null);
   const [allUsers, setAllUsers] = useState([]);
   const [saveAvatares, setSaveAvatares] = useState([]);
   const navigate = useNavigate();
   const [userLikedPosts, setUserLikedPosts] = useState([] as object[]);
   const [patchEffectKey, setPatchEffectKey] = useState(false)
+  const [favorites, setFavorites] = useState([] as iUserDetail[]);
 
   const avataresRegister = async () => {
     try {
@@ -91,6 +97,7 @@ export const LoginRigisterProvider = () => {
 
       setUser(data);
       setUserLikedPosts(data.likedPosts)
+      setFavorites(data.followed)
     } catch (error) {
       console.log(error);
       // window.localStorage.clear();
@@ -128,6 +135,9 @@ export const LoginRigisterProvider = () => {
       localStorage.setItem("Token", response.data.accessToken);
       window.localStorage.setItem("@userID", response.data.user.id);
 
+      setUser(response.data.user)
+      setUserLikedPosts(response.data.user.likedPosts)
+      setFavorites(response.data.user.followed)
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
@@ -257,6 +267,7 @@ export const LoginRigisterProvider = () => {
         forumMessagesRequest,
         posts,
         user,
+        setUser,
         getAllUsersRequest,
         allUsers,
         forumPostMessageRequest,
@@ -264,6 +275,9 @@ export const LoginRigisterProvider = () => {
         setUserLikedPosts,
         saveAvatares,
         createNewColectionRequest,
+        patchEffectKey,
+        favorites,
+        setFavorites
       }}
     >
       <Outlet />
