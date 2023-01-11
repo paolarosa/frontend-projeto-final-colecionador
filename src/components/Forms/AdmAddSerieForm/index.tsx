@@ -9,26 +9,36 @@ import { Input } from "../../../styles/Input";
 import { Textarea } from "../../../styles/textarea";
 import { postSchema } from "./formSchema";
 
-interface iUserTesteFormValues {
+interface iUserAddSerieFormValues {
   name: string;
 }
 
-export const Teste = () => {
-  const { cards, setCards, countadd, setCountadd, addColectionId, setAddColectionId, setModalOn, modalOn } =
-    useContext(DashboardContext);
-  
-  // console.log(cards);
-  
-  
-  const { user, setUser } = useContext(LoginRegisterContext)
+export const AddSerieForm = () => {
+  const {
+    cards,
+    countadd,
+    setCountadd,
+    addColectionId,
+    setAddColectionId,
+    setModalOn,
+    modalOn,
+  } = useContext(DashboardContext);
 
-  const { register, handleSubmit } = useForm<iUserTesteFormValues>();
+  const { user, setUser } = useContext(LoginRegisterContext);
 
-  const onSubmit = async (data: iUserTesteFormValues) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<iUserAddSerieFormValues>({
+    mode: "onChange",
+    resolver: yupResolver(postSchema),
+  });
+
+  const onSubmit: SubmitHandler<iUserAddSerieFormValues> = async (data) => {
     const filterName = cards.filter((ele) => {
       const filter = ele.series?.filter((el) => {
-        // console.log(addColectionId);
-        
         return el.name === addColectionId;
       });
 
@@ -48,7 +58,6 @@ export const Teste = () => {
     console.log(filterName);
     const colections = filterName[0].series;
 
-
     if (colections) {
       const newColection = {
         userId: user?.id,
@@ -66,30 +75,30 @@ export const Teste = () => {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
-        setCountadd(countadd+1)
-
+        setCountadd(countadd + 1);
       } catch (error) {
         console.log(error);
       }
     }
     setAddColectionId(null);
     // reset();
-    setModalOn(!modalOn)
-    console.log("oi");
-    
+    setModalOn(!modalOn);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input
+      <Input
         className="input"
-        // label="Create New Serie"
+        label="Create New Serie"
         type="text"
         placeholder=""
-        {...register("name")}
+        // {...register("name")}
+        register={register("name")}
       />
 
-      <button type="submit">Enviar</button>
+      <StyledButton buttonSize="default" buttonStyle="primary" type="submit">
+        Enviar
+      </StyledButton>
     </form>
   );
 };

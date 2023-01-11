@@ -1,17 +1,17 @@
 import StyledAdminPage from "./styles";
-import background from "../../assets/background.png";
-import { StyledButton } from "../../styles/Button";
-import LOGO4 from "../../assets/LOGO4.png";
-import AdmColections from "./AdmColections";
-import AdmUsers from "./AdmUsers";
+import background from "../../../assets/background.png";
+import { StyledButton } from "../../../styles/Button";
+import LOGO4 from "../../../assets/LOGO4.png";
+import AdmColections from "../AdmColections";
+import AdmUsers from "../AdmUsers";
 import { MdOutlineConstruction } from "react-icons/md";
 import { useState } from "react";
-import UnderConstruction from "./AdmUnderConstruction";
+import UnderConstruction from "../AdmUnderConstruction";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const AdminPage = () => {
-  const [control, setControl] = useState("Users");
+  const [control, setControl] = useState("");
 
   const navigate = useNavigate();
 
@@ -22,14 +22,14 @@ const AdminPage = () => {
           <div className="upButtons">
             <div className="admControlLogo">
               <Link to={"/dashboard"}>
-              <img
-                className="logo"
-                src={LOGO4}
-                alt="logo"
-                onClick={() => {
-                  navigate("/dashboard");
-                }}
-              />
+                <img
+                  className="logo"
+                  src={LOGO4}
+                  alt="logo"
+                  onClick={() => {
+                    navigate("/dashboard");
+                  }}
+                />
               </Link>
             </div>
             <StyledButton

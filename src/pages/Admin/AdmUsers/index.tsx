@@ -1,17 +1,9 @@
 import { useContext, useEffect } from "react";
 import { LoginRegisterContext } from "../../../contexts/contexLoginRegister";
-import { DashboardContext } from "../../../contexts/contextDashboard";
 import StyledAdmUsers from "./styles";
 
 const AdmUsers = () => {
-  const { forumMessagesRequest, posts, user, getAllUsersRequest, allUsers } =
-    useContext(LoginRegisterContext);
-  
-    const { cards } =
-      useContext(DashboardContext);
-  
-  console.log(cards);
-  
+  const { getAllUsersRequest, allUsers } = useContext(LoginRegisterContext);
 
   useEffect(() => {
     getAllUsersRequest();
