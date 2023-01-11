@@ -88,31 +88,6 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
 
   const token = localStorage.getItem("Token");
 
-  const loadUser = async () => {
-    if (!token) {
-      localStorage.clear();
-      navigate("/login");
-    }
-
-    try {
-      const idUser = window.localStorage.getItem("@userID");
-
-      const { data } = await apiBase.get(`/users/${idUser}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setMyCollectionSave(data.myCollection);
-      // console.log(data.myCollection);
-
-      setUser(data);
-    } catch (error) {
-      console.log(error);
-      console.log(error);
-      localStorage.clear();
-      navigate("/login");
-    } finally {
-    }
-  };
-
   const modalRender = (colection: iCollectionItem) => {
     setModalOn(!modalOn);
     setSaveModal(colection);
@@ -226,10 +201,6 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       /* navigate("/"); */
     }
   };
-
-  useEffect(() => {
-    loadUser();
-  }, []);
 
   return (
     <DashboardContext.Provider
