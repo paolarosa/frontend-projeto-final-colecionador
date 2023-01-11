@@ -77,7 +77,7 @@ export const StyledForum = styled.div`
         font-size: 10px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        /* gap: 10px; */
       }
       *::-webkit-scrollbar {
         width: 16px;
@@ -93,9 +93,13 @@ export const StyledForum = styled.div`
 
       li {
         display: flex;
-        margin: 10px 0 0 10px;
+        /* margin-top: 10px; */
         gap: 20px;
         align-items: center;
+        width: 100%;
+        padding: 12px 10px;
+        border: 2px solid ${theme.colors.grey1};
+        background: ${theme.colors.grey0};
       }
       img {
         height: 50px;
@@ -171,10 +175,13 @@ export const StyledForum = styled.div`
       ul {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         height: 100%;
         min-height: 400px;
         overflow-y: auto;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        border-radius: 10px;
       }
 
       li {
@@ -184,8 +191,9 @@ export const StyledForum = styled.div`
         border-radius: 10px;
         padding: 10px;
         gap: 10px;
-        border-left: 2px solid black;
-        border-right: 2px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        /* border-top: 1px solid black; */
 
         .headerPostMessageDiv {
           display: flex;
