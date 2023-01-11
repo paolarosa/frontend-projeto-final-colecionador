@@ -8,6 +8,7 @@ import { PostForm } from "../../components/Forms/ForumMessage";
 import { number } from "yup/lib/locale";
 import { forumContext } from "../../contexts/ContextForum/contextForum";
 import { iUserDetail } from "../../contexts/ContextForum/forumInterface";
+import Fundo from "../../assets/FundoBanner.png"
 
 // import ExpenseDate, { ShowDate, ShowNewDate } from "../../styles/Date";
 
@@ -91,26 +92,20 @@ const Forum = () => {
     <StyledForum>
       <Header />
       <BackgroundDash className="background" />
+      <div className="userCard">
+              <div className="avatarImg">
+                <img src={user?.avatar} alt="user avatar" />
+              </div>
+              <div className="userCardName">
+                    <h3>{user?.name}</h3>
+                  </div>
+                <div className="banner"><img src={Fundo} alt="" /></div>
+                {/* <p>following: {updateFavorites.length}</p> */}
+              </div>
       <div className="container">
         <div className="infosInputChat">
           <div className="divInfosInput">
             <div className="headerForumPage">
-              <div className="avatarImg">
-                <img src={user?.avatar} alt="user avatar" />
-              </div>
-              <div className="userCard">
-                <div className="userCardInfo">
-                  <div className="userCardName">
-                    <h2>Nome:</h2>
-                    <h3>{user?.name}</h3>
-                  </div>
-                  <div className="userCardMail">
-                    <h2>Email:</h2>
-                    <h3>{user?.email}</h3>
-                  </div>
-                </div>
-                {/* <p>following: {updateFavorites.length}</p> */}
-              </div>
             </div>
             <div className="inputsStyles">
               <PostForm />
