@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   Outlet,
   useLocation,
@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { apiBase } from "../services/api";
 import { AllUsers, Posts, User } from "../types";
+import { DashboardContext } from "./contextDashboard";
 import { iUserDetail } from "./ContextForum/forumInterface";
 
 interface iUserContext {
@@ -68,6 +69,8 @@ export const LoginRigisterProvider = () => {
   const [patchEffectKey, setPatchEffectKey] = useState(false)
   const [favorites, setFavorites] = useState([] as iUserDetail[]);
 
+  const { setMyCollectionSave } = useContext(DashboardContext)
+
   const avataresRegister = async () => {
     try {
       const response = await apiBase.get("avatar");
@@ -98,6 +101,7 @@ export const LoginRigisterProvider = () => {
       setUser(data);
       data.likedPosts ? setUserLikedPosts(data.likedPosts) : setUserLikedPosts([])
       data.followed ? setFavorites(data.followed) : setFavorites([])
+      data.myCollection ? setMyCollectionSave(data.myCollection) : setMyCollectionSave([])
     } catch (error) {
       console.log(error);
       // window.localStorage.clear();
@@ -138,6 +142,7 @@ export const LoginRigisterProvider = () => {
       setUser(response.data.user)
       setUserLikedPosts(response.data.user.likedPosts)
       setFavorites(response.data.user.followed)
+      setMyCollectionSave(response.data.user.myCollection)
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
