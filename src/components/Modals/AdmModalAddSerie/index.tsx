@@ -3,7 +3,11 @@ import { ModalContainer } from "./styles";
 import { DashboardContext } from "../../../contexts/contextDashboard";
 import { AddSerieForm } from "../../Forms/AdmAddSerieForm";
 
-const AdmModal = () => {
+interface iAdmModal {
+  onCustomClose?: Function;
+}
+
+const AdmModal = ({onCustomClose}:iAdmModal) => {
   const { setModalOn, modalOn } = useContext(DashboardContext);
 
   return (
@@ -18,13 +22,17 @@ const AdmModal = () => {
           className="closeModal"
           onClick={() => {
             setModalOn(!modalOn);
+            if (onCustomClose) {
+              
+              onCustomClose()
+            }
           }}
         >
           X
         </button>
         <div>
           <h2>Add new Serie</h2>
-          <AddSerieForm />
+          <AddSerieForm customName="true" onCustomClose={onCustomClose} />
         </div>
       </div>
     </ModalContainer>

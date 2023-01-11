@@ -26,7 +26,7 @@ interface iUserContext {
   userLikedPosts: any[];
   setUserLikedPosts: (post: any[]) => void;
   saveAvatares: any[];
-  createNewColectionRequest: (data: iCreateColection) => Promise<void>;
+  createNewColectionRequest: (data: iCreateColection) => Promise<any>;
   patchEffectKey: boolean;
   favorites:    iUserDetail[];
   setFavorites: (data: iUserDetail[]) => void;
@@ -234,6 +234,8 @@ export const LoginRigisterProvider = () => {
         const response = await apiBase.post("/colections", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        const newResponse:any = response
+        return newResponse
       } catch (error) {
         console.log(error);
       }
