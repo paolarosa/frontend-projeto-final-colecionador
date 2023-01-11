@@ -30,26 +30,29 @@ export const DashboardStyled = styled.div<iActivedButton>`
         `;
       case "books_colections":
         return css`
-          background: #ffcd07;
+          background: ${theme.colors.primary};
         `;
       case "rooms":
         return css`
-          background: #da77f2;
+          background: ${theme.colors.pink};
         `;
       case "comics":
         return css`
-          background: #69db7c;
+          background: ${theme.colors.green};
         `;
       case "card_game":
         return css`
-          background: #ff6b6b;
+          background: ${theme.colors.red};
         `;
     }
   }}
   border: 4px solid black;
-  box-shadow: 5px 8px 0px #fff, 5px 8px 0px 2px #000, 10px 20px 0px #fff,
-    10px 20px 5px 0px #000, 15px 20px 0px #fff, 10px 20px 20px 10px #000,
-    23px 30px 0px #fff, 10px 30px 30px 20px #000;
+  box-shadow: 5px 8px 0px ${theme.colors.white},
+    5px 8px 0px 2px ${theme.colors.black}, 10px 20px 0px ${theme.colors.white},
+    10px 20px 5px 0px ${theme.colors.black}, 15px 20px 0px ${theme.colors.white},
+    10px 20px 20px 10px ${theme.colors.black},
+    23px 30px 0px ${theme.colors.white},
+    10px 30px 30px 20px ${theme.colors.black};
 
   div {
     position: relative;
@@ -60,24 +63,19 @@ export const DashboardStyled = styled.div<iActivedButton>`
 
   div:nth-child(odd) ul,
   div:nth-child(odd) h2 {
-    background-color: #f8f9fa;
+    background-color: ${theme.colors.grey0};
   }
 
   div:nth-child(even) ul,
   div:nth-child(even) h2 {
-    background-color: #d9d9d9;
+    background-color: ${theme.colors.grey1};
   }
 
   h2 {
-    font-size: 26px;
-    /*  background-color: #ffcd07; */
-    /* width: 250px; */
+    font-size: ${theme.typography.Heading3.size};
     width: 96%;
     height: 50px;
     padding: 10px 0 0 15px;
-    /*  border-top-right-radius: 50px; */
-    /* border-top-left-radius: 30px; */
-    /* box-shadow: 0px 2px 2px #868e96, 0px 0px 5px 0px #868e96; */
   }
 
   ul {
@@ -92,38 +90,30 @@ export const DashboardStyled = styled.div<iActivedButton>`
     align-items: center;
     gap: 40px;
     padding-left: 30px;
-    background-color: #cff0ff;
-    /* border-top-right-radius: 10px; */
-    box-shadow: 1px 5px 5px #868e96, 1px 1px 0px 0px #868e96;
+    box-shadow: 1px 5px 5px ${theme.colors.grey3},
+      1px 1px 0px 0px ${theme.colors.grey3};
   }
 
   *::-webkit-scrollbar {
     height: 16px;
   }
-
   *::-webkit-scrollbar-track {
-    background: rgb(255, 255, 255, 0.5);
+    background: ${theme.colors.grey0};
   }
-
   *::-webkit-scrollbar-thumb {
-    background-color: #000000;
+    background-color: ${theme.colors.black};
     border-radius: 10px;
-    border: 3px solid #ffffff;
+    border: 3px solid ${theme.colors.white};
   }
 
   .button-scroll {
-    /*   padding: 10px;
-    box-shadow: 2px -2px 0 1px #000 inset;
-    border: solid transparent;
-    border-width: 0 0 2px 2px;
-    transform: rotate(220deg); */
     width: 50px;
     position: absolute;
     right: 0px;
     top: 100px;
-    background: white;
-    border: 1px solid black;
+    background: ${theme.colors.white};
   }
+
   .button-scroll img {
     width: 30px;
     height: 30px;
@@ -141,11 +131,8 @@ export const DashboardStyled = styled.div<iActivedButton>`
       width: 88vw;
     }
     .button-scroll {
-      width: 50px;
       position: absolute;
       right: 15px;
-      top: 100px;
-      background: white;
     }
   }
 `;
@@ -153,11 +140,9 @@ export const DashboardStyled = styled.div<iActivedButton>`
 export const BackgroundDash = styled.div`
   width: 100vw;
   height: 100%;
-
   position: fixed;
   top: 0;
   z-index: -1;
-
   background-image: url(${image});
   background-size: cover;
   background-repeat: no-repeat;
@@ -173,13 +158,13 @@ export const MenuButtons = styled.div<iActivedButton>`
   li {
     width: 222px;
     display: block;
-    background: white;
+    background: ${theme.colors.white};
     padding: 10px;
     text-align: center;
     border-radius: 30px 0px 0px 0px;
-    border: solid black 4px;
+    border: solid 4px ${theme.colors.black};
     cursor: pointer;
-    font-size: 16px;
+    font-size: ${theme.typography.Caption.size};
   }
 
   li:hover {
@@ -189,24 +174,24 @@ export const MenuButtons = styled.div<iActivedButton>`
   }
 
   li:nth-child(1) {
-    background-color: #9de0ff;
+    background-color: ${theme.colors.secundary2};
     ${(props) => props.actived === "All" && categoryActived}
   }
 
   li:nth-child(2) {
-    background-color: #ffcd07;
+    background-color: ${theme.colors.primary};
     ${(props) => props.actived === "books_colections" && categoryActived}
   }
   li:nth-child(3) {
-    background-color: #da77f2;
+    background-color: ${theme.colors.pink};
     ${(props) => props.actived === "rooms" && categoryActived}
   }
   li:nth-child(4) {
-    background-color: #69db7c;
+    background-color: ${theme.colors.green};
     ${(props) => props.actived === "comics" && categoryActived}
   }
   li:nth-child(5) {
-    background-color: #ff6b6b;
+    background-color: ${theme.colors.red};
     ${(props) => props.actived === "card_game" && categoryActived}
   }
 
@@ -221,7 +206,7 @@ export const MenuButtons = styled.div<iActivedButton>`
       height: 30px;
       width: 100px;
       padding-top: 5px;
-      border: 2px solid black;
+      border: 2px solid ${theme.colors.black};
       border-radius: 20px 20px 0px 20px;
     }
     li:nth-child(2) {
@@ -236,6 +221,6 @@ const categoryActived = css`
   border-bottom: none;
 
   @media (max-width: 1024px) {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid ${theme.colors.black};
   }
 `;

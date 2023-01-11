@@ -58,14 +58,14 @@ export const StyledButton = styled.button`
     switch (buttonStyle) {
       case "primary":
         return css`
-          background: ${theme.colors.primary06};
+          background: ${theme.colors.primary};
           color: ${theme.colors.black};
-          border: 1px solid ${theme.colors.primary06};
+          border: 1px solid ${theme.colors.primary};
           -webkit-box-shadow: 1px 3px 3px 3px #000000;
           box-shadow: 1px 3px 3px 3px #000000;
           &:hover {
-            background-color: ${theme.colors.primary};
-            border: 1px solid ${theme.colors.primary};
+            background-color: ${theme.colors.primary06};
+            border: 1px solid ${theme.colors.primary06};
             color: ${theme.colors.black};
           }
         `;

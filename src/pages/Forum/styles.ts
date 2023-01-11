@@ -53,7 +53,8 @@ export const StyledForum = styled.div`
           border: 2px solid ${theme.colors.black};
           width: 100%;
           background: white;
-          box-shadow: 2px 2px 5px #868e96, 0px 2px 5px 0px #868e96;
+          box-shadow: 2px 2px 5px ${theme.colors.grey3},
+            0px 2px 5px 0px ${theme.colors.grey3};
         }
       }
       .inputsStyles {
@@ -64,23 +65,41 @@ export const StyledForum = styled.div`
     .listAllUsers {
       width: 35%;
       height: 360px;
-      overflow-y: auto;
       background: ${theme.colors.grey0};
       border: 2px solid black;
-      box-shadow: 2px -2px 5px #868e96, -2px 0px 5px 0px #868e96;
+      box-shadow: 2px -2px 5px ${theme.colors.grey3},
+        -2px 0px 5px 0px ${theme.colors.grey3};
 
       ul {
+        height: 100%;
+        overflow-y: auto;
         width: 100%;
         font-size: 10px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        /* gap: 10px; */
       }
+      *::-webkit-scrollbar {
+        width: 16px;
+      }
+      *::-webkit-scrollbar-track {
+        background: ${theme.colors.grey0};
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: ${theme.colors.black};
+        border-radius: 10px;
+        border: 3px solid ${theme.colors.white};
+      }
+
       li {
         display: flex;
-        margin: 10px 0 0 10px;
+        /* margin-top: 10px; */
         gap: 20px;
         align-items: center;
+        width: 100%;
+        padding: 12px 10px;
+        border: 2px solid ${theme.colors.grey1};
+        background: ${theme.colors.grey0};
       }
       img {
         height: 50px;
@@ -151,35 +170,36 @@ export const StyledForum = styled.div`
       height: 100%;
       min-height: 400px;
       color: white;
-      /* background-color: ${theme.colors.black}; */
       border-radius: 10px;
-      /* padding: 20px; */
 
       ul {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 8px;
         height: 100%;
         min-height: 400px;
         overflow-y: auto;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+        border-radius: 10px;
       }
 
       li {
         display: flex;
         flex-direction: column;
-        background-color: #d0ebff;
+        background-color: ${theme.colors.secondary3};
         border-radius: 10px;
         padding: 10px;
         gap: 10px;
-        border-left: 2px solid black;
-        border-right: 2px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+        /* border-top: 1px solid black; */
 
         .headerPostMessageDiv {
           display: flex;
           justify-content: space-between;
           min-width: 100%;
           align-items: center;
-          /* background-color: ${theme.colors.grey1}; */
           font-size: ${theme.typography.Caption.size};
           font-weight: ${theme.typography.Caption.weight};
           color: ${theme.colors.black};
@@ -192,7 +212,8 @@ export const StyledForum = styled.div`
               height: 50px;
               width: 50px;
               border-radius: 30px;
-              padding: 5px;
+              border: 2px solid ${theme.colors.primary};
+              margin-right: 20px;
             }
           }
 
