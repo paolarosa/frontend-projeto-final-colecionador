@@ -70,8 +70,8 @@ const Forum = () => {
       <li key={index}>
         <div className="headerPostMessageDiv">
           <div className="divPostMessage">
-            <img src={user?.avatar} alt="" />
-            <h2>{user?.name}</h2>
+            <img src={post?.avatar} alt="" />
+            <h2>{post?.name}</h2>
           </div>
           <div className="divLikeButton">
             <button className="likeButton" onClick={() => likePost(post)}>
