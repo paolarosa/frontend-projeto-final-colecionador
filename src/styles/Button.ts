@@ -67,7 +67,6 @@ export const StyledButton = styled.button`
             background-color: ${theme.colors.primary};
             border: 1px solid ${theme.colors.primary};
             color: ${theme.colors.black};
-            
           }
         `;
       case "secundary":
