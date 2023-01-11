@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom";
 import { Ul } from "./styles";
 
 const UlNav: any = ({ burger }: any) => {
@@ -7,7 +7,7 @@ const UlNav: any = ({ burger }: any) => {
   return (
     <Ul burger={burger}>
       <li>
-        <Link to={"/user"}>Profile</Link>
+        <Link to={"/profile"}>Profile</Link>
       </li>
       <li>
         <Link to={"/forum"}>Forum</Link>
@@ -16,7 +16,7 @@ const UlNav: any = ({ burger }: any) => {
         <Link to={"/dashboard"}>Colections</Link>
       </li>
       <li>
-        <Link to={"/achievement"}>Achievements</Link>
+        <Link to={"/profile"}>Achievements</Link>
       </li>
       <li>
         <button
