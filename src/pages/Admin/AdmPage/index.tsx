@@ -9,15 +9,10 @@ import { useContext, useEffect, useState } from "react";
 import UnderConstruction from "../AdmUnderConstruction";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { authContext } from "../../../contexts/ContextAuth/contextAuth";
-import { LoginRegisterContext } from "../../../contexts/contexLoginRegister";
-
+import BlankPage from "../AdmBlank";
 
 const AdminPage = () => {
-  const { admCheck } = useContext(authContext)
-  const { user, patchEffectKey } = useContext(LoginRegisterContext)
-  
-  const [control, setControl] = useState("");
+  const [control, setControl] = useState("BlankPage");
 
   const navigate = useNavigate();
 
@@ -118,6 +113,7 @@ const AdminPage = () => {
           {control == "Colections" ? <AdmColections /> : null}
           {control == "Forum" ? <UnderConstruction /> : null}
           {control == "Archivements" ? <UnderConstruction /> : null}
+          {control == "BlankPage" ? <BlankPage /> : null}
         </div>
       </section>
     </StyledAdminPage>

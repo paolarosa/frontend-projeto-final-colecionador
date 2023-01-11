@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const PageHome = styled.div`
 
@@ -19,15 +20,20 @@ export const PageHome = styled.div`
   }
 
   .button {
+    background: ${theme.colors.primary};
+          color: ${theme.colors.black};
+          border: 1px solid ${theme.colors.primary};
+          -webkit-box-shadow: 1px 3px 3px 3px ${theme.colors.black};
+          box-shadow: 1px 3px 3px 3px ${theme.colors.black};
+          &:hover {
+            background-color: ${theme.colors.primary06};
+            border: 1px solid ${theme.colors.primary06};
+            color: ${theme.colors.black};
+          }
         height: 80px;
         width: 300px;
-        border: none;
         border-radius: 30px;
-        background-color: #f9f41f;
-        box-shadow: 4px 4px 0px #000, 4px 4px 0px 1px #000;
-        margin-bottom: 30px;
-
-        font-size: 35px;
+        font-size: ${theme.typography.Heading0.size};
 
         position: absolute;
         margin-left: 390px;
@@ -66,7 +72,7 @@ export const DivDogBallon = styled.div`
   display: block;
 
   position: relative;
-  background-color: grey;
+  background-color: ${theme.colors.grey2};
   width: 270px;
   height: 750px;
   
@@ -88,14 +94,14 @@ export const DivDogBallon = styled.div`
   top: -320px;
   left: 120px;
 
-  background: white;
+  background: ${theme.colors.white};
   padding: 15px;
 
-  font-size: 24px;
+  font-size: ${theme.typography.Heading1.size};
   text-align: center;
 
   border-radius: 40px 40px 0px 40px;
-  border: solid black 3px;
+  border: solid ${theme.colors.black} 3px;
 
 }
 
