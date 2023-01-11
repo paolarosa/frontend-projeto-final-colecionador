@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { DashboardContext } from "../../../contexts/contextDashboard";
 import { Ul } from "./styles";
 import { RiLogoutCircleRLine } from "react-icons/ri";
+import { LoginRegisterContext } from "../../../contexts/contexLoginRegister";
 
 const UlNav: any = ({ burger }: any) => {
 
-  const {user } = useContext(DashboardContext);
+  const {user } = useContext(LoginRegisterContext);
 
   const navigate = useNavigate();
 
