@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Link } from "react-router-dom";
@@ -14,6 +14,7 @@ import dog from "../../assets/Cosmo.png";
 import background from "../../assets/background.png";
 import { Input } from "../../styles/Input";
 import { StyledButton } from "../../styles/Button";
+import { authContext } from "../../contexts/ContextAuth/contextAuth";
 
 export interface UserFormData {
   email: string;
@@ -25,6 +26,8 @@ const Login = () => {
     email: yup.string().required("Email obrigadorio").email("Email inválido"),
     password: yup.string().required("Senha obrigadoria"),
   });
+
+  const { loginCheck } = useContext(authContext)
 
   const { loginRequisition, passwordEye, setPasswordEye, loading } =
     useContext(LoginRegisterContext);
@@ -42,6 +45,10 @@ const Login = () => {
     loginRequisition(data);
     // reset();
   };
+
+  useEffect(() => {
+    loginCheck()
+  }, [])
 
   return (
     <PageLogin>
