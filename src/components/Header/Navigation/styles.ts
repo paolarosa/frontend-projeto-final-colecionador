@@ -1,13 +1,30 @@
 import styled from "styled-components";
+import { theme } from "../../../styles/theme";
 
 export const Ul: any = styled.ul`
+  width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
   position: fixed;
-  top: 55px;
-  right: 0;
+  top: 75px;
+  right: 0px;
+  color: ${theme.colors.grey0};
+  background-color: ${theme.colors.secundary};
+  z-index: 10;
+  padding-top: 100px;
+  button{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: max-content;
+      height: max-content;
+      color: ${theme.colors.grey0};
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
 
   transform: ${(props: any) =>
   props.burger ? "translateX(0)" : "translateX(100%)"};
@@ -15,34 +32,54 @@ export const Ul: any = styled.ul`
 
   border: 2px solid black;
   border-radius: 10px;
-  background-color: #FFFFFF;
+  .imgPerfil{
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      overflow: hidden;
+      object-fit: cover;
+      border: 2px solid ${theme.colors.primary};
+      margin-top: 5px;
+      position: fixed;
+      top: 0;
+      img{
+        width: 100px;
+        height: 90px;
+      }
+    }
 
-  li, button {
-    border: 1px solid transparent;
-    color: #363636;
-    padding: 5px;
+  button:hover{
+    text-shadow: 1px 0px 20px #FFFFFF, 1px 0px 20px #FFFFFF;
   }
-
-  li:hover, button:hover {
-    border: 1px solid yellow;
-    border-radius: 10px;
-    justify-content: center;
-    color: black;
-    transition: 1s;
+  li:hover {
+    text-shadow: 1px 0px 20px #FFFFFF, 1px 0px 20px #FFFFFF;
   }
 
   @media (min-width: 1024px){
+    width: max-content;
     position: static;
+    gap: 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
     flex-direction: row;
-
     background-color: transparent;
     transform: none;
     border: none;
-
-    li:hover, button:hover{
-      border-color: transparent;
-      color: var(--grey-3);
-      transition: 300ms;
+    padding-top: 0px;
+    button{
+      margin-bottom: 0px;
+    }
+    .imgPerfil{
+      position: relative;
+      width: 50px;
+      height: 50px;
+      img{
+        width: 100px;
+        height: 55px;
+      }
     }
   }
 `;
