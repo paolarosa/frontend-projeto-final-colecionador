@@ -6,11 +6,13 @@ import { StyledButton } from "../../styles/Button";
 import { AiFillHeart } from "react-icons/ai";
 import { PostForm } from "../../components/Forms/ForumMessage";
 import { number } from "yup/lib/locale";
+import { forumContext } from "../../contexts/ContextForum/contextForum";
+import { iUserDetail } from "../../contexts/ContextForum/forumInterface";
 
 // import ExpenseDate, { ShowDate, ShowNewDate } from "../../styles/Date";
 
 const Forum = () => {
-  const [favorites, setFavorites] = useState([] as object[]);
+  const { favorites, setFavorites } = useContext(LoginRegisterContext)
 
   const {
     forumMessagesRequest,
@@ -27,20 +29,20 @@ const Forum = () => {
     getAllUsersRequest();
   }, []);
 
-  const updateFavorites = (userTarget: {}) => {
-    if (favorites.findIndex((element) => element === userTarget) === -1) {
+  const updateFavorites = (userTarget: iUserDetail) => {
+    if (favorites.findIndex((element: iUserDetail) => element .id=== userTarget.id) === -1) {
       setFavorites([...favorites, userTarget]);
-    } else if (favorites.findIndex((element) => element === userTarget) >= 0) {
-      setFavorites(favorites.filter((element) => element != userTarget));
+    } else if (favorites.findIndex((element: iUserDetail) => element.id === userTarget.id) >= 0) {
+      setFavorites(favorites.filter((element: iUserDetail) => element.id != userTarget.id));
     }
   };
 
-  const onHeartClick = (userTarget: object) => {
+  const onHeartClick = (userTarget: iUserDetail) => {
     updateFavorites(userTarget);
   };
 
   const checkFavoriteButton = (element: any) => {
-    if (favorites.some((item) => item === element)) {
+    if (favorites.some((item: iUserDetail) => item.id === element.id)) {
       return "Remover";
     } else {
       return "Adicionar";
@@ -56,6 +58,7 @@ const Forum = () => {
       setUserLikedPosts([...userLikedPosts, element]);
     } else if (userLikedPosts.findIndex((x) => x.id === element.id) >= 0) {
       setUserLikedPosts(userLikedPosts.filter((x) => x.id !== element.id));
+      console.log(element)
     }
   };
 
@@ -127,7 +130,7 @@ const Forum = () => {
                     <StyledButton
                       buttonSize="small"
                       buttonStyle="primary"
-                      onClick={() => onHeartClick(singleUser)}
+                      onClick={() => onHeartClick(singleUser as iUserDetail)}
                     >
                       {checkFavoriteButton(singleUser)}
                     </StyledButton>

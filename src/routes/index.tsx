@@ -7,19 +7,22 @@ import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Forum from "../pages/Forum"
 import Admin from "../pages/Admin"
+import { ForumProvider } from "../contexts/ContextForum/contextForum";
 
 export const RoutesMain: any = () => {
   return (
     <Routes>
       <Route element={<LoginRigisterProvider />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/forum" element={<Forum />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route element={<ForumProvider />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/forum" element={<Forum />} />
+          <Route path="/admin" element={<Admin />} />
+        </Route>
       </Route>
     </Routes>
   );

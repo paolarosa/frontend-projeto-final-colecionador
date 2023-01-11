@@ -9,6 +9,19 @@ interface iDashContextProps {
   children: React.ReactNode;
 }
 
+export interface iCollectionItem {
+  author: string;
+  cover_art: string;
+  description: string;
+  id: number;
+  image: string;
+  interior_art: string;
+  published: number;
+  sections: number;
+  title: string;
+  userId: number;
+}
+
 interface iDashContext {
   listRequisition: () => void;
   modalRender: (colection: any) => void;
@@ -97,7 +110,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
     }
   };
 
-  const modalRender = (colection: any) => {
+  const modalRender = (colection: iCollectionItem) => {
     setModalOn(!modalOn);
     setSaveModal(colection);
     console.log(saveModal);
