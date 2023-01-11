@@ -22,7 +22,7 @@ interface iUserContext {
   allUsers: AllUsers[];
   userLikedPosts: any[];
   setUserLikedPosts: (post: any[]) => void;
-  saveAvatares: any[]
+  saveAvatares: any[];
   createNewColectionRequest: (data: iCreateColection) => Promise<void>;
 }
 
@@ -30,7 +30,7 @@ interface iUserRegisterProps {
   name: string;
   email: string;
   password: string;
-  avatar: string
+  avatar: string;
 }
 
 interface iUserLoginProps {
@@ -57,21 +57,21 @@ export const LoginRigisterProvider = () => {
   const [posts, setPosts] = useState([]);
   const [user, setUser] = useState<User | null>(null);
   const [allUsers, setAllUsers] = useState([]);
-  const [saveAvatares, setSaveAvatares] = useState([])
+  const [saveAvatares, setSaveAvatares] = useState([]);
   const navigate = useNavigate();
   const [userLikedPosts, setUserLikedPosts] = useState([] as object[]);
 
-  const avataresRegister = async ()=>{
+  const avataresRegister = async () => {
     try {
       const response = await apiBase.get("avatar");
-      setSaveAvatares(response.data)
+      setSaveAvatares(response.data);
     } catch (error) {
       console.log(error);
     } finally {
-      console.log(saveAvatares)
+      console.log(saveAvatares);
     }
-  }
-  
+  };
+
   const loadUser = async () => {
     const Token = localStorage.getItem("Token");
 
@@ -99,7 +99,7 @@ export const LoginRigisterProvider = () => {
 
   useEffect(() => {
     loadUser();
-    avataresRegister()
+    avataresRegister();
   }, []);
 
   useEffect(() => {
@@ -137,19 +137,18 @@ export const LoginRigisterProvider = () => {
   };
 
   const registerRequisition = async (data: iUserRegisterProps) => {
-
     const body = {
       avatar: data.avatar,
       email: data.email,
-      name:  data.name,
+      name: data.name,
       password: data.password,
-      myCollection: []
-    }
+      myCollection: [],
+    };
     try {
       setLoading(true);
       const response = await apiBase.post("register", body);
       console.log(response);
-      navigate("/login")
+      navigate("/login");
     } catch (error) {
       console.log(error);
     } finally {
@@ -186,9 +185,8 @@ export const LoginRigisterProvider = () => {
         const response = await apiBase.post("/forum", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        
-        forumMessagesRequest();
 
+        forumMessagesRequest();
       } catch (error) {
         console.log(error);
       }
