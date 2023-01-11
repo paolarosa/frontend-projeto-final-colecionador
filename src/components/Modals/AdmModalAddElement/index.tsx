@@ -3,8 +3,8 @@ import { ModalContainer } from "./styles";
 import { DashboardContext } from "../../../contexts/contextDashboard";
 import { AdmNewElementForm } from "../../Forms/AdmAddElementForm";
 
-const AdmModal = () => {
-  const { setModalOn, modalOn } = useContext(DashboardContext);
+const AdmElementModal = () => {
+  const { setElementModal, elementModal } = useContext(DashboardContext);
 
   return (
     <ModalContainer>
@@ -17,7 +17,7 @@ const AdmModal = () => {
         <button
           className="closeModal"
           onClick={() => {
-            setModalOn(!modalOn);
+            setElementModal(!elementModal);
           }}
         >
           X
@@ -30,4 +30,4 @@ const AdmModal = () => {
   );
 };
 
-export default AdmModal;
+export default AdmElementModal;
