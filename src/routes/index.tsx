@@ -6,7 +6,7 @@ import Register from "../pages/Register";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Forum from "../pages/Forum"
-import Admin from "../pages/Admin"
+import Admin from "../pages/Admin/AdmPage";
 import { ForumProvider } from "../contexts/ContextForum/contextForum";
 
 export const RoutesMain: any = () => {

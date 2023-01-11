@@ -1,9 +1,7 @@
 import React, { useContext } from "react";
 import { ModalContainer } from "./styles";
-import { DashboardContext } from "../../contexts/contextDashboard";
-import { StyledButton } from "../../styles/Button";
-import { Book } from "../../types";
-import { Teste } from "../Forms/formteste";
+import { DashboardContext } from "../../../contexts/contextDashboard";
+import { AddSerieForm } from "../../Forms/AdmAddSerieForm";
 
 const AdmModal = () => {
   const { setModalOn, modalOn } = useContext(DashboardContext);
@@ -26,7 +24,7 @@ const AdmModal = () => {
         </button>
         <div>
           <h2>Add new Serie</h2>
-          <Teste />
+          <AddSerieForm />
         </div>
       </div>
     </ModalContainer>
