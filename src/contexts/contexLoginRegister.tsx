@@ -75,7 +75,7 @@ export const LoginRigisterProvider = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      console.log(saveAvatares);
+      // console.log(saveAvatares);
     }
   };
 
