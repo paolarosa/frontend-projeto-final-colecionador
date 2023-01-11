@@ -39,7 +39,7 @@ const AdmColections = () => {
 
   const modalRender = (name: string) => {
     setModalOn(!modalOn);
-    setAddColectionId(name);
+    setAddColectionId(name || "");
     console.log(name);
     console.log("modalRender ok");
   };
@@ -50,6 +50,9 @@ const AdmColections = () => {
     console.log(name);
     
   };
+
+  console.log(cards);
+  
 
   const modalBtn = (position: number, title: string) => {
     if (position === 0) {
@@ -66,8 +69,10 @@ const AdmColections = () => {
         </div>
       );
     }
+    console.log(position);
+    
   };
-
+ 
   return (
     <div>
       {modalOn && <AdmModal />}
@@ -106,9 +111,9 @@ const AdmColections = () => {
       <AdmDashboardStyled>
         {filtered
           ? filtered.map((serie, index) => (
-              <div key={index}>
+            <div key={index}>
                 <div className="DivControlAddSerie">
-                  {modalBtn(index, serie.name)}
+                {modalBtn(index, serie.name)}
                 </div>
 
                 <div className="admSerieDiv">

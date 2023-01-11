@@ -13,7 +13,12 @@ interface iUserAddSerieFormValues {
   name: string;
 }
 
-export const AddSerieForm = () => {
+interface iAdmSerieForm {
+  onCustomClose?: Function;
+  customName?: string;
+}
+
+export const AddSerieForm = ({onCustomClose, customName}:iAdmSerieForm) => {
   const {
     cards,
     countadd,
@@ -36,6 +41,9 @@ export const AddSerieForm = () => {
     resolver: yupResolver(postSchema),
   });
 
+  console.log(addColectionId);
+  
+
   const onSubmit: SubmitHandler<iUserAddSerieFormValues> = async (data) => {
     const filterName = cards.filter((ele) => {
       const filter = ele.series?.filter((el) => {
@@ -55,8 +63,8 @@ export const AddSerieForm = () => {
       colection: [],
     };
 
-    console.log(filterName);
-    const colections = filterName[0].series;
+    // console.log(filterName);
+    const colections = filterName[0]?.series;
 
     if (colections) {
       const newColection = {
@@ -79,10 +87,40 @@ export const AddSerieForm = () => {
       } catch (error) {
         console.log(error);
       }
+    } 
+
+    let newAddColectionId:any = addColectionId
+
+    if (customName) {
+      const newColection = {
+        userId: newAddColectionId.userId,
+        series: [newData],
+      };
+
+      const token = localStorage.getItem("Token");
+      try {
+        const response = await apiBase.patch(
+          `/colections/${newAddColectionId.id}`,
+          newColection,
+
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        setCountadd(countadd + 1);
+      } catch (error) {
+        console.log(error);
+      }
     }
+
     setAddColectionId(null);
     // reset();
     setModalOn(!modalOn);
+
+    if (onCustomClose) {
+              
+      onCustomClose()
+    }
   };
 
   return (

@@ -1,9 +1,11 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginRegisterContext } from "../../../contexts/contexLoginRegister";
+import { DashboardContext } from "../../../contexts/contextDashboard";
 import { StyledButton } from "../../../styles/Button";
 import { Input } from "../../../styles/Input";
+import AdmModal from "../../Modals/AdmModalAddSerie";
 import { postSchema } from "./formSchema";
 
 interface iAdmNewColectionsFormValues {
@@ -14,6 +16,8 @@ interface iAdmNewColectionsFormValues {
 
 export const AdmNewColectionForm = () => {
   const { createNewColectionRequest } = useContext(LoginRegisterContext);
+  const { setModalOn, modalOn, setAddColectionId } = useContext(DashboardContext);
+  const [showModalSerie, setShowModalSerie] = useState(false);
 
   const {
     register,
@@ -25,9 +29,12 @@ export const AdmNewColectionForm = () => {
     resolver: yupResolver(postSchema),
   });
 
-  const onSubmit: SubmitHandler<iAdmNewColectionsFormValues> = (data) => {
-    createNewColectionRequest(data);
-    reset();
+  const onSubmit: SubmitHandler<iAdmNewColectionsFormValues> = async (data) => {
+    const response = await createNewColectionRequest(data);
+    
+    setAddColectionId(response.data)
+    setShowModalSerie(true)
+    // reset();
   };
 
   return (
@@ -46,6 +53,8 @@ export const AdmNewColectionForm = () => {
           Enviar
         </StyledButton>
       </form>
+      {showModalSerie && (<AdmModal onCustomClose={() => setShowModalSerie(false)}/>)}
+      
     </div>
   );
 };
