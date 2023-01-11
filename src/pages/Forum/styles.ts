@@ -6,8 +6,62 @@ export const StyledForum = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 100%;
+
+  .userCard {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 50px 10px;
+    border: none;
+
+    width: 100%;
+    max-width: 1024px;
+    margin-top: 80px;
+    height: 200px;
+    background-color: transparent;
+    border-radius: 15px;
+    .banner{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80%;
+      z-index: -1;
+      img {
+        width: 100%;
+      }
+    }
+    .avatarImg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: -50px;
+
+      img {
+        height: 100px;
+        width: 100px;
+        border: 4px solid ${theme.colors.primary};
+        border-radius: 50px;
+        background: white;
+        -webkit-box-shadow: 0px 4px 5px 4px rgba(0, 0, 0, 0.24);
+        box-shadow: 0px 4px 5px 4px rgba(0, 0, 0, 0.16);
+      }
+    }
+
+    .userCardName {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 60px;
+      font-weight: 600;
+      text-shadow: 1px 1px 0px white;
+    }
+  }
 
   .container {
     width: 100%;
@@ -22,40 +76,15 @@ export const StyledForum = styled.div`
     margin-top: 20px;
 
     .divInfosInput {
-      width: 50%;
+      width: 60%;
       display: flex;
       flex-direction: column;
 
       .headerForumPage {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        gap: 30px;
         font-size: ${theme.typography.Caption.size};
-
-        .avatarImg {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          img {
-            height: 100px;
-            width: 100px;
-            border: 6px solid ${theme.colors.primary};
-            border-radius: 50px;
-            background: white;
-          }
-        }
-        .userCard {
-          display: flex;
-          justify-content: space-between;
-          gap: 20px;
-          padding: 10px;
-          border: 2px solid ${theme.colors.black};
-          width: 100%;
-          background: white;
-          box-shadow: 2px 2px 5px ${theme.colors.grey3},
-            0px 2px 5px 0px ${theme.colors.grey3};
-        }
       }
       .inputsStyles {
         width: 100%;
@@ -67,8 +96,7 @@ export const StyledForum = styled.div`
       height: 360px;
       background: ${theme.colors.grey0};
       border: 2px solid black;
-      box-shadow: 2px -2px 5px ${theme.colors.grey3},
-        -2px 0px 5px 0px ${theme.colors.grey3};
+      margin-top: 20px;
 
       ul {
         height: 100%;
@@ -80,7 +108,7 @@ export const StyledForum = styled.div`
         /* gap: 10px; */
       }
       *::-webkit-scrollbar {
-        width: 16px;
+        width: 12px;
       }
       *::-webkit-scrollbar-track {
         background: ${theme.colors.grey0};
@@ -98,7 +126,7 @@ export const StyledForum = styled.div`
         align-items: center;
         width: 100%;
         padding: 12px 10px;
-        border: 2px solid ${theme.colors.grey1};
+
         background: ${theme.colors.grey0};
       }
       img {
@@ -127,13 +155,6 @@ export const StyledForum = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
-    .userCardName {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 20px;
-    }
 
     .userCardMail {
       display: flex;
@@ -175,7 +196,7 @@ export const StyledForum = styled.div`
       ul {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
         height: 100%;
         min-height: 400px;
         overflow-y: auto;
@@ -193,6 +214,7 @@ export const StyledForum = styled.div`
         gap: 10px;
         border-left: 1px solid black;
         border-right: 1px solid black;
+        margin-bottom: 10px;
         /* border-top: 1px solid black; */
 
         .headerPostMessageDiv {
@@ -259,6 +281,15 @@ export const StyledForum = styled.div`
         height: 200px;
       }
     }
+    .userCard{
+      background-color: ${theme.colors.white};
+      height: 50px;
+      border: 2px solid;
+    .banner{
+      display: none;
+    }
+  }
+    
   }
   /* .listAllUsers {
     width: 300px;
@@ -313,7 +344,7 @@ export const StyledForum = styled.div`
   }
 `;
 export const BackgroundDash = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 100%;
   position: fixed;
   top: 0;
