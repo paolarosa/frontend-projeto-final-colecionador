@@ -69,9 +69,11 @@ export const AdmDashboardStyled = styled.div`
   background-color: ${theme.colors.grey2};
   border-radius: 0 0 20px 20px;
   padding: 20px;
+  font-size: ${theme.typography.Caption.size};
 
   .admSerieDiv {
     display: flex;
+    /* flex-direction: column; */
     justify-content: space-between;
     background-color: ${theme.colors.grey1};
     border-radius: 10px;
