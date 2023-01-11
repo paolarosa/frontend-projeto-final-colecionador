@@ -6,9 +6,14 @@ import AdmColections from "./AdmColections";
 import AdmUsers from "./AdmUsers";
 import { MdOutlineConstruction } from "react-icons/md";
 import { useState } from "react";
+import UnderConstruction from "./AdmUnderConstruction";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AdminPage = () => {
   const [control, setControl] = useState("Users");
+
+  const navigate = useNavigate();
 
   return (
     <StyledAdminPage>
@@ -16,7 +21,16 @@ const AdminPage = () => {
         <div className="admControlButtonsMenu">
           <div className="upButtons">
             <div className="admControlLogo">
-              <img className="logo" src={LOGO4} alt="logo" />
+              <Link to={"/dashboard"}>
+              <img
+                className="logo"
+                src={LOGO4}
+                alt="logo"
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              />
+              </Link>
             </div>
             <StyledButton
               buttonSize="default"
@@ -48,6 +62,7 @@ const AdminPage = () => {
               buttonStyle="primary"
               type="button"
               className="textUncerConstruction"
+              onClick={() => setControl("Forum")}
             >
               Forum <MdOutlineConstruction className="underConstruction" />
             </StyledButton>
@@ -56,6 +71,7 @@ const AdminPage = () => {
               buttonStyle="primary"
               type="button"
               className="textUncerConstruction"
+              onClick={() => setControl("Archivements")}
             >
               Archivements{" "}
               <MdOutlineConstruction className="underConstruction" />
@@ -67,6 +83,10 @@ const AdminPage = () => {
               buttonSize="default"
               buttonStyle="primary"
               type="button"
+              onClick={() => {
+                localStorage.removeItem("Token");
+                navigate("/login");
+              }}
             >
               Logout
             </StyledButton>
@@ -80,6 +100,8 @@ const AdminPage = () => {
 
           {control == "Users" ? <AdmUsers /> : null}
           {control == "Colections" ? <AdmColections /> : null}
+          {control == "Forum" ? <UnderConstruction /> : null}
+          {control == "Archivements" ? <UnderConstruction /> : null}
         </div>
       </section>
     </StyledAdminPage>

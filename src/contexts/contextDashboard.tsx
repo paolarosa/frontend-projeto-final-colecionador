@@ -14,6 +14,7 @@ interface iDashContext {
   modalRender: (colection: any) => void;
   series: Series[];
   cards: Card[];
+  setCards: React.Dispatch<React.SetStateAction<Card[]>>;
   saveModal: Book;
   setSaveModal: React.Dispatch<React.SetStateAction<Book>>;
   modalOn: boolean;
@@ -25,6 +26,11 @@ interface iDashContext {
   setContainCollection: React.Dispatch<React.SetStateAction<boolean>>;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
+
+  addColectionId: string | null
+  setAddColectionId: React.Dispatch<React.SetStateAction<string | null>>
+  countadd: number;
+  setCountadd: React.Dispatch<React.SetStateAction<number>>
 }
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
@@ -39,6 +45,31 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   const [containCollection, setContainCollection] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
+
+  const [addColectionId, setAddColectionId] = useState<string | null>(null)
+  const [countadd, setCountadd] = useState(0)
+
+  // console.log(cards);
+  
+
+//   const colection = cards.filter(ele => ele.id === 5);
+//   const newTeste = {
+// 			"name": "Teste Series",
+// 			"id": 1,
+// 			"colection": [
+// 				{
+// 					"image": "https://repositorio.sbrauble.com/arquivos/in/magic/479855/60e4acbbed21b-8uy7w-pxe1q-148424639060e4acbbed263.jpg",
+// 					"serie": "Adventures in the Forgotten Realms",
+// 					"title": "Acererak, o Arquilich",
+// 					"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+// 					"id": 1
+// 				}
+// 			]
+// 		}
+//     const createTeste = [...colection.serie, newTeste]
+// }
+  
+  
 
   const token = localStorage.getItem("Token");
 
@@ -82,7 +113,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       const data = {
         myCollection: myNewColletion,
       };
-      console.log(data);
+      // console.log(data);
       try {
         const idUser = localStorage.getItem("@userID");
         const response = await apiBase.patch(`/users/${idUser}`, data, {
@@ -191,6 +222,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         listRequisition,
         series,
         cards,
+        setCards,
         saveModal,
         setSaveModal,
         modalOn,
@@ -203,6 +235,10 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         setContainCollection,
         user,
         setUser,
+        addColectionId,
+        setAddColectionId,
+        countadd,
+        setCountadd,
       }}
     >
       {children}

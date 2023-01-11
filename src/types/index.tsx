@@ -61,7 +61,13 @@ export interface Card {
   image: string;
   name: string;
   id: number;
-  series?: [];
+  series?: Series[];
+}
+
+export interface Series {
+  image: string;
+  name: string;
+  // colection?: 
 }
 
 export interface Posts {

@@ -20,6 +20,7 @@ interface iUserContext {
   forumPostMessageRequest: (data: iUserPostProps) => Promise<void>;
   posts: Posts[];
   user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>
   allUsers: AllUsers[];
   userLikedPosts: any[];
   setUserLikedPosts: (post: any[]) => void;
@@ -242,6 +243,7 @@ export const LoginRigisterProvider = () => {
         forumMessagesRequest,
         posts,
         user,
+        setUser,
         getAllUsersRequest,
         allUsers,
         forumPostMessageRequest,
