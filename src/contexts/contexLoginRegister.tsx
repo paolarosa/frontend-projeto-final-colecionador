@@ -68,6 +68,8 @@ export const LoginRigisterProvider = () => {
   const [patchEffectKey, setPatchEffectKey] = useState(false)
   const [favorites, setFavorites] = useState([] as iUserDetail[]);
 
+
+  
   const avataresRegister = async () => {
     try {
       const response = await apiBase.get("avatar");
