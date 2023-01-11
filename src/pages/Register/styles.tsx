@@ -218,7 +218,6 @@ export const DivDogBallon = styled.div`
       background: ${theme.colors.white};
       padding: 15px;
 
-      /* font-size: 24px; */
       font-size: ${theme.typography.Heading1.size};
       text-align: center;
 
