@@ -8,7 +8,7 @@ export const TextareaStyled = styled.div`
   }
 
   .label {
-    color: ${theme.colors.grey2};
+    color: ${theme.colors.grey3};
     font-size: 16px;
     font-weight: normal;
     position: absolute;
@@ -30,21 +30,20 @@ export const TextareaStyled = styled.div`
     padding: 20px;
     background: ${theme.colors.grey0};
     color: ${theme.colors.grey4};
-    border: 1px solid ${theme.colors.grey0};
-    border-radius: 30px;
+    border: 1px solid ${theme.colors.grey4};
+    border-radius: 20px;
     box-sizing: border-box;
     &:focus {
-        outline: none;
-        ~ .label {
-          background-color: ${theme.colors.white};
-          /* position: relative; */
-          top: -8px;
-          font-size: 12px;
-        }
-        background: ${theme.colors.white};
-        color: ${theme.colors.grey4};
-        border: 1px solid ${theme.colors.grey4};
+      outline: none;
+      ~ .label {
+        background-color: ${theme.colors.white};
+        /* position: relative; */
+        top: -8px;
+        font-size: 12px;
       }
+      background: ${theme.colors.white};
+      color: ${theme.colors.grey4};
+      border: 1px solid ${theme.colors.grey4};
+    }
   }
-
 `;

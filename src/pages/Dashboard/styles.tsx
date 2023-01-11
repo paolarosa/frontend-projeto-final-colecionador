@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import image from "../../assets/hq.jpg";
+import { theme } from "../../styles/theme";
 
 interface iActivedButton {
   actived: string;
@@ -25,7 +26,7 @@ export const DashboardStyled = styled.div<iActivedButton>`
     switch (props.actived) {
       case "All":
         return css`
-          background: #9de0ff;
+          background: ${theme.colors.secundary2}; ;
         `;
       case "books_colections":
         return css`
@@ -45,7 +46,7 @@ export const DashboardStyled = styled.div<iActivedButton>`
         `;
     }
   }}
-  border: 5px solid black;
+  border: 4px solid black;
   box-shadow: 5px 8px 0px #fff, 5px 8px 0px 2px #000, 10px 20px 0px #fff,
     10px 20px 5px 0px #000, 15px 20px 0px #fff, 10px 20px 20px 10px #000,
     23px 30px 0px #fff, 10px 30px 30px 20px #000;
@@ -121,29 +122,28 @@ export const DashboardStyled = styled.div<iActivedButton>`
     right: 0px;
     top: 100px;
     background: white;
+    border: 1px solid black;
   }
   .button-scroll img {
     width: 30px;
     height: 30px;
     margin: 20px;
   }
-  /* .scroll-none {
-    display: none;
-  } */
+
   @media (max-width: 1024px) {
     div {
       width: 100vw;
     }
     h2 {
-      width: 90vw;
+      width: 88vw;
     }
     ul {
-      width: 90vw;
+      width: 88vw;
     }
     .button-scroll {
       width: 50px;
       position: absolute;
-      right: 0;
+      right: 15px;
       top: 100px;
       background: white;
     }
@@ -177,7 +177,7 @@ export const MenuButtons = styled.div<iActivedButton>`
     padding: 10px;
     text-align: center;
     border-radius: 30px 0px 0px 0px;
-    border: solid black 5px;
+    border: solid black 4px;
     cursor: pointer;
     font-size: 16px;
   }
@@ -219,16 +219,19 @@ export const MenuButtons = styled.div<iActivedButton>`
     li {
       font-size: 10px;
       height: 30px;
-      width: 80px;
+      width: 100px;
       padding-top: 5px;
       border: 2px solid black;
       border-radius: 20px 20px 0px 20px;
+    }
+    li:nth-child(2) {
+      width: 140px;
     }
   }
 `;
 
 const categoryActived = css`
-  transform: scale(1.14, 1.24);
+  transform: scale(1.14, 1.25);
   background-position: -60px;
   border-bottom: none;
 

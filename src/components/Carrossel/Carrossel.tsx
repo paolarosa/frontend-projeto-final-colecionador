@@ -19,7 +19,7 @@ export const Carrossel = ({ serie, index }: any) => {
     <div>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" />
       <button id={`buttonRoll${index}`} className="button-scroll">
-        <img src={set} />
+        <img src={set} alt="" />
       </button>
       <h2>{serie.name}</h2>
       <ul id={`listColection${index}`}>
