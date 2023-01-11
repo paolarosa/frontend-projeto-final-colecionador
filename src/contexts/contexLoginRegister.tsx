@@ -68,9 +68,7 @@ export const LoginRigisterProvider = () => {
   const [userLikedPosts, setUserLikedPosts] = useState([] as object[]);
   const [patchEffectKey, setPatchEffectKey] = useState(false)
   const [favorites, setFavorites] = useState([] as iUserDetail[]);
-
   const { setMyCollectionSave } = useContext(DashboardContext)
-
   const avataresRegister = async () => {
     try {
       const response = await apiBase.get("avatar");
