@@ -264,7 +264,7 @@ export const LoginRigisterProvider = () => {
         forumPostMessageRequest,
         userLikedPosts,
         setUserLikedPosts,
-        saveAvatares
+        saveAvatares,
         createNewColectionRequest,
       }}
     >

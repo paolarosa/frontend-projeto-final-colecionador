@@ -48,11 +48,7 @@ const Forum = () => {
   };
 
   const checkLikedPosts = (element: any) => {
-    return userLikedPosts.findIndex((post) => element === post) === -1 ? (
-      <AiFillHeart className="uncoloredHeart" />
-    ) : (
-      <AiFillHeart className="coloredHeart" />
-    );
+    return userLikedPosts.findIndex((post) => element.id === post.id) === -1 ? <AiFillHeart className="uncoloredHeart" /> : <AiFillHeart className="coloredHeart" />;
   };
 
   const likePost = (element: any) => {
