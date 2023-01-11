@@ -96,8 +96,8 @@ export const LoginRigisterProvider = () => {
       });
 
       setUser(data);
-      setUserLikedPosts(data.likedPosts)
-      setFavorites(data.followed)
+      data.likedPosts && setUserLikedPosts(data.likedPosts)
+      data.followed && setFavorites(data.followed)
     } catch (error) {
       console.log(error);
       // window.localStorage.clear();
