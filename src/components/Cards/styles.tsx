@@ -23,11 +23,11 @@ export const CardStyled = styled.li`
     filter: contrast(130%);
   }
   img:hover {
-    transform: scale(1.1);
+    transform: scale(0.8);
     transition: 0.5s;
     display: flex;
     position: absolute;
-    top: 15px;
+    /* top: 15px; */
     z-index: 2;
     width: 180px;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

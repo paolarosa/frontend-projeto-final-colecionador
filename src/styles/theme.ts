@@ -18,6 +18,8 @@ export const theme = {
     pink: "#da77f2",
     green: "#69db7c",
     red: "#ff6b6b",
+    purple: "#845ef7",
+    orange: "#fd7e14",
 
     colorSucess: "#168821",
     colorNegative: "#E60000",

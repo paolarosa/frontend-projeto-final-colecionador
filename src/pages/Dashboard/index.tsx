@@ -12,24 +12,20 @@ import Modal from "../../components/Modal";
 import { Carrossel } from "../../components/Carrossel/Carrossel";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 const Dashboard = () => {
   const { listRequisition, series, cards, modalOn } =
     useContext(DashboardContext);
   const [filtered, setFiltered] = useState(null as Card[] | null);
   const [actived, setActived] = useState("All");
-
   useEffect(() => {
     listRequisition();
   }, []);
-
   const filteredCards = (type: any) => {
     const nome = cards.filter((category) => category.name === type);
     if (nome[0].series) {
       setFiltered(nome[0].series);
     }
   };
-
   return (
     <ContainerDash>
       <ToastContainer
@@ -44,10 +40,17 @@ const Dashboard = () => {
         pauseOnHover
         theme="light"
       />
-
       {modalOn ? <Modal /> : null}
       <Header />
       <MenuButtons actived={actived}>
+        <li
+          onClick={() => {
+            setFiltered(null);
+            setActived("All");
+          }}
+        >
+          <h2>All</h2>
+        </li>
         <li
           onClick={() => {
             setFiltered(null);

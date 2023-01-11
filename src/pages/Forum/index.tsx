@@ -13,7 +13,7 @@ import Fundo from "../../assets/FundoBanner.png"
 // import ExpenseDate, { ShowDate, ShowNewDate } from "../../styles/Date";
 
 const Forum = () => {
-  const { favorites, setFavorites } = useContext(LoginRegisterContext)
+  const { favorites, setFavorites } = useContext(LoginRegisterContext);
 
   const {
     forumMessagesRequest,
@@ -29,12 +29,22 @@ const Forum = () => {
     forumMessagesRequest();
     getAllUsersRequest();
   }, []);
-  
+
   const updateFavorites = (userTarget: iUserDetail) => {
-    if (favorites?.findIndex((element: iUserDetail) => element .id=== userTarget.id) === -1) {
+    if (
+      favorites?.findIndex(
+        (element: iUserDetail) => element.id === userTarget.id
+      ) === -1
+    ) {
       setFavorites([...favorites, userTarget]);
-    } else if (favorites?.findIndex((element: iUserDetail) => element.id === userTarget.id) >= 0) {
-      setFavorites(favorites.filter((element: iUserDetail) => element.id != userTarget.id));
+    } else if (
+      favorites?.findIndex(
+        (element: iUserDetail) => element.id === userTarget.id
+      ) >= 0
+    ) {
+      setFavorites(
+        favorites.filter((element: iUserDetail) => element.id != userTarget.id)
+      );
     }
   };
 
@@ -43,7 +53,9 @@ const Forum = () => {
   };
 
   const checkFavoriteButton = (element: any) => {
-    if (favorites?.findIndex((item: iUserDetail) => item.id === element.id) >= 0) {
+    if (
+      favorites?.findIndex((item: iUserDetail) => item.id === element.id) >= 0
+    ) {
       return "Remover";
     } else {
       return "Adicionar";
@@ -51,12 +63,17 @@ const Forum = () => {
   };
 
   const checkLikedPosts = (element: any) => {
-    console.log(userLikedPosts?.findIndex((post) => element.id === post.id))
-    return userLikedPosts?.findIndex((post) => element.id === post.id) === -1 ? <AiFillHeart className="uncoloredHeart" /> : <AiFillHeart className="coloredHeart" />;
+    console.log(userLikedPosts?.findIndex((post) => element.id === post.id));
+    return userLikedPosts?.findIndex((post) => element.id === post.id) ===
+      -1 ? (
+      <AiFillHeart className="uncoloredHeart" />
+    ) : (
+      <AiFillHeart className="coloredHeart" />
+    );
   };
 
   const likePost = (element: any) => {
-    console.log(userLikedPosts)
+    console.log(userLikedPosts);
     if (userLikedPosts?.findIndex((x) => x.id === element.id) === -1) {
       setUserLikedPosts([...userLikedPosts, element]);
     } else if (userLikedPosts?.findIndex((x) => x.id === element.id) >= 0) {

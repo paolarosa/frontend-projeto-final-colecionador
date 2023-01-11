@@ -1,11 +1,9 @@
 import styled, { css } from "styled-components";
 import image from "../../assets/hq.jpg";
 import { theme } from "../../styles/theme";
-
 interface iActivedButton {
   actived: string;
 }
-
 export const ContainerDash = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,7 +12,6 @@ export const ContainerDash = styled.div`
   height: 100%;
   min-height: 100vh;
 `;
-
 export const DashboardStyled = styled.div<iActivedButton>`
   display: flex;
   flex-direction: column;
@@ -53,31 +50,26 @@ export const DashboardStyled = styled.div<iActivedButton>`
     10px 20px 20px 10px ${theme.colors.black},
     23px 30px 0px ${theme.colors.white},
     10px 30px 30px 20px ${theme.colors.black};
-
   div {
     position: relative;
     width: 1100px;
     margin-left: 30px;
     margin-bottom: 20px;
   }
-
   div:nth-child(odd) ul,
   div:nth-child(odd) h2 {
     background-color: ${theme.colors.grey0};
   }
-
   div:nth-child(even) ul,
   div:nth-child(even) h2 {
     background-color: ${theme.colors.grey1};
   }
-
   h2 {
     font-size: ${theme.typography.Heading3.size};
     width: 96%;
     height: 50px;
     padding: 10px 0 0 15px;
   }
-
   ul {
     overflow-x: auto;
     overflow-y: hidden;
@@ -93,7 +85,6 @@ export const DashboardStyled = styled.div<iActivedButton>`
     box-shadow: 1px 5px 5px ${theme.colors.grey3},
       1px 1px 0px 0px ${theme.colors.grey3};
   }
-
   *::-webkit-scrollbar {
     height: 16px;
   }
@@ -105,7 +96,6 @@ export const DashboardStyled = styled.div<iActivedButton>`
     border-radius: 10px;
     border: 3px solid ${theme.colors.white};
   }
-
   .button-scroll {
     width: 50px;
     position: absolute;
@@ -113,30 +103,42 @@ export const DashboardStyled = styled.div<iActivedButton>`
     top: 100px;
     background: ${theme.colors.white};
   }
-
   .button-scroll img {
     width: 30px;
     height: 30px;
     margin: 20px;
   }
-
   @media (max-width: 1024px) {
     div {
       width: 100vw;
     }
     h2 {
-      width: 88vw;
+      width: 80%;
     }
     ul {
-      width: 88vw;
+      width: 80%;
     }
     .button-scroll {
       position: absolute;
-      right: 15px;
+      right: 40px;
+    }
+  }
+  @media only screen and (min-width: 453px) and (max-width: 1024px) {
+    div {
+      width: 100vw;
+    }
+    h2 {
+      width: 90%;
+    }
+    ul {
+      width: 90%;
+    }
+    .button-scroll {
+      position: absolute;
+      right: 50px;
     }
   }
 `;
-
 export const BackgroundDash = styled.div`
   width: 100vw;
   height: 100%;
@@ -148,15 +150,19 @@ export const BackgroundDash = styled.div`
   background-repeat: no-repeat;
   opacity: 20%;
 `;
-
-export const MenuButtons = styled.div<iActivedButton>`
+export const MenuButtons = styled.ul<iActivedButton>`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  max-width: 1140px;
   margin-top: 40px;
+  /* overflow-x: scroll; */
+  height: 100px;
 
   li {
     width: 222px;
+    min-width: 222px;
     display: block;
     background: ${theme.colors.white};
     padding: 10px;
@@ -166,18 +172,15 @@ export const MenuButtons = styled.div<iActivedButton>`
     cursor: pointer;
     font-size: ${theme.typography.Caption.size};
   }
-
   li:hover {
     transform: scale(1.14, 1.24);
     background-position: -60px;
     border-bottom: none;
   }
-
   li:nth-child(1) {
     background-color: ${theme.colors.secundary2};
     ${(props) => props.actived === "All" && categoryActived}
   }
-
   li:nth-child(2) {
     background-color: ${theme.colors.primary};
     ${(props) => props.actived === "books_colections" && categoryActived}
@@ -194,8 +197,7 @@ export const MenuButtons = styled.div<iActivedButton>`
     background-color: ${theme.colors.red};
     ${(props) => props.actived === "card_game" && categoryActived}
   }
-
-  @media (max-width: 1024px) {
+  li:nth-child() @media (max-width: 1024px) {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -214,12 +216,10 @@ export const MenuButtons = styled.div<iActivedButton>`
     }
   }
 `;
-
 const categoryActived = css`
   transform: scale(1.14, 1.25);
   background-position: -60px;
   border-bottom: none;
-
   @media (max-width: 1024px) {
     border-bottom: 2px solid ${theme.colors.black};
   }
