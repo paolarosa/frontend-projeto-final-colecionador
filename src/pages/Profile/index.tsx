@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Header from "../../components/Header";
 import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
+import { DashboardContext } from "../../contexts/contextDashboard";
 import { StyledButton } from "../../styles/Button";
 import {
   BackgroundDash,
@@ -11,6 +12,7 @@ import {
 
 const Profile = () => {
   const { user } = useContext(LoginRegisterContext);
+  const { myCollectionSave } = useContext(DashboardContext)
 
   return (
     <div>
@@ -36,7 +38,7 @@ const Profile = () => {
           <div>
             <h2>Coleção</h2>
             <ul>
-              {user?.myCollection?.map((collection, index) => (
+              {myCollectionSave.map((collection, index) => (
                 <ProfileItemsCard key={collection.title}>
                   {" "}
                   <img src={collection.image} alt="avatar collection" />{" "}

@@ -1,9 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import {
-  Outlet,
-  useLocation,
-  useNavigate
-} from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { apiBase } from "../services/api";
 import { AllUsers, Posts, User } from "../types";
 import { DashboardContext } from "./contextDashboard";
@@ -27,7 +23,7 @@ interface iUserContext {
   saveAvatares: any[];
   createNewColectionRequest: (data: iCreateColection) => Promise<any>;
   patchEffectKey: boolean;
-  favorites:    iUserDetail[];
+  favorites: iUserDetail[];
   setFavorites: (data: iUserDetail[]) => void;
 }
 
@@ -65,9 +61,9 @@ export const LoginRigisterProvider = () => {
   const [saveAvatares, setSaveAvatares] = useState([]);
   const navigate = useNavigate();
   const [userLikedPosts, setUserLikedPosts] = useState([] as object[]);
-  const [patchEffectKey, setPatchEffectKey] = useState(false)
+  const [patchEffectKey, setPatchEffectKey] = useState(false);
   const [favorites, setFavorites] = useState([] as iUserDetail[]);
-  const { setMyCollectionSave } = useContext(DashboardContext)
+  const { setMyCollectionSave } = useContext(DashboardContext);
   const avataresRegister = async () => {
     try {
       const response = await apiBase.get("avatar");
@@ -94,16 +90,20 @@ export const LoginRigisterProvider = () => {
       });
 
       setUser(data);
-      data.likedPosts ? setUserLikedPosts(data.likedPosts) : setUserLikedPosts([])
-      data.followed ? setFavorites(data.followed) : setFavorites([])
-      data.myCollection ? setMyCollectionSave(data.myCollection) : setMyCollectionSave([])
+      data.likedPosts
+        ? setUserLikedPosts(data.likedPosts)
+        : setUserLikedPosts([]);
+      data.followed ? setFavorites(data.followed) : setFavorites([]);
+      data.myCollection
+        ? setMyCollectionSave(data.myCollection)
+        : setMyCollectionSave([]);
     } catch (error) {
       console.log(error);
       window.localStorage.clear();
-      navigate("/login")
+      navigate("/login");
     } finally {
       setLoading(false);
-      setPatchEffectKey(true)
+      setPatchEffectKey(true);
     }
   };
 
@@ -113,15 +113,19 @@ export const LoginRigisterProvider = () => {
   }, []);
 
   useEffect(() => {
-    if (patchEffectKey){
-      apiBase.patch(`/users/${user?.id}`,{ likedPosts: userLikedPosts },{
-        headers: {
-          Authorization: `Bearer ${window.localStorage.getItem("Token")}`,
-          "Content-Type": "application/json",
-        },
-      }
-      )
-      .then((resp) => setUser(resp.data));
+    if (patchEffectKey) {
+      apiBase
+        .patch(
+          `/users/${user?.id}`,
+          { likedPosts: userLikedPosts },
+          {
+            headers: {
+              Authorization: `Bearer ${window.localStorage.getItem("Token")}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((resp) => setUser(resp.data));
     }
   }, [userLikedPosts]);
 
@@ -133,10 +137,8 @@ export const LoginRigisterProvider = () => {
       localStorage.setItem("Token", response.data.accessToken);
       window.localStorage.setItem("@userID", response.data.user.id);
 
-      setUser(response.data.user)
-      setUserLikedPosts(response.data.user.likedPosts)
-      setFavorites(response.data.user.followed)
-      setMyCollectionSave(response.data.user.myCollection)
+      setUser(response.data.user);
+      loadUser();
       navigate("/dashboard");
     } catch (error) {
       console.log(error);
@@ -224,12 +226,11 @@ export const LoginRigisterProvider = () => {
         series: [],
       };
       try {
-
         const response = await apiBase.post("/colections", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        const newResponse:any = response
-        return newResponse
+        const newResponse: any = response;
+        return newResponse;
       } catch (error) {
         console.log(error);
       }
@@ -244,7 +245,6 @@ export const LoginRigisterProvider = () => {
         colection: [],
       };
       try {
-
         const response = await apiBase.post("/mybooks", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -275,7 +275,7 @@ export const LoginRigisterProvider = () => {
         createNewColectionRequest,
         patchEffectKey,
         favorites,
-        setFavorites
+        setFavorites,
       }}
     >
       <Outlet />
