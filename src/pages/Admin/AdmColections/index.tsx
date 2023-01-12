@@ -4,6 +4,7 @@ import AdmModalColection from "../../../components/Modals/AdmModalAddColection";
 import AdmElementModal from "../../../components/Modals/AdmModalAddElement";
 import AdmModal from "../../../components/Modals/AdmModalAddSerie";
 import { DashboardContext } from "../../../contexts/contextDashboard";
+import { apiBase } from "../../../services/api";
 import { StyledButton } from "../../../styles/Button";
 import { Card } from "../../../types";
 import { AdmCards } from "./AdmCards/AdmCards";
@@ -13,6 +14,7 @@ const AdmColections = () => {
   const {
     listRequisition,
     series,
+    setSeries,
     cards,
     setAddColectionId,
     addColectionId,
@@ -21,6 +23,8 @@ const AdmColections = () => {
     setModalOn,
     elementModal,
     setElementModal,
+    setCountadd,
+    setNameFilter
   } = useContext(DashboardContext);
 
   const [filtered, setFiltered] = useState<Card[] | null>(null);
@@ -33,8 +37,8 @@ const AdmColections = () => {
     const nome = cards.filter((category) => category.name === type);
     if (nome[0].series) {
       setFiltered(nome[0].series);
-      
     }
+    setNameFilter(type)
   };
 
   const modalRender = (name: string) => {
@@ -53,6 +57,45 @@ const AdmColections = () => {
 
   console.log(cards);
   
+  const removeColletion = async (name:string)=>{
+    const filterName = cards.filter((ele) => {
+      const filter = ele.series?.filter((el) => {
+        return el.name === name;
+      });
+
+      if (filter) {
+        if (filter.length > 0) {
+          return ele;
+        }
+      }
+    });
+        let filterColletions = filterName[0].series?.filter(
+      (elemet) => elemet.name !== name
+    );
+    
+    const newColection = {
+      series: filterColletions,
+    };
+
+    const token = localStorage.getItem("Token");
+
+    
+    try {
+      const response = await apiBase.patch(
+        `/colections/${filterName[0].id}`,
+        newColection,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log(response)
+      setCountadd(countadd + 1);
+    } catch (error) {
+      console.log(error);
+    }
+
+  }
 
   const modalBtn = (position: number, title: string) => {
     if (position === 0) {
@@ -134,6 +177,7 @@ const AdmColections = () => {
                       buttonSize="small"
                       buttonStyle="negative"
                       type="button"
+                      onClick={()=>removeColletion(serie.name)}
                     >
                       Delete
                     </StyledButton>
@@ -151,21 +195,7 @@ const AdmColections = () => {
                     <h2>{serie.name}</h2>
                   </div>
                   <div className="elementButtons">
-                    <StyledButton
-                      buttonSize="small"
-                      buttonStyle="primary"
-                      type="button"
-                    >
-                      ADD
-                    </StyledButton>
-                    <StyledButton
-                      buttonSize="small"
-                      buttonStyle="negative"
-                      type="button"
-                      onClick={() => admAddElementModal(serie.name)}
-                    >
-                      Delete
-                    </StyledButton>
+
                   </div>
                 </div>
                 <ul className="admUlCardList">
