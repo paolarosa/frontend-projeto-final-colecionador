@@ -3,6 +3,7 @@ import { DashboardContext } from "../../../../contexts/contextDashboard";
 import { CardStyled } from "./styles";
 import { Series } from "../../../../types";
 import { StyledButton } from "../../../../styles/Button";
+import { apiBase } from "../../../../services/api";
 
 interface iCard {
   serie: Series;
@@ -11,23 +12,35 @@ interface iCard {
 export const AdmCards = ({ serie }: iCard) => {
   const { modalRender, myCollectionSave, } = useContext(DashboardContext);
 
-  // const deleteCards = (name:any)=>{
-  //   console.log(name)
+  const deleteCards = async (serieItem: any, colectionItem: any)=>{
+    const apiCollections = await apiBase.get("/colections", {
+      headers: { Authorization: `Bearer ${window.localStorage.getItem("Token")}` },
+    });
 
-  //   const filterName = cards.filter((ele) => {
-  //     const filter = ele.series?.filter((el) => {
-  //       return el.name === nameFilter;
-  //     });
-  //   });
+    apiCollections.data.forEach((category: any) => {
+      category.series.forEach((serie: any) => {
+        if(serie.name === serieItem.name){
+          serie.colection.forEach((singleColection: any) => {
 
+            if(singleColection.id === colectionItem.id){
+              let copySerieColetion = [...serie.colection]
 
-  //   console.log(addColectionId)
-  //   console.log(filterName)
-
-  //   // let filterColletions = filterName[0].series?.filter(
-  //   //   (elemet) => elemet.name !== name
-  //   // );
-  // }
+              copySerieColetion = serie.colection.filter((itemTarget: any) => itemTarget.id !== colectionItem.id)
+              serie.colection = copySerieColetion
+              
+              apiBase.patch(`/colections/${category.id}`, category, {
+                headers: {
+                  Authorization: `Bearer ${window.localStorage.getItem("Token")}`,
+                  "Content-Type": "application/json"
+                }
+              })
+            }
+            
+          })
+        }
+      })
+    })
+  }
 
   return (
     <>
@@ -39,7 +52,7 @@ export const AdmCards = ({ serie }: iCard) => {
             collectionChecker = true;
           }
         });
-        // console.log(collectionChecker);
+
         return (
           <CardStyled key={colection.title} >
             <div className="elementTitle">
@@ -50,7 +63,7 @@ export const AdmCards = ({ serie }: iCard) => {
                 buttonSize="medium"
                 buttonStyle="negative"
                 type="button"
-                // onClick={()=>deleteCards(colection)}
+                onClick={()=>deleteCards(serie, colection)}
               >
                 Delete
               </StyledButton>
