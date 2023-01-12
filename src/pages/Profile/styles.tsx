@@ -10,6 +10,7 @@ export const ProfileContainer = styled.div`
     display: flex;
     flex-direction: column;
     gap: 40px;
+    
 
     .divDescriptionCollection {
       overflow-y: scroll;
@@ -66,6 +67,7 @@ export const UserInfo = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  
 
   @media (min-width: 767px) {
     flex-direction: row;
@@ -108,6 +110,8 @@ export const UserInfo = styled.div`
   }
 
   img {
+    width: 250px;
+    /* height: 250px; */
     min-width: 100px;
     min-height: 100px;
     background-color: black;
