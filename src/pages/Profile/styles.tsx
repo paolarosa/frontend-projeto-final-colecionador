@@ -1,123 +1,158 @@
 import styled from "styled-components";
+import { theme } from "../../styles/theme";
 
 export const ProfileContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  section:nth-child(2) {
     display: flex;
     flex-direction: column;
+    gap: 40px;
 
-    section:nth-child(2) {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-
-    .divDescriptionCollection{  
-        overflow-y: scroll;
+    .divDescriptionCollection {
+      overflow-y: scroll;
     }
-
-        div {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
-            
-            ul {
-                display: flex;
-                gap: 10px;
-                overflow-x: scroll;
-            }
-        }
-    }
-
-    @media (min-width: 1024px) {
-        width: 968px;
-        justify-content: center;
-        margin: 0 auto;
-
-        section:nth-child(2) {
-            flex-direction: row;
-            justify-content: space-between;
-            div {
-                ul {
-                    display: flex;
-                    flex-direction: column;
-                    height: 450px;
-
-                    overflow-x: hidden;
-                    overflow-y: scroll;
-                }
-            }
-        }
-    }
-`
-export const UserInfo = styled.div`
-    max-width: 600px;
-    display: flex;
-    justify-content: space-between;
-
-    padding: 20px;
-    gap: 10px;
 
     div {
-        width: 100%;
-        max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+
+      ul {
         display: flex;
-        justify-content: space-between;
-        align-items: flex-end;
-
-        section {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            border: 2px solid black;
-            height: 100%;
-            
-            p {
-                font-size: 16px;
-            }
-        }
-
-        button {
-            border: 3px solid black;
-        }
+        gap: 10px;
+        overflow-x: scroll;
+      }
+      *::-webkit-scrollbar {
+        width: 15px;
+      }
+      *::-webkit-scrollbar-track {
+        background: ${theme.colors.grey0};
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: ${theme.colors.black};
+        border-radius: 10px;
+        border: 3px solid ${theme.colors.white};
+      }
     }
+  }
 
-    img {
-        min-width: 100px;
-        min-height: 100px;
-        background-color: black;
-    }
+  @media (min-width: 1024px) {
+    width: 968px;
+    justify-content: center;
+    margin: 0 auto;
 
-    @media (min-width: 1024px) {
-        max-width: none;
+    section:nth-child(2) {
+      flex-direction: row;
+      justify-content: space-between;
+      div {
+        ul {
+          display: flex;
+          flex-direction: column;
+          height: 450px;
 
-        div {
-            max-width: none;
+          overflow-x: hidden;
+          overflow-y: scroll;
         }
+      }
     }
-`
+  }
+`;
+export const UserInfo = styled.div`
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  @media (min-width: 767px){
+    flex-direction: row;
+  }
+
+  padding: 20px;
+  gap: 10px;
+
+  div {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      height: 100%;
+
+      p {
+        font-size: 16px;
+        display: -webkit-box;
+      }
+    }
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100px;
+
+      button {
+      }
+    }
+  }
+
+  img {
+    min-width: 100px;
+    min-height: 100px;
+    background-color: black;
+    border-radius: 200px;
+    border: 6px solid ${theme.colors.primary};
+  }
+
+  @media (min-width: 1024px) {
+    max-width: none;
+
+    div {
+      max-width: none;
+    }
+  }
+`;
 
 export const ProfileItemsCard = styled.li`
-    display: block;
-    min-width: 150px;
-    min-height: 200px;
-    background-color: #e0f2ff;
+  display: block;
+  min-width: 150px;
+  min-height: 200px;
+  background-color: #e0f2ff;
+
+  img {
+    width: 100%;
+    height: 130px;
+    max-height: 200px;
+    object-fit: contain;
+    padding-left: 20px;
+  }
+  
+  div > p {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  @media (min-width: 1024px) {
+    width: 400px;
+    min-width: unset;
+    min-height: 100px;
+
+    display: flex;
 
     img {
-        width: 100%;
-        height: 130px;
-        max-height: 200px;
+      width: 100px;
+      height: 100%;
+      max-height: unset;
     }
-
-    @media (min-width: 1024px){
-        width: 400px;
-        min-width: unset;
-        min-height: 100px;
-        
-        display: flex;
-
-        img {
-            width: 100px;
-            height: 100%;
-            max-height: unset;
-        }
-    }
-`
+  }
+`;
