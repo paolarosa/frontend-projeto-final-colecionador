@@ -134,6 +134,12 @@ export const ProfileItemsCard = styled.li`
   border-right: 1px solid black;
   border-radius: 10px;
 
+  h2 {
+    font-size: ${theme.typography.Heading3.size};
+  }
+  p {
+    font-size: ${theme.typography.Body.size};
+  }
   img {
     width: 100%;
     height: 130px;
@@ -154,7 +160,6 @@ export const ProfileItemsCard = styled.li`
     width: 400px;
     min-width: unset;
     min-height: 100px;
-
     display: flex;
 
     img {
