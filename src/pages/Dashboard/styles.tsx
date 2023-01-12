@@ -28,6 +28,7 @@ export const DashboardStyled = styled.div<iActivedButton>`
   max-width: 1140px;
   padding-top: 30px;
   gap: 50px;
+  overflow: hidden;
   ${(props) => {
     switch (props.actived) {
       case "All":
@@ -224,7 +225,6 @@ export const MenuButtons = styled.ul<iActivedButton>`
   @media (max-width: 1024px) {
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     margin-top: 20px;
     li {
       font-size: 10px;
