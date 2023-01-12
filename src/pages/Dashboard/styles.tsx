@@ -11,6 +11,17 @@ export const ContainerDash = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100vh;
+  overflow: hidden;
+  padding: 10px;
+
+  .divButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 150px;
+    position: relative;
+  }
 `;
 export const DashboardStyled = styled.div<iActivedButton>`
   display: flex;
@@ -19,25 +30,26 @@ export const DashboardStyled = styled.div<iActivedButton>`
   max-width: 1140px;
   padding-top: 30px;
   gap: 50px;
+
   ${(props) => {
     switch (props.actived) {
       case "All":
         return css`
           background: ${theme.colors.secundary2}; ;
         `;
-      case "books_colections":
+      case "Books":
         return css`
           background: ${theme.colors.primary};
         `;
-      case "rooms":
+      case "Rooms":
         return css`
           background: ${theme.colors.pink};
         `;
-      case "comics":
+      case "Comics":
         return css`
           background: ${theme.colors.green};
         `;
-      case "card_game":
+      case "TCG":
         return css`
           background: ${theme.colors.red};
         `;
@@ -153,16 +165,32 @@ export const BackgroundDash = styled.div`
 export const MenuButtons = styled.ul<iActivedButton>`
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 100%;
   max-width: 1140px;
   margin-top: 40px;
-  /* overflow-x: scroll; */
-  height: 100px;
+  height: 90px;
+  overflow-x: auto;
+  position: absolute;
+  bottom: -25px;
+  border-bottom: none;
+  padding-left: 15px;
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${theme.colors.black};
+    border-radius: 10px;
+    border: 3px solid transparent;
+  }
 
   li {
     width: 222px;
     min-width: 222px;
+    border-bottom: none;
     display: block;
     background: ${theme.colors.white};
     padding: 10px;
@@ -215,12 +243,20 @@ export const MenuButtons = styled.ul<iActivedButton>`
       width: 140px;
     }
   }
+  @media (max-width: 1024px) {
+    width: 100%;
+    overflow-x: scroll;
+    border-bottom: none;
+  }
+  li {
+    height: 50px;
+  }
 `;
 const categoryActived = css`
   transform: scale(1.14, 1.25);
   background-position: -60px;
   border-bottom: none;
   @media (max-width: 1024px) {
-    border-bottom: 2px solid ${theme.colors.black};
+    /*  border-bottom: 2px solid ${theme.colors.black}; */
   }
 `;

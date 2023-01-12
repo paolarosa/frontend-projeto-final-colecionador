@@ -27,61 +27,58 @@ const Dashboard = () => {
     }
   };
   return (
-    <ContainerDash>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
-      {modalOn ? <Modal /> : null}
+    <div>
       <Header />
-      <MenuButtons actived={actived}>
-        <li
-          onClick={() => {
-            setFiltered(null);
-            setActived("All");
-          }}
-        >
-          <h2>All</h2>
-        </li>
-        <li
-          onClick={() => {
-            setFiltered(null);
-            setActived("All");
-          }}
-        >
-          <h2>All</h2>
-        </li>
-        {cards?.map((card, index) => (
-          <li
-            key={index}
-            onClick={() => {
-              filteredCards(card.name);
-              setActived(card.name);
-            }}
-          >
-            <h2>{card.name}</h2>
-          </li>
-        ))}
-      </MenuButtons>
-      <BackgroundDash className="background" />
-      <DashboardStyled actived={actived}>
-        {filtered
-          ? filtered.map((serie, index) => (
-              <Carrossel serie={serie} index={index} key={index} />
-            ))
-          : series?.map((serie, index) => (
-              <Carrossel serie={serie} index={index} key={index} />
+      <ContainerDash>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        {modalOn ? <Modal /> : null}
+
+        <div className="divButtons">
+          <MenuButtons actived={actived}>
+            <li
+              onClick={() => {
+                setFiltered(null);
+                setActived("All");
+              }}
+            >
+              <h2>All</h2>
+            </li>
+            {cards?.map((card, index) => (
+              <li
+                key={index}
+                onClick={() => {
+                  filteredCards(card.name);
+                  setActived(card.name);
+                }}
+              >
+                <h2>{card.name}</h2>
+              </li>
             ))}
-      </DashboardStyled>
-    </ContainerDash>
+          </MenuButtons>
+        </div>
+        <BackgroundDash className="background" />
+        <DashboardStyled actived={actived}>
+          {filtered
+            ? filtered.map((serie, index) => (
+                <Carrossel serie={serie} index={index} key={index} />
+              ))
+            : series?.map((serie, index) => (
+                <Carrossel serie={serie} index={index} key={index} />
+              ))}
+        </DashboardStyled>
+      </ContainerDash>
+    </div>
   );
 };
 export default Dashboard;
