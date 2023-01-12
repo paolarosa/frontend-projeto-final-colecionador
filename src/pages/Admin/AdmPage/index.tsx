@@ -21,6 +21,7 @@ const AdminPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    (!window.localStorage.getItem("Token") || !window.localStorage.getItem("@userID")) && navigate("/login")
     if (patchEffectKey) {
       admCheck();
     }
