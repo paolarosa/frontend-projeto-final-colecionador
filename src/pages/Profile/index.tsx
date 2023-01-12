@@ -50,12 +50,16 @@ const Profile = () => {
             </ul>
           </div>
           <div>
-            <h2 className="title">Seguidores</h2>
+            <h2>Seguidores</h2>
             <ul>
               {user?.followed?.map((post, index) => (
                 <ProfileItemsCard>
                   {" "}
-                  <img src={post.avatar} alt="avatar collection" />{" "}
+                  <img
+                    className="avatars"
+                    src={post.avatar}
+                    alt="avatar collection"
+                  />{" "}
                   <div>
                     <h2>{post.name}</h2> <p>{post.email}</p>
                   </div>

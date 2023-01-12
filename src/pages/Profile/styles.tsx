@@ -134,6 +134,15 @@ export const ProfileItemsCard = styled.li`
   border-right: 1px solid black;
   border-radius: 10px;
 
+  .avatars {
+    border-radius: 200px;
+    border: 6px solid ${theme.colors.secundary};
+    object-fit: cover;
+    height: 80px;
+    width: 80px;
+    padding: 0;
+    margin: 15px;
+  }
   h2 {
     font-size: ${theme.typography.Heading3.size};
   }
@@ -148,12 +157,24 @@ export const ProfileItemsCard = styled.li`
     padding-left: 20px;
   }
 
-  div > p {
-    display: -webkit-box;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+  div {
+    overflow-y: scroll;
+    width: 100%;
+
+    *::-webkit-scrollbar {
+      width: 15px;
+    }
+    *::-webkit-scrollbar-track {
+      background: ${theme.colors.grey0};
+    }
+    *::-webkit-scrollbar-thumb {
+      background-color: ${theme.colors.black};
+      border-radius: 10px;
+      border: 3px solid ${theme.colors.white};
+    }
+    p {
+      padding-bottom: 10px;
+    }
   }
 
   @media (min-width: 1024px) {
