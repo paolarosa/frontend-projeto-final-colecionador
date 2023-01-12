@@ -211,19 +211,19 @@ export const MenuButtons = styled.ul<iActivedButton>`
   }
   li:nth-child(2) {
     background-color: ${theme.colors.primary};
-    ${(props) => props.actived === "books_colections" && categoryActived}
+    ${(props) => props.actived === "Books" && categoryActived}
   }
   li:nth-child(3) {
     background-color: ${theme.colors.pink};
-    ${(props) => props.actived === "rooms" && categoryActived}
+    ${(props) => props.actived === "Rooms" && categoryActived}
   }
   li:nth-child(4) {
     background-color: ${theme.colors.green};
-    ${(props) => props.actived === "comics" && categoryActived}
+    ${(props) => props.actived === "Comics" && categoryActived}
   }
   li:nth-child(5) {
     background-color: ${theme.colors.red};
-    ${(props) => props.actived === "card_game" && categoryActived}
+    ${(props) => props.actived === "TCG" && categoryActived}
   }
   li:nth-child() @media (max-width: 1024px) {
     width: 100%;
