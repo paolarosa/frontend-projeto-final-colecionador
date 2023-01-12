@@ -41,7 +41,7 @@ export const AdmNewElementForm = () => {
   });
 
   const onSubmit: SubmitHandler<iAdmNewElementFormValues> = async (data) => {
-    const filterName = cards.filter((ele) => {
+      const filterName = cards.filter((ele) => {
       const filter = ele.series?.filter((el) => {
         return el.name === addColectionId;
       });
@@ -67,6 +67,8 @@ export const AdmNewElementForm = () => {
       });
 
       const colection = filterSerie[0].colection;
+
+      console.log(colection)
 
       if (colection) {
         const newColection = {

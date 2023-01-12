@@ -38,10 +38,13 @@ interface iDashContext {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
 
-  addColectionId: string | null
-  setAddColectionId: React.Dispatch<React.SetStateAction<string | null>>
+  addColectionId: string | null;
+  setAddColectionId: React.Dispatch<React.SetStateAction<string | null>>;
   countadd: number;
-  setCountadd: React.Dispatch<React.SetStateAction<number>>
+  setCountadd: React.Dispatch<React.SetStateAction<number>>;
+  setSeries: React.Dispatch<React.SetStateAction<Series[]>>;
+  nameFilter: string
+  setNameFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
@@ -54,11 +57,12 @@ export const DashboardProvider = () => {
   const [containCollection, setContainCollection] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
-  
-  const [addColectionId, setAddColectionId] = useState<string | null>(null)
+
+  const [addColectionId, setAddColectionId] = useState<string | null>(null);
   const [modalOn, setModalOn] = useState(false);
-  const [elementModal, setElementModal] = useState(false)
-  const [countadd, setCountadd] = useState(0)
+  const [elementModal, setElementModal] = useState(false);
+  const [countadd, setCountadd] = useState(0);
+  const [nameFilter, setNameFilter] = useState("");
 
   const token = localStorage.getItem("Token");
 
@@ -160,7 +164,7 @@ export const DashboardProvider = () => {
         });
         let newValues: Series[] = [];
         const data: Colection[] = response.data;
-        setCards(response.data.sort((a: any, b: any) => a.name - b.name));       
+        setCards(response.data.sort((a: any, b: any) => a.name - b.name));
         data.forEach((colection: Colection) => {
           colection.series.forEach((serie) => {
             newValues = [...newValues, serie];
@@ -198,6 +202,9 @@ export const DashboardProvider = () => {
         setAddColectionId,
         countadd,
         setCountadd,
+        setSeries,
+        nameFilter,
+        setNameFilter,
       }}
     >
       <Outlet />
