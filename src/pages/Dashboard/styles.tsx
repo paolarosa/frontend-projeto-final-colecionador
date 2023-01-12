@@ -37,19 +37,19 @@ export const DashboardStyled = styled.div<iActivedButton>`
         return css`
           background: ${theme.colors.secundary2}; ;
         `;
-      case "books_colections":
+      case "Books":
         return css`
           background: ${theme.colors.primary};
         `;
-      case "rooms":
+      case "Rooms":
         return css`
           background: ${theme.colors.pink};
         `;
-      case "comics":
+      case "Comics":
         return css`
           background: ${theme.colors.green};
         `;
-      case "card_game":
+      case "TCG":
         return css`
           background: ${theme.colors.red};
         `;
