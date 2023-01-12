@@ -50,7 +50,7 @@ const Profile = () => {
             </ul>
           </div>
           <div>
-            <h2>Seguidores</h2>
+            <h2 className="title">Seguidores</h2>
             <ul>
               {user?.followed?.map((post, index) => (
                 <ProfileItemsCard>
