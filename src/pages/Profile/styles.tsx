@@ -66,7 +66,7 @@ export const UserInfo = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  @media (min-width: 767px){
+  @media (min-width: 767px) {
     flex-direction: row;
   }
 
@@ -141,7 +141,7 @@ export const ProfileItemsCard = styled.li`
     object-fit: contain;
     padding-left: 20px;
   }
-  
+
   div > p {
     display: -webkit-box;
     text-overflow: ellipsis;
