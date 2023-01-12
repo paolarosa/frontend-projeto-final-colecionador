@@ -47,7 +47,6 @@ const Register = () => {
 
   const onSubmit: SubmitHandler<UserFormData> = (data) => {
     registerRequisition(data);
-    // reset();
   };
   return (
     <PageRegister>

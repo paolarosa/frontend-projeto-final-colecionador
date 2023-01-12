@@ -63,7 +63,6 @@ export const AddSerieForm = ({onCustomClose, customName}:iAdmSerieForm) => {
       colection: [],
     };
 
-    // console.log(filterName);
     const colections = filterName[0]?.series;
 
     if (colections) {
@@ -114,7 +113,6 @@ export const AddSerieForm = ({onCustomClose, customName}:iAdmSerieForm) => {
     }
 
     setAddColectionId(null);
-    // reset();
     setModalOn(!modalOn);
 
     if (onCustomClose) {
@@ -130,7 +128,6 @@ export const AddSerieForm = ({onCustomClose, customName}:iAdmSerieForm) => {
         label="Create New Serie"
         type="text"
         placeholder=""
-        // {...register("name")}
         register={register("name")}
       />
 

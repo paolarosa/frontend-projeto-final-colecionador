@@ -1,13 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { apiBase } from "../services/api";
 import { Book, Card, Colection, Series, User } from "../types";
-
-interface iDashContextProps {
-  children: React.ReactNode;
-}
 
 export interface iCollectionItem {
   author: string;
@@ -53,7 +49,7 @@ interface iDashContext {
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
 
-export const DashboardProvider = ({ children }: iDashContextProps) => {
+export const DashboardProvider = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const [series, setSeries] = useState<Series[]>([]);
   const [saveModal, setSaveModal] = useState<Book>({} as Book);
@@ -67,25 +63,6 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   const [elementModal, setElementModal] = useState(false);
   const [countadd, setCountadd] = useState(0);
   const [nameFilter, setNameFilter] = useState("");
-
-  // console.log(cards);
-
-  //   const colection = cards.filter(ele => ele.id === 5);
-  //   const newTeste = {
-  // 			"name": "Teste Series",
-  // 			"id": 1,
-  // 			"colection": [
-  // 				{
-  // 					"image": "https://repositorio.sbrauble.com/arquivos/in/magic/479855/60e4acbbed21b-8uy7w-pxe1q-148424639060e4acbbed263.jpg",
-  // 					"serie": "Adventures in the Forgotten Realms",
-  // 					"title": "Acererak, o Arquilich",
-  // 					"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  // 					"id": 1
-  // 				}
-  // 			]
-  // 		}
-  //     const createTeste = [...colection.serie, newTeste]
-  // }
 
   const token = localStorage.getItem("Token");
 
@@ -104,7 +81,6 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       const data = {
         myCollection: myNewColletion,
       };
-      // console.log(data);
       try {
         const idUser = localStorage.getItem("@userID");
         const response = await apiBase.patch(`/users/${idUser}`, data, {
@@ -179,7 +155,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       }
     }
   };
-  // console.log(cards);
+
   const listRequisition = async () => {
     if (token) {
       try {
@@ -198,8 +174,6 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
       } catch (error) {
         console.log(error);
       }
-    } else {
-      /* navigate("/"); */
     }
   };
 
@@ -233,7 +207,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         setNameFilter,
       }}
     >
-      {children}
+      <Outlet />
     </DashboardContext.Provider>
   );
 };

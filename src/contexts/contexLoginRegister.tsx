@@ -2,8 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   Outlet,
   useLocation,
-  useNavigate,
-  useResolvedPath,
+  useNavigate
 } from "react-router-dom";
 import { apiBase } from "../services/api";
 import { AllUsers, Posts, User } from "../types";
@@ -75,8 +74,6 @@ export const LoginRigisterProvider = () => {
       setSaveAvatares(response.data);
     } catch (error) {
       console.log(error);
-    } finally {
-      // console.log(saveAvatares);
     }
   };
 
@@ -102,7 +99,8 @@ export const LoginRigisterProvider = () => {
       data.myCollection ? setMyCollectionSave(data.myCollection) : setMyCollectionSave([])
     } catch (error) {
       console.log(error);
-      // window.localStorage.clear();
+      window.localStorage.clear();
+      navigate("/login")
     } finally {
       setLoading(false);
       setPatchEffectKey(true)
@@ -214,7 +212,6 @@ export const LoginRigisterProvider = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAllUsers(response.data);
-        // console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -246,7 +243,6 @@ export const LoginRigisterProvider = () => {
     const token = localStorage.getItem("Token");
     if (token) {
       const newData = {
-        // id: Colection?.id,
         name: data.name,
         colection: [],
       };
