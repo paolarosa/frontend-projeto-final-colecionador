@@ -2,7 +2,12 @@ import { useContext } from "react";
 import Header from "../../components/Header";
 import { LoginRegisterContext } from "../../contexts/contexLoginRegister";
 import { StyledButton } from "../../styles/Button";
-import { ProfileContainer, ProfileItemsCard, UserInfo } from "./styles";
+import {
+  BackgroundDash,
+  ProfileContainer,
+  ProfileItemsCard,
+  UserInfo,
+} from "./styles";
 
 const Profile = () => {
   const { user } = useContext(LoginRegisterContext);
@@ -12,6 +17,7 @@ const Profile = () => {
   return (
     <div>
       <Header />
+      <BackgroundDash className="background" />
       <ProfileContainer>
         <UserInfo>
           <img src={user?.avatar} alt="user avatar" />

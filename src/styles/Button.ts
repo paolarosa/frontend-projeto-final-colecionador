@@ -87,7 +87,8 @@ export const StyledButton = styled.button`
           background: ${theme.colors.colorNegative06};
           color: ${theme.colors.black};
           border: 1px solid ${theme.colors.colorNegative06};
-          box-shadow: 4px 4px 0px ${theme.colors.black}, 4px 4px 0px 1px ${theme.colors.black};
+          box-shadow: 4px 4px 0px ${theme.colors.black},
+            4px 4px 0px 1px ${theme.colors.black};
           &:hover {
             background: ${theme.colors.colorNegative};
             border: 1px solid ${theme.colors.colorNegative};
