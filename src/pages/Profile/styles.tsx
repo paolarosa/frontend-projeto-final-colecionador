@@ -7,7 +7,7 @@ export const ProfileContainer = styled.div`
 
   section:nth-child(2) {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 40px;
 
     .divDescriptionCollection {
@@ -64,6 +64,10 @@ export const UserInfo = styled.div`
   max-width: 600px;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  @media (min-width: 767px){
+    flex-direction: row;
+  }
 
   padding: 20px;
   gap: 10px;
@@ -84,6 +88,7 @@ export const UserInfo = styled.div`
 
       p {
         font-size: 16px;
+        display: -webkit-box;
       }
     }
     div {
@@ -127,6 +132,14 @@ export const ProfileItemsCard = styled.li`
     max-height: 200px;
     object-fit: contain;
     padding-left: 20px;
+  }
+  
+  div > p {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   @media (min-width: 1024px) {
