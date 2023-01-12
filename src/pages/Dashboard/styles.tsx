@@ -9,7 +9,6 @@ export const ContainerDash = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 100%;
   min-height: 100vh;
   padding: 10px;
   .divButtons {
@@ -28,6 +27,7 @@ export const DashboardStyled = styled.div<iActivedButton>`
   max-width: 1140px;
   padding-top: 30px;
   gap: 50px;
+  overflow: hidden;
   ${(props) => {
     switch (props.actived) {
       case "All":
@@ -224,7 +224,6 @@ export const MenuButtons = styled.ul<iActivedButton>`
   @media (max-width: 1024px) {
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     margin-top: 20px;
     li {
       font-size: 10px;
