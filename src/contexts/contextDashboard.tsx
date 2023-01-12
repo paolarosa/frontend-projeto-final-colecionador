@@ -42,10 +42,13 @@ interface iDashContext {
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
 
-  addColectionId: string | null
-  setAddColectionId: React.Dispatch<React.SetStateAction<string | null>>
+  addColectionId: string | null;
+  setAddColectionId: React.Dispatch<React.SetStateAction<string | null>>;
   countadd: number;
-  setCountadd: React.Dispatch<React.SetStateAction<number>>
+  setCountadd: React.Dispatch<React.SetStateAction<number>>;
+  setSeries: React.Dispatch<React.SetStateAction<Series[]>>;
+  nameFilter: string
+  setNameFilter: React.Dispatch<React.SetStateAction<string>>
 }
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
@@ -58,33 +61,31 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
   const [containCollection, setContainCollection] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
-  
-  const [addColectionId, setAddColectionId] = useState<string | null>(null)
+
+  const [addColectionId, setAddColectionId] = useState<string | null>(null);
   const [modalOn, setModalOn] = useState(false);
-  const [elementModal, setElementModal] = useState(false)
-  const [countadd, setCountadd] = useState(0)
+  const [elementModal, setElementModal] = useState(false);
+  const [countadd, setCountadd] = useState(0);
+  const [nameFilter, setNameFilter] = useState("");
 
   // console.log(cards);
-  
 
-//   const colection = cards.filter(ele => ele.id === 5);
-//   const newTeste = {
-// 			"name": "Teste Series",
-// 			"id": 1,
-// 			"colection": [
-// 				{
-// 					"image": "https://repositorio.sbrauble.com/arquivos/in/magic/479855/60e4acbbed21b-8uy7w-pxe1q-148424639060e4acbbed263.jpg",
-// 					"serie": "Adventures in the Forgotten Realms",
-// 					"title": "Acererak, o Arquilich",
-// 					"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-// 					"id": 1
-// 				}
-// 			]
-// 		}
-//     const createTeste = [...colection.serie, newTeste]
-// }
-  
-  
+  //   const colection = cards.filter(ele => ele.id === 5);
+  //   const newTeste = {
+  // 			"name": "Teste Series",
+  // 			"id": 1,
+  // 			"colection": [
+  // 				{
+  // 					"image": "https://repositorio.sbrauble.com/arquivos/in/magic/479855/60e4acbbed21b-8uy7w-pxe1q-148424639060e4acbbed263.jpg",
+  // 					"serie": "Adventures in the Forgotten Realms",
+  // 					"title": "Acererak, o Arquilich",
+  // 					"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  // 					"id": 1
+  // 				}
+  // 			]
+  // 		}
+  //     const createTeste = [...colection.serie, newTeste]
+  // }
 
   const token = localStorage.getItem("Token");
 
@@ -187,7 +188,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         });
         let newValues: Series[] = [];
         const data: Colection[] = response.data;
-        setCards(response.data.sort((a: any, b: any) => a.name - b.name));       
+        setCards(response.data.sort((a: any, b: any) => a.name - b.name));
         data.forEach((colection: Colection) => {
           colection.series.forEach((serie) => {
             newValues = [...newValues, serie];
@@ -227,6 +228,9 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         setAddColectionId,
         countadd,
         setCountadd,
+        setSeries,
+        nameFilter,
+        setNameFilter,
       }}
     >
       {children}

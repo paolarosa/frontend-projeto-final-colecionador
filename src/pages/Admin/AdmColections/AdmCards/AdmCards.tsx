@@ -9,7 +9,25 @@ interface iCard {
 }
 
 export const AdmCards = ({ serie }: iCard) => {
-  const { modalRender, myCollectionSave } = useContext(DashboardContext);
+  const { modalRender, myCollectionSave, } = useContext(DashboardContext);
+
+  // const deleteCards = (name:any)=>{
+  //   console.log(name)
+
+  //   const filterName = cards.filter((ele) => {
+  //     const filter = ele.series?.filter((el) => {
+  //       return el.name === nameFilter;
+  //     });
+  //   });
+
+
+  //   console.log(addColectionId)
+  //   console.log(filterName)
+
+  //   // let filterColletions = filterName[0].series?.filter(
+  //   //   (elemet) => elemet.name !== name
+  //   // );
+  // }
 
   return (
     <>
@@ -23,7 +41,7 @@ export const AdmCards = ({ serie }: iCard) => {
         });
         // console.log(collectionChecker);
         return (
-          <CardStyled key={colection.id} onClick={() => modalRender(colection)}>
+          <CardStyled key={colection.title} >
             <div className="elementTitle">
               <h3>{colection.title}</h3>
             </div>
@@ -32,6 +50,7 @@ export const AdmCards = ({ serie }: iCard) => {
                 buttonSize="medium"
                 buttonStyle="negative"
                 type="button"
+                // onClick={()=>deleteCards(colection)}
               >
                 Delete
               </StyledButton>
