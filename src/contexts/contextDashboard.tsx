@@ -1,13 +1,9 @@
 import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import { apiBase } from "../services/api";
 import { Book, Card, Colection, Series, User } from "../types";
-
-interface iDashContextProps {
-  children: React.ReactNode;
-}
 
 export interface iCollectionItem {
   author: string;
@@ -50,7 +46,7 @@ interface iDashContext {
 
 export const DashboardContext = createContext<iDashContext>({} as iDashContext);
 
-export const DashboardProvider = ({ children }: iDashContextProps) => {
+export const DashboardProvider = () => {
   const [cards, setCards] = useState<Card[]>([]);
   const [series, setSeries] = useState<Series[]>([]);
   const [saveModal, setSaveModal] = useState<Book>({} as Book);
@@ -229,7 +225,7 @@ export const DashboardProvider = ({ children }: iDashContextProps) => {
         setCountadd,
       }}
     >
-      {children}
+      <Outlet />
     </DashboardContext.Provider>
   );
 };
