@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { theme } from "../../styles/theme";
+import image from "../../assets/background.png";
 
 export const ProfileContainer = styled.div`
   display: flex;
@@ -85,10 +86,12 @@ export const UserInfo = styled.div`
       justify-content: center;
       gap: 10px;
       height: 100%;
+      border: 2px solid black;
+      border-left: none;
+      padding: 0 20px;
 
       p {
-        font-size: 16px;
-        display: -webkit-box;
+        font-size: ${theme.typography.Heading3.size};
       }
     }
     div {
@@ -108,7 +111,7 @@ export const UserInfo = styled.div`
     min-height: 100px;
     background-color: black;
     border-radius: 200px;
-    border: 6px solid ${theme.colors.primary};
+    border: 8px solid ${theme.colors.primary};
   }
 
   @media (min-width: 1024px) {
@@ -125,6 +128,11 @@ export const ProfileItemsCard = styled.li`
   min-width: 150px;
   min-height: 200px;
   background-color: #e0f2ff;
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 10px;
 
   img {
     width: 100%;
@@ -155,4 +163,15 @@ export const ProfileItemsCard = styled.li`
       max-height: unset;
     }
   }
+`;
+export const BackgroundDash = styled.div`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  z-index: -1;
+  background-image: url(${image});
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 40%;
 `;

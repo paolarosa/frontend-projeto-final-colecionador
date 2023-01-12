@@ -24,7 +24,7 @@ export const StyledForum = styled.div`
     height: 200px;
     background-color: transparent;
     border-radius: 15px;
-    .banner{
+    .banner {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -185,6 +185,7 @@ export const StyledForum = styled.div`
     height: 100%;
     min-height: 400px;
     width: 100%;
+    margin-bottom: 200px;
 
     .ulForumDiv {
       width: 100%;
@@ -200,8 +201,8 @@ export const StyledForum = styled.div`
         height: 100%;
         min-height: 400px;
         overflow-y: auto;
-        border-top: 1px solid black;
-        border-bottom: 1px solid black;
+        border-top: 4px solid black;
+        border-bottom: 4px solid black;
         border-radius: 10px;
       }
 
@@ -214,7 +215,7 @@ export const StyledForum = styled.div`
         gap: 10px;
         border-left: 1px solid black;
         border-right: 1px solid black;
-        margin-bottom: 10px;
+
         /* border-top: 1px solid black; */
 
         .headerPostMessageDiv {
@@ -281,59 +282,15 @@ export const StyledForum = styled.div`
         height: 200px;
       }
     }
-    .userCard{
+    .userCard {
       background-color: ${theme.colors.white};
       height: 50px;
       border: 2px solid;
-    .banner{
-      display: none;
-    }
-  }
-    
-  }
-  /* .listAllUsers {
-    width: 300px;
-    height: 300px;
-    background: blue;
-
-    li {
-      height: 50px;
-      width: 50px;
-    }
-    img {
-      height: 50px;
-      width: 50px;
-      border-radius: 30px;
-      padding: 5px;
-    }
-
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      width: 200px;
-      max-height: 250px;
-      overflow-y: auto;
-    }
-
-    li {
-      display: flex;
-      flex-direction: row;
-      font-size: ${theme.typography.Caption.size};
-      font-weight: ${theme.typography.Caption.weight};
-      background-color: ${theme.colors.grey1};
-      border-radius: 10px;
-
-      .aboutAll {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        padding: 10px;
-        gap: 10px;
+      .banner {
+        display: none;
       }
     }
-  } */
+  }
 
   .uncoloredHeart {
     color: black;
@@ -352,5 +309,5 @@ export const BackgroundDash = styled.div`
   background-image: url(${image});
   background-size: cover;
   background-repeat: no-repeat;
-  opacity: 30%;
+  opacity: 50%;
 `;
