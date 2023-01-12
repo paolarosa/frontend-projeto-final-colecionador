@@ -126,8 +126,6 @@ export const LoginRigisterProvider = () => {
   }, [userLikedPosts]);
 
   const loginRequisition = async (data: iUserLoginProps) => {
-    console.log(data);
-
     try {
       setLoading(true);
       const response = await apiBase.post("login", data);
@@ -158,7 +156,7 @@ export const LoginRigisterProvider = () => {
     try {
       setLoading(true);
       const response = await apiBase.post("register", body);
-      console.log(response);
+
       navigate("/login");
     } catch (error) {
       console.log(error);
@@ -192,7 +190,6 @@ export const LoginRigisterProvider = () => {
         message: data.message,
       };
       try {
-        console.log(data);
         const response = await apiBase.post("/forum", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -227,7 +224,7 @@ export const LoginRigisterProvider = () => {
         series: [],
       };
       try {
-        console.log(newData);
+
         const response = await apiBase.post("/colections", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -247,7 +244,7 @@ export const LoginRigisterProvider = () => {
         colection: [],
       };
       try {
-        console.log(newData);
+
         const response = await apiBase.post("/mybooks", newData, {
           headers: { Authorization: `Bearer ${token}` },
         });
