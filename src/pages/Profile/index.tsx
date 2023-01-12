@@ -43,8 +43,7 @@ const Profile = () => {
                   {" "}
                   <img src={collection.image} alt="avatar collection" />{" "}
                   <div>
-                    <h2>{collection.title}</h2>{" "}
-                      <p>{collection.description}</p>
+                    <h2>{collection.title}</h2> <p>{collection.description}</p>
                   </div>
                 </ProfileItemsCard>
               ))}
