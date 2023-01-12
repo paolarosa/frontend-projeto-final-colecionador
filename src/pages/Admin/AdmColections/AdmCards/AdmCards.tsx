@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DashboardContext } from "../../../../contexts/contextDashboard";
 import { CardStyled } from "./styles";
 import { Series } from "../../../../types";
@@ -7,40 +7,73 @@ import { apiBase } from "../../../../services/api";
 
 interface iCard {
   serie: Series;
+  name: string;
+  runEffect: boolean;
+  callEffect: boolean;
+  setRunEffect: (data:boolean) => void;
+  setCallEffect: (data: boolean) => void;
+  setFiltered: (data: any) => void;
 }
 
-export const AdmCards = ({ serie }: iCard) => {
-  const { modalRender, myCollectionSave, } = useContext(DashboardContext);
+export const AdmCards = ({ serie, name, runEffect, callEffect, setRunEffect, setCallEffect, setFiltered }: iCard) => {
+  const { modalRender, myCollectionSave, countadd, setCountadd, cards, series } =
+    useContext(DashboardContext);
 
-  const deleteCards = async (serieItem: any, colectionItem: any)=>{
+    useEffect(() => {
+
+      if (runEffect) {
+
+        const getName = cards.filter((category) => {
+
+          
+          return category.name === name
+
+        });
+
+  }
+      
+    }, [callEffect]);
+  
+  
+  const deleteCards = async (serieItem: any, colectionItem: any) => {
     const apiCollections = await apiBase.get("/colections", {
-      headers: { Authorization: `Bearer ${window.localStorage.getItem("Token")}` },
+      headers: {
+        Authorization: `Bearer ${window.localStorage.getItem("Token")}`,
+      },
     });
 
     apiCollections.data.forEach((category: any) => {
       category.series.forEach((serie: any) => {
-        if(serie.name === serieItem.name){
+        if (serie.name === serieItem.name) {
           serie.colection.forEach((singleColection: any) => {
+            if (singleColection.title === colectionItem.title) {
+              let copySerieColetion = [...serie.colection];
 
-            if(singleColection.id === colectionItem.id){
-              let copySerieColetion = [...serie.colection]
-
-              copySerieColetion = serie.colection.filter((itemTarget: any) => itemTarget.id !== colectionItem.id)
-              serie.colection = copySerieColetion
-              
-              apiBase.patch(`/colections/${category.id}`, category, {
-                headers: {
-                  Authorization: `Bearer ${window.localStorage.getItem("Token")}`,
-                  "Content-Type": "application/json"
-                }
-              })
+              copySerieColetion = serie.colection.filter(
+                (itemTarget: any) => itemTarget.title !== colectionItem.title
+              );
+              serie.colection = copySerieColetion;
+              try {
+                apiBase.patch(`/colections/${category.id}`, category, {
+                  headers: {
+                    Authorization: `Bearer ${window.localStorage.getItem(
+                      "Token"
+                    )}`,
+                    "Content-Type": "application/json",
+                  },
+                });
+                setCountadd(countadd + 1);
+              } catch (error) {
+                console.log(error);
+              }
             }
-            
-          })
+          });
         }
-      })
-    })
-  }
+      });
+    });
+    setRunEffect(true)
+    setCallEffect(!callEffect)
+  };
 
   return (
     <>
@@ -54,7 +87,7 @@ export const AdmCards = ({ serie }: iCard) => {
         });
 
         return (
-          <CardStyled key={colection.title} >
+          <CardStyled key={colection.title}>
             <div className="elementTitle">
               <h3>{colection.title}</h3>
             </div>
@@ -63,7 +96,7 @@ export const AdmCards = ({ serie }: iCard) => {
                 buttonSize="medium"
                 buttonStyle="negative"
                 type="button"
-                onClick={()=>deleteCards(serie, colection)}
+                onClick={() => deleteCards(serie, colection)}
               >
                 Delete
               </StyledButton>

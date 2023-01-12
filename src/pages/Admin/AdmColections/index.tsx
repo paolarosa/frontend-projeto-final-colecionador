@@ -24,10 +24,13 @@ const AdmColections = () => {
     elementModal,
     setElementModal,
     setCountadd,
-    setNameFilter
+    setNameFilter,
   } = useContext(DashboardContext);
 
   const [filtered, setFiltered] = useState<Card[] | null>(null);
+  const [callEffect, setCallEffect] = useState(false);
+  const [runEffect, setRunEffect] = useState(false);
+
 
   useEffect(() => {
     listRequisition();
@@ -38,26 +41,20 @@ const AdmColections = () => {
     if (nome[0].series) {
       setFiltered(nome[0].series);
     }
-    setNameFilter(type)
+    setNameFilter(type);
   };
 
   const modalRender = (name: string) => {
     setModalOn(!modalOn);
     setAddColectionId(name || "");
-    console.log(name);
-    console.log("modalRender ok");
   };
 
   const admAddElementModal = (name: string) => {
     setElementModal(!elementModal);
     setAddColectionId(name);
-    console.log(name);
-    
   };
 
-  console.log(cards);
-  
-  const removeColletion = async (name:string)=>{
+  const removeColletion = async (name: string) => {
     const filterName = cards.filter((ele) => {
       const filter = ele.series?.filter((el) => {
         return el.name === name;
@@ -69,17 +66,16 @@ const AdmColections = () => {
         }
       }
     });
-        let filterColletions = filterName[0].series?.filter(
+    let filterColletions = filterName[0].series?.filter(
       (elemet) => elemet.name !== name
     );
-    
+
     const newColection = {
       series: filterColletions,
     };
 
     const token = localStorage.getItem("Token");
 
-    
     try {
       const response = await apiBase.patch(
         `/colections/${filterName[0].id}`,
@@ -89,13 +85,11 @@ const AdmColections = () => {
         }
       );
 
-      console.log(response)
       setCountadd(countadd + 1);
     } catch (error) {
       console.log(error);
     }
-
-  }
+  };
 
   const modalBtn = (position: number, title: string) => {
     if (position === 0) {
@@ -112,10 +106,8 @@ const AdmColections = () => {
         </div>
       );
     }
-    console.log(position);
-    
   };
- 
+
   return (
     <div>
       {modalOn && <AdmModal />}
@@ -154,9 +146,9 @@ const AdmColections = () => {
       <AdmDashboardStyled>
         {filtered
           ? filtered.map((serie, index) => (
-            <div key={index}>
+              <div key={index}>
                 <div className="DivControlAddSerie">
-                {modalBtn(index, serie.name)}
+                  {modalBtn(index, serie.name)}
                 </div>
 
                 <div className="admSerieDiv">
@@ -177,14 +169,14 @@ const AdmColections = () => {
                       buttonSize="small"
                       buttonStyle="negative"
                       type="button"
-                      onClick={()=>removeColletion(serie.name)}
+                      onClick={() => removeColletion(serie.name)}
                     >
                       Delete
                     </StyledButton>
                   </div>
                 </div>
                 <ul>
-                  <AdmCards serie={serie} />
+                <AdmCards serie={serie} setFiltered={setFiltered} name={serie.name} runEffect={runEffect} callEffect={callEffect} setRunEffect={setRunEffect} setCallEffect={setCallEffect} />
                 </ul>
               </div>
             ))
@@ -194,12 +186,10 @@ const AdmColections = () => {
                   <div>
                     <h2>{serie.name}</h2>
                   </div>
-                  <div className="elementButtons">
-
-                  </div>
+                  <div className="elementButtons"></div>
                 </div>
                 <ul className="admUlCardList">
-                  <AdmCards serie={serie} />
+                <AdmCards serie={serie} setFiltered={setFiltered} name={serie.name} runEffect={runEffect} callEffect={callEffect} setRunEffect={setRunEffect} setCallEffect={setCallEffect}/>
                 </ul>
               </div>
             ))}

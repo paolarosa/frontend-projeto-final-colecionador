@@ -40,10 +40,7 @@ export const AddSerieForm = ({onCustomClose, customName}:iAdmSerieForm) => {
     mode: "onChange",
     resolver: yupResolver(postSchema),
   });
-
-  console.log(addColectionId);
   
-
   const onSubmit: SubmitHandler<iUserAddSerieFormValues> = async (data) => {
     const filterName = cards.filter((ele) => {
       const filter = ele.series?.filter((el) => {

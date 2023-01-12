@@ -8,7 +8,7 @@ export const Carrossel = ({ serie, index }: any) => {
     $(`#buttonRoll${index}`).on("click", function () {
       var test: any = $(this).index();
       var list: any = $(`#listColection${index}`).scrollLeft();
-      console.log(index);
+  
       $(`#listColection${index}`).animate(
         { scrollLeft: list + (Number(test === 0 && "-") + 150) },
         10

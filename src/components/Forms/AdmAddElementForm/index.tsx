@@ -55,7 +55,7 @@ export const AdmNewElementForm = () => {
 
     const series = filterName[0].series;
 
-    console.log(series);
+
 
     if (series) {
       const filterSerie = series.filter((ele) => {
@@ -68,8 +68,6 @@ export const AdmNewElementForm = () => {
 
       const colection = filterSerie[0].colection;
 
-      console.log(colection)
-
       if (colection) {
         const newColection = {
           userId: user?.id,
@@ -79,8 +77,6 @@ export const AdmNewElementForm = () => {
             { ...filterSerie[0], colection: [...colection, data] },
           ],
         };
-       
-        console.log(newColection);
 
         const token = localStorage.getItem("Token");
         try {
@@ -101,7 +97,6 @@ export const AdmNewElementForm = () => {
       setElementModal(!elementModal);
     }
 
-    console.log(filterName);
   };
 
   return (
