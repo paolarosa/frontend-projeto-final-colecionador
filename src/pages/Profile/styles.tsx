@@ -19,7 +19,7 @@ export const ProfileContainer = styled.div`
       display: flex;
       flex-direction: column;
       gap: 20px;
-      padding: 20px;
+      padding: 10px;
 
       ul {
         display: flex;
@@ -66,6 +66,7 @@ export const UserInfo = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+
   @media (min-width: 767px) {
     flex-direction: row;
   }
@@ -79,6 +80,7 @@ export const UserInfo = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    position: relative;
 
     section {
       display: flex;
@@ -88,7 +90,6 @@ export const UserInfo = styled.div`
       height: 100%;
       border: 2px solid black;
       border-left: none;
-      padding: 0 20px;
 
       p {
         font-size: ${theme.typography.Heading3.size};
@@ -112,11 +113,16 @@ export const UserInfo = styled.div`
     background-color: black;
     border-radius: 200px;
     border: 8px solid ${theme.colors.primary};
+    z-index: 1;
   }
 
   @media (min-width: 1024px) {
     max-width: none;
-
+    section {
+      padding: 0;
+      position: relative;
+      left: 0px;
+    }
     div {
       max-width: none;
     }
@@ -133,6 +139,7 @@ export const ProfileItemsCard = styled.li`
   border-left: 1px solid black;
   border-right: 1px solid black;
   border-radius: 10px;
+  padding-left: 5px;
 
   .avatars {
     border-radius: 200px;
@@ -141,7 +148,10 @@ export const ProfileItemsCard = styled.li`
     height: 80px;
     width: 80px;
     padding: 0;
-    margin: 15px;
+    margin: 5px;
+  }
+  .colectionDiv {
+    margin-bottom: 20px;
   }
   h2 {
     font-size: ${theme.typography.Heading3.size};
@@ -154,11 +164,12 @@ export const ProfileItemsCard = styled.li`
     height: 130px;
     max-height: 200px;
     object-fit: contain;
-    padding-left: 20px;
+    box-shadow: 5px 5px 5px ${theme.colors.grey3},
+      -2px 1px 10px 0px ${theme.colors.grey3};
   }
 
   div {
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 100%;
 
     *::-webkit-scrollbar {
@@ -171,9 +182,6 @@ export const ProfileItemsCard = styled.li`
       background-color: ${theme.colors.black};
       border-radius: 10px;
       border: 3px solid ${theme.colors.white};
-    }
-    p {
-      padding-bottom: 10px;
     }
   }
 
