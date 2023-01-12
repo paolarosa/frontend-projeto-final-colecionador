@@ -69,7 +69,7 @@ export const DashboardProvider = () => {
   const modalRender = (colection: iCollectionItem) => {
     setModalOn(!modalOn);
     setSaveModal(colection);
-    console.log(saveModal);
+
   };
 
   const myCollection = async () => {

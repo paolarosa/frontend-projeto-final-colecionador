@@ -12,8 +12,6 @@ import {
 const Profile = () => {
   const { user } = useContext(LoginRegisterContext);
 
-  console.log(user);
-
   return (
     <div>
       <Header />
@@ -39,7 +37,7 @@ const Profile = () => {
             <h2>Coleção</h2>
             <ul>
               {user?.myCollection?.map((collection, index) => (
-                <ProfileItemsCard>
+                <ProfileItemsCard key={collection.title}>
                   {" "}
                   <img src={collection.image} alt="avatar collection" />{" "}
                   <div className="colectionDiv">
@@ -53,7 +51,7 @@ const Profile = () => {
             <h2>Seguidores</h2>
             <ul>
               {user?.followed?.map((post, index) => (
-                <ProfileItemsCard>
+                <ProfileItemsCard key={post.name}>
                   {" "}
                   <img
                     className="avatars"
