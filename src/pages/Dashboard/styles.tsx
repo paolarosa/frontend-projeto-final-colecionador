@@ -13,7 +13,6 @@ export const ContainerDash = styled.div`
   min-height: 100vh;
   overflow: hidden;
   padding: 10px;
-
   .divButtons {
     display: flex;
     align-items: center;
@@ -30,7 +29,6 @@ export const DashboardStyled = styled.div<iActivedButton>`
   max-width: 1140px;
   padding-top: 30px;
   gap: 50px;
-
   ${(props) => {
     switch (props.actived) {
       case "All":
@@ -174,7 +172,6 @@ export const MenuButtons = styled.ul<iActivedButton>`
   bottom: -25px;
   border-bottom: none;
   padding-left: 15px;
-
   &::-webkit-scrollbar {
     height: 10px;
   }
@@ -186,7 +183,6 @@ export const MenuButtons = styled.ul<iActivedButton>`
     border-radius: 10px;
     border: 3px solid transparent;
   }
-
   li {
     width: 222px;
     min-width: 222px;
@@ -230,7 +226,6 @@ export const MenuButtons = styled.ul<iActivedButton>`
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
-
     li {
       font-size: 10px;
       height: 30px;
