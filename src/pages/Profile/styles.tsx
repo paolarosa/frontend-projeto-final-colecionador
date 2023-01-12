@@ -9,9 +9,9 @@ export const ProfileContainer = styled.div`
         flex-direction: column;
         gap: 40px;
 
-.divDescriptionCollection{  
-    overflow-y: scroll;
-}
+    .divDescriptionCollection{  
+        overflow-y: scroll;
+    }
 
         div {
             display: flex;
@@ -67,6 +67,8 @@ export const UserInfo = styled.div`
             display: flex;
             flex-direction: column;
             gap: 10px;
+            border: 2px solid black;
+            height: 100%;
             
             p {
                 font-size: 16px;
