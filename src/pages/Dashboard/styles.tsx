@@ -11,7 +11,6 @@ export const ContainerDash = styled.div`
   width: 100%;
   height: 100%;
   min-height: 100vh;
-  overflow: hidden;
   padding: 10px;
   .divButtons {
     display: flex;
@@ -221,7 +220,8 @@ export const MenuButtons = styled.ul<iActivedButton>`
     background-color: ${theme.colors.red};
     ${(props) => props.actived === "card_game" && categoryActived}
   }
-  li:nth-child() @media (max-width: 1024px) {
+
+  @media (max-width: 1024px) {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -251,7 +251,4 @@ const categoryActived = css`
   transform: scale(1.14, 1.25);
   background-position: -60px;
   border-bottom: none;
-  @media (max-width: 1024px) {
-    /*  border-bottom: 2px solid ${theme.colors.black}; */
-  }
 `;
