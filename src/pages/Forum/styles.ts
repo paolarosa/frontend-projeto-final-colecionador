@@ -105,7 +105,6 @@ export const StyledForum = styled.div`
         font-size: 10px;
         display: flex;
         flex-direction: column;
-        /* gap: 10px; */
       }
       *::-webkit-scrollbar {
         width: 12px;
@@ -121,7 +120,6 @@ export const StyledForum = styled.div`
 
       li {
         display: flex;
-        /* margin-top: 10px; */
         gap: 20px;
         align-items: center;
         width: 100%;
@@ -215,8 +213,6 @@ export const StyledForum = styled.div`
         gap: 10px;
         border-left: 1px solid black;
         border-right: 1px solid black;
-
-        /* border-top: 1px solid black; */
 
         .headerPostMessageDiv {
           display: flex;

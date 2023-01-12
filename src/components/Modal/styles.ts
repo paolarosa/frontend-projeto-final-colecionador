@@ -64,14 +64,7 @@ box-shadow: 0px 0px 50px 3px rgba(245,255,18,0.4);
       h2{
         font-size: ${theme.typography.Heading0.size};
       }
-      /* button{
-        font-size: 2rem;
-        background-color: #49BCF0;
-        padding: 15px;
-        border-radius: 30px;
-        -webkit-box-shadow: 0px 2px 3px 3px rgba(0,0,0,0.87); 
-        box-shadow: 0px 2px 3px 3px rgba(0,0,0,0.87);
-      } */
+      
       .description{
         width: 100%;
         height: 200px;

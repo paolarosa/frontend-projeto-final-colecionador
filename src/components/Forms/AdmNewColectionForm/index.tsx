@@ -34,7 +34,6 @@ export const AdmNewColectionForm = () => {
     
     setAddColectionId(response.data)
     setShowModalSerie(true)
-    // reset();
   };
 
   return (

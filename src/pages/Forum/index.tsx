@@ -10,8 +10,6 @@ import { forumContext } from "../../contexts/ContextForum/contextForum";
 import { iUserDetail } from "../../contexts/ContextForum/forumInterface";
 import Fundo from "../../assets/FundoBanner.png"
 
-// import ExpenseDate, { ShowDate, ShowNewDate } from "../../styles/Date";
-
 const Forum = () => {
   const { favorites, setFavorites } = useContext(LoginRegisterContext);
 
@@ -63,7 +61,6 @@ const Forum = () => {
   };
 
   const checkLikedPosts = (element: any) => {
-    console.log(userLikedPosts?.findIndex((post) => element.id === post.id));
     return userLikedPosts?.findIndex((post) => element.id === post.id) ===
       -1 ? (
       <AiFillHeart className="uncoloredHeart" />
@@ -73,7 +70,6 @@ const Forum = () => {
   };
 
   const likePost = (element: any) => {
-    console.log(userLikedPosts);
     if (userLikedPosts?.findIndex((x) => x.id === element.id) === -1) {
       setUserLikedPosts([...userLikedPosts, element]);
     } else if (userLikedPosts?.findIndex((x) => x.id === element.id) >= 0) {
@@ -82,7 +78,6 @@ const Forum = () => {
   };
 
   function createForumCards() {
-    const copyPosts = [...posts];
 
     return posts.reverse().map((post, index) => (
       <li key={index}>
@@ -117,7 +112,6 @@ const Forum = () => {
                     <h3>{user?.name}</h3>
                   </div>
                 <div className="banner"><img src={Fundo} alt="" /></div>
-                {/* <p>following: {updateFavorites.length}</p> */}
               </div>
       <div className="container">
         <div className="infosInputChat">

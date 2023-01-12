@@ -100,7 +100,6 @@ export const AdmNewElementForm = () => {
     }
 
     console.log(filterName);
-    // console.log(data)
   };
 
   return (

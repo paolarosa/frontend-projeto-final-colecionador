@@ -24,11 +24,6 @@ export const Cards = ({ serie }: iCard) => {
         return(
           <CardStyled key={colection.id} onClick={()=>modalRender(colection)}>
             <img src={colection.image} alt="" className={`${collectionChecker? ("colorfulCard") : (null)}`} />
-            {/*  <div>
-              <h3>{book.title}</h3>
-              <h4>{book.author}</h4>
-              <p>{book.published}</p>
-            </div> */}
           </CardStyled>
         )
       })}

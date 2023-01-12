@@ -67,7 +67,6 @@ export interface Card {
 export interface Series {
   image: string;
   name: string;
-  // colection?: 
 }
 
 export interface Posts {

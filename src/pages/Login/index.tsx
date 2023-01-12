@@ -43,7 +43,6 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<UserFormData> = (data) => {
     loginRequisition(data);
-    // reset();
   };
 
   useEffect(() => {
@@ -57,24 +56,6 @@ const Login = () => {
           <div>
             <h2>Login</h2>
           </div>
-
-          {/* <label>Email</label>
-          <input type={"email"} {...register("email")} />
-          {errors ? <span>{errors.email?.message}</span> : ""}
-          <label>Senha</label>
-
-          <div className="password">
-            <input
-              type={passwordEye ? "text" : "password"}
-              {...register("password")}
-            />
-            <span onClick={() => setPasswordEye(!passwordEye)}>
-              {" "}
-              {passwordEye ? <AiFillEyeInvisible /> : <AiFillEye />}{" "}
-            </span>
-          </div>
-          {errors ? <span>{errors.password?.message}</span> : ""}
-          <button type="submit">Entrar</button> */}
 
           <Input
             className="input"
@@ -109,7 +90,6 @@ const Login = () => {
             disabled={loading}
           >
             {loading ? ("Entrando ...") : ("Entrar")}
-            {/* Entrar */}
           </StyledButton>
         </form>
       </section>

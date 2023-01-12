@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom"
 import { apiBase } from "../../services/api"
 import { LoginRegisterContext } from "../contexLoginRegister"
 
-import { iForum, iUserDetail } from "./forumInterface"
+import { iForum } from "./forumInterface"
 
 export const forumContext = createContext({} as iForum)
 
